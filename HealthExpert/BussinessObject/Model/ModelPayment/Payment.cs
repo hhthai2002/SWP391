@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace BussinessObject.Model.ModelPayment
 {
-    public class Payment
+    public class PaymentResponse
     {
         [Key]
         public int paymentId { get; set; }

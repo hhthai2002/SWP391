@@ -43,7 +43,7 @@ namespace HealthExpertAPI.Services
         }
 
         //public PaymentResponse PaymentExecute(IQueryCollection collections)
-        public Payment PaymentExecute(IQueryCollection collections)
+        public PaymentResponse PaymentExecute(IQueryCollection collections)
         {
             var vnpay = new VnPayLibrary();
 
@@ -80,13 +80,13 @@ namespace HealthExpertAPI.Services
             bool checkSignature = vnpay.ValidateSignature(vnp_SecureHash, _config["VnPay:HashSecret"]);
             if (!checkSignature)
             {
-                return new Payment
+                return new PaymentResponse
                 {
                    success = false
                 };
             }
 
-            return new Payment
+            return new PaymentResponse
             {
                 success = true,
                 paymentMethod = "VnPay",

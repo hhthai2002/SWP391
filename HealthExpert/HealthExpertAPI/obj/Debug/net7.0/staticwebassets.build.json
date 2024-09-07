@@ -1,12 +1,20 @@
 {
   "Version": 1,
-  "Hash": "w5NxgyKOJfUZ2gkTDNhI24oUnoCcST5c3YIJFiTDoMg=",
+  "Hash": "fEK4mkStWRJVLKmgdFhNUW2JAW7vmbMkgmDkTP7mMAk=",
   "Source": "HealthExpertAPI",
   "BasePath": "_content/HealthExpertAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "HealthExpertAPI\\wwwroot",
+      "Source": "HealthExpertAPI",
+      "ContentRoot": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\wwwroot\\",
+      "BasePath": "_content/HealthExpertAPI",
+      "Pattern": "**"
+    }
+  ],
   "Assets": [
     {
       "Identity": "C:\\Users\\ES_IT16\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\7.0.14\\staticwebassets\\V5\\css\\site.css",

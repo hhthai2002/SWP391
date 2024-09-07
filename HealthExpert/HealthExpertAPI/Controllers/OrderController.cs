@@ -126,11 +126,11 @@ namespace HealthExpertAPI.Controllers
         }
 
         //Checkout Order
-        [AllowAnonymous]
+        [AllowAnonymous] //[Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        public IActionResult CheckoutOrder([FromBody] string payment = "VnPay")
+        public IActionResult CheckoutOrder(string payment = "VnPay")
         {
             if (_checkoutDataList.Count == 0)
             {
@@ -166,7 +166,6 @@ namespace HealthExpertAPI.Controllers
 
             return Ok(paymentUrl);
         }
-
 
 
         //Payment Call Back
