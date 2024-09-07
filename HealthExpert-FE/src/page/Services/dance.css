@@ -1,0 +1,18 @@
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.course-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin-right: 10px;
+}
