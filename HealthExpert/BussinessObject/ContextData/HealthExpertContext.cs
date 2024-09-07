@@ -72,25 +72,6 @@ namespace BussinessObject.ContextData
                 new Role { roleId = 3, roleName = "CourseManager" },
                 new Role { roleId = 4, roleName = "Learner" }
                 );
-
-            modelBuilder.Entity<Course>().HasData(
-                new Course
-                {
-                    courseId = "C001",
-                    courseName = "Course 1",
-                    price = 10,
-                    rating = 5,
-                    description = "This is course 1",
-                    studentNumber = 100,
-                    certificate = "Certificate 1",
-                    createBy = "admin",
-                    dateUpdate = DateTime.Now,
-                    language = "English",
-                    bmiMax = 20,
-                    bmiMin = 10,
-                    typeId = 1
-                }
-                );
         }
     }
 }
