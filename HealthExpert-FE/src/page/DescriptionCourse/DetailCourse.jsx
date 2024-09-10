@@ -44,6 +44,7 @@ export default function DetailCourse() {
   const [accountId, setAccountId] = useState(null);
   const [feedbackConfig, setFeedbackConfig] = useState({});
   const [feedback, setFeedback] = useState([]);
+  const [usernames, setUsernames] = useState({});
   const user = localStorage.getItem("user");
   const { id = "" } = useParams();
   const { TextArea } = Input;
@@ -82,62 +83,55 @@ export default function DetailCourse() {
   }
 
 
-  const confirm = () => {
-    axios
-      .delete(
+  const confirm = async () => {
+    try {
+      await axios.delete(
         `https://localhost:7158/api/feedback/${accountId}/${course.courseId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then()
-      .catch(() => {
-        console.log("Error");
-      });
+        { headers: { "Content-Type": "application/json" } }
+      );
+      setFeedback(feedback.filter(item => item.accountId !== accountId));
+      message.success("Feedback deleted successfully!");
+    } catch (error) {
+      message.error("Error deleting feedback!");
+      console.log("Error:", error);
+    }
   };
+
   const cancel = (e) => {
     console.log(e);
-    message.error("Đã hủy xóa bài đánh giá");
+    message.error("Đã xóa bài đánh giá");
   };
 
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleOk = async (values) => {
-    await axios
-      .put(
+    try {
+      await axios.put(
         "https://localhost:7158/api/feedback",
         {
           accountId: accountId,
           courseId: course.courseId,
           detail: values.TextArea,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then()
-      .catch(() => {
-        console.log("Error");
-      });
-    setIsModalOpen(false);
-
-    fetch("https://localhost:7158/api/feedback")
-      .then((response) => response.json())
-      .then((data) => setFeedback(data));
+        { headers: { "Content-Type": "application/json" } }
+      );
+      setFeedback(feedback.map(item => item.accountId === accountId ? { ...item, detail: values.TextArea } : item));
+      message.success("Feedback updated successfully!");
+      setIsModalOpen(false);
+    } catch (error) {
+      message.error("Error updating feedback!");
+      console.log("Error:", error);
+    }
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const onFinish = (values) => {
-    axios
-      .post(
+  const onFinish = async (values) => {
+    try {
+      await axios.post(
         "https://localhost:7158/api/feedback",
         {
           accountId: accountId,
@@ -149,13 +143,16 @@ export default function DetailCourse() {
             "Content-Type": "application/json",
           },
         }
-      )
-      .then()
-      .catch(() => {
-        console.log("Error");
-      });
+      );
+      message.success("Feedback submitted successfully!");
+      // Reload the page after displaying the success message
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000); // Delay to allow the message to be visible
+    } catch {
+      console.log("Error");
+    }
   };
-
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -164,11 +161,51 @@ export default function DetailCourse() {
     updateForm.setFieldValue("TextArea", feedbackConfig.detail);
   }, [feedbackConfig]);
 
+  // useEffect(() => {
+  //   fetch("https://localhost:7158/api/feedback")
+  //     .then((response) => response.json())
+  //     .then((data) => setFeedback(data.filter((item) => item.courseId === id)));
+  // }, []);
+
+  const fetchUsernameById = async (accountId) => {
+    try {
+      const response = await axios.get(
+        `https://localhost:7158/api/Account/GetUsernameById/${accountId}`
+      );
+      return response.data; // Return the username
+    } catch (error) {
+      console.error(`Error fetching username for accountId ${accountId}:`, error);
+      return null;
+    }
+  };
+
   useEffect(() => {
-    fetch("https://localhost:7158/api/feedback")
-      .then((response) => response.json())
-      .then((data) => setFeedback(data.filter((item) => item.courseId === id)));
-  }, []);
+    const fetchFeedbacks = async () => {
+      try {
+        const response = await fetch("https://localhost:7158/api/feedback");
+        const data = await response.json();
+        const courseFeedback = data.filter((item) => item.courseId === id);
+
+        // Fetch usernames for each feedback
+        const usernameMap = {};
+        await Promise.all(
+          courseFeedback.map(async (item) => {
+            if (!usernameMap[item.accountId]) {
+              const username = await fetchUsernameById(item.accountId);
+              usernameMap[item.accountId] = username || item.accountId; // Store username or fallback to accountId
+            }
+          })
+        );
+
+        setUsernames(usernameMap); // Store usernames in state
+        setFeedback(courseFeedback);
+      } catch (error) {
+        console.error("Error fetching feedback:", error);
+      }
+    };
+
+    fetchFeedbacks();
+  }, [id]);
 
   const api = "https://localhost:7158/api/Course/:id";
   useEffect(() => {
@@ -473,25 +510,18 @@ export default function DetailCourse() {
                       </div>
                     )}
 
-                  {feedback?.length > 0
-                    ? feedback
-                      ?.filter((item) => item.accountId !== accountId)
-                      .map((item) => {
-                        return (
-                          <div className="mt-5">
-                            <p className=" leading-relaxed text-black">
-                              {item.accountId}
-                            </p>
-                            {/* contend */}
-                            <div className="mt-2 rounded-lg bg-gray-100">
-                              <p className="leading-relaxed text-sm max-w-xl px-2 py-2 text-gray-600 w-full">
-                                {item.detail}
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })
-                    : "Hiện chưa có bài đánh giá nào cho khóa học này"}
+                  {feedback?.map((item) => (
+                    <div key={item.accountId} className="mt-5">
+                      {/* Display username instead of accountId */}
+                      <p className=" leading-relaxed text-black">{usernames[item.accountId]}</p>
+                      <div className="mt-2 rounded-lg bg-gray-100">
+                        <p className="leading-relaxed text-sm max-w-xl px-2 py-2 text-gray-600 w-full">
+                          {item.detail}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                  {!feedback.length && <p>Hiện chưa có bài đánh giá nào cho khóa học này</p>}
                 </div>
               </div>
             </div>
@@ -512,7 +542,7 @@ export default function DetailCourse() {
                     className="mt-3 ml-5"
                     to={`/learningCourse/${course.courseId}`}
                   >
-                    <h3 className=" bg-orange-400 text-white">
+                    <h3 className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                       Tham gia khóa học
                     </h3>
                   </Link>

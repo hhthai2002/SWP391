@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 
-import gymbackground from "../../img/gymbackground.jpg";
+import gymbackground from "../../img/gymbackground.jpg"; // Xóa nếu không sử dụng
 import Header from "../../components/Header";
 import gymcourse from "../../img/gymcourse.jpg";
 
@@ -23,7 +23,6 @@ export default function Gym() {
       .catch(error => console.error('Error fetching data:', error));
   }, []);
   const filteredCoursesCount = courses.filter(course => course.typeId === 4).length;
-  //const filteredCoursesCount = courses.filter(course => course.typeId === 0).length;
 
   // Nếu số lượng khóa học trong trang hiện tại lớn hơn 9, sử dụng phân trang
   const showPagination = filteredCoursesCount > coursesPerPage;
@@ -43,13 +42,20 @@ export default function Gym() {
       <div className="home-page">
         <Header />
       </div>
-      {/* background yoga */}
-      <div
-        className="w-full h-[300px] bg-cover bg-center"
-        style={{ backgroundImage: `url(${gymbackground})` }}
-      ></div>
+      {/* background video */}
+      <div className="video-background">
+        <iframe
+          width="100%"
+          height="300"
+          src="https://www.youtube.com/embed/OrDB4jpA1g8?autoplay=1"
+          title="Gym Video Background"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
       <section>
-        {/* contend yoga */}
+        {/* content gym */}
         <div className="">
           <h2 className="mt-10 text-center text-[30px] text-orange-400">
             KHÓA HỌC GYM TẠI HEALTH EXPERT <br /> TĂNG CƯỜNG SỨC MẠNH, ĐỘ BỀN VÀ TẬP TRUNG
@@ -58,7 +64,6 @@ export default function Gym() {
             Tập gym là một phương pháp tập luyện hiệu quả để cải thiện sức khỏe và sức mạnh cơ bắp. Với các bài tập như nâng tạ, đẩy tạ, và các bài tập cơ bản khác, bạn có thể phát triển cơ bắp, tăng cường sức mạnh và độ bền cho cơ thể của mình. <br /> Bên cạnh việc rèn luyện cơ bắp, tập gym còn giúp cải thiện sự linh hoạt, tăng cường sức khỏe tim mạch và hệ miễn dịch. <br /> Đến với <a href="/home"><span className="text-orange-400">Health Expert</span>,</a> khám phá thế giới của gym và bắt đầu hành trình rèn luyện sức khỏe của bạn ngay hôm nay.
           </p>
         </div>
-
       </section>
       <section>
         <div className="course-grid">

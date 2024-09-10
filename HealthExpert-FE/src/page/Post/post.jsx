@@ -95,86 +95,22 @@ export default function ListPost() {
                 </li>
               </a>
             </div>
-            <div>
-              <div className="bg-orange-400 w-[80%]  h-[30px] mb-5">
-                <h2 className="items-center text-white font-sans font-bold ml-3 my-auto">
-                  BÀI VIẾT GẦN ĐÂY{" "}
-                </h2>
-              </div>
-              <div className="flex flex-col w-[80%]">
-                <div className="flex w-full">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post1} alt="" />
+            <div className="bg-orange-400 w-[80%] h-[30px] mb-5">
+              <h2 className="items-center text-white font-sans font-bold ml-3 my-auto">
+                BÀI VIẾT GẦN ĐÂY
+              </h2>
+            </div>
+            <div className="flex flex-col w-[80%]">
+              {posts.slice(0, 5).map((post, index) => (
+                <div key={index} className="flex w-full mt-7">
+                  <a className="w-[30%]" href={`/postDetail/${post.postId}`}>
+                    <img className="w-[140px] h-[60px]" src={post.imageUrl || Post1} alt={post.title} />
                   </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Bài tập thon gọn mặt trong 1 Tuần Sau Tết 2024
-                    </p>
+                  <a className="w-[70%]" href={`/postDetail/${post.postId}`}>
+                    <p className="ml-3 text-sm">{post.title}</p>
                   </a>
                 </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post2} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Dinh dưỡng và tập luyện Gym cho Nữ sau tết – Dáng đẹp eo
-                      thon trở lại
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post3} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Bài tập thon gọn mặt trong 1 Tuần Sau Tết 2024
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post4} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Giảm cân sau Tết nhằm lấy lại vóc dáng mong ước
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post5} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Ăn bánh Chưng bánh Tét sao cho không tăng cân ngày Tết
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post6} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Bỏ túi các Bài tập cho chân thon trong 7 NGÀY – Chị em xem
-                      Ngay!
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post7} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Top những bài tập Bắp chân tại nhà TO KHỎE như Ronaldo
-                    </p>
-                  </a>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

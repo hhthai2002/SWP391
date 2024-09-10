@@ -56,17 +56,17 @@ export default function DetailPost() {
         {/* left content */}
         <div className="w-[70%] m-20 ">
           {/* Background image */}
-          <h1 className="font-bold mb-10 text-3xl text-center">{post.title}</h1>
-          <div className="w-[100%] flex flex-col items-center">
+          <h1 className="font-bold mb-10 text-xl text-left">{post.title}</h1>
+          {/* <div className="w-[100%] flex flex-col items-center">
             <img className="h-[500px]" src={PostDetailBackground} alt="" />
-          </div>
+          </div> */}
           {/* Content with random images */}
           {paragraphs.map((paragraph, index) => (
             <div key={index}>
               <p className="mt-10 whitespace-pre-line mb-10">{paragraph}</p>
-              <div className="flex flex-col items-center">
+              {/* <div className="flex flex-col items-center">
                 <img className="h-[500px]" src={postImages[Math.floor(Math.random() * postImages.length)]} alt="" />
-              </div>
+              </div> */}
 
             </div>
           ))}

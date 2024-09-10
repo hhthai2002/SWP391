@@ -44,13 +44,17 @@ export default function Boxing() {
         <Header />
       </div>
       {/* background yoga */}
-      <div
-        className="w-full h-[300px] bg-cover bg-center bg-top-[30px]"
-        style={{
-          backgroundImage: `url(${boxingbackground})`,
-          backgroundPosition: "center top -250px"
-        }}
-      ></div>
+      <div className="video-background">
+        <iframe
+          width="100%"
+          height="300"
+          src="https://www.youtube.com/embed/OrDB4jpA1g8?autoplay=1"
+          title="Gym Video Background"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
       <section>
         {/* contend yoga */}
         <div className="">

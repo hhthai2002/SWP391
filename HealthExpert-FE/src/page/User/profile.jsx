@@ -281,7 +281,7 @@ function YourProfile() {
           <br />
           <hr />
           <br />
-          <div>HealtExpert © 2024</div>
+          <div>HealthExpert © 2024</div>
         </footer>
       </div>
       {/* FOOTER */}
