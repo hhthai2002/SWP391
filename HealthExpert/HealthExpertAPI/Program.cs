@@ -1,5 +1,6 @@
 using Azure.Storage.Blobs;
 using BussinessObject.ContextData;
+using BussinessObject.Model.Mail;
 using HealthExpertAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -29,6 +30,9 @@ namespace HealthExpertAPI
                 return new BlobServiceClient(builder.Configuration.GetConnectionString("AzureBlobStorage"));
             });
             builder.Services.AddScoped<IFileService, FileService>();
+            builder.Services.AddTransient<EmailService>();
+            builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("Email:SmtpSettings"));
+
 
             // Configure upload path
             var uploadPath = builder.Configuration.GetValue<string>("UploadPath");

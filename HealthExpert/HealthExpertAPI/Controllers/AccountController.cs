@@ -26,37 +26,71 @@ namespace HealthExpertAPI.Controllers
 
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
+        private readonly EmailService _emailService;
 
-        public AccountController(IConfiguration configuration, IMapper mapper, HealthExpertContext context)
+        public AccountController(IConfiguration configuration, IMapper mapper, HealthExpertContext context, EmailService emailService)
         {
             _configuration = configuration;
             _mapper = mapper;
             _context = context;
+            _emailService = emailService;
         }
 
         // Register
+        //[AllowAnonymous]
+        //[HttpPost]
+        //public IActionResult Register(AccountRegistrationDTO accountDTO)
+        //{
+        //    if (_context.accounts.Any(a => a.email == accountDTO.email))
+        //    {
+        //        return BadRequest("Account Exist!!");
+        //    }
+
+        //    CreatedPasswordHash(accountDTO.password,
+        //        out byte[] passwordHash,
+        //        out byte[] passwordSalt);
+
+        //    Account account = accountDTO.ToAccountRegister(passwordHash, passwordSalt);
+        //    account.verificationToken = CreateRandomToken();
+        //    account.phone = accountDTO.phone;
+        //    account.birthDate = accountDTO.birthDate;
+        //    account.roleId = 4;
+        //    account.isActive = true;
+
+        //    _repository.AddAccount(account);
+        //    return Ok("Account successfully register!!");
+        //}
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Register(AccountRegistrationDTO accountDTO)
+        public async Task<IActionResult> Register(AccountRegistrationDTO accountDTO)
         {
-            if (_context.accounts.Any(a => a.email == accountDTO.email))
+            // Check if the email already exists
+            if (await _context.accounts.AnyAsync(a => a.email == accountDTO.email))
             {
-                return BadRequest("Account Exist!!");
+                return BadRequest("Account Exists!!");
             }
 
-            CreatedPasswordHash(accountDTO.password,
-                out byte[] passwordHash,
-                out byte[] passwordSalt);
+            CreatedPasswordHash(accountDTO.password, out byte[] passwordHash, out byte[] passwordSalt);
 
             Account account = accountDTO.ToAccountRegister(passwordHash, passwordSalt);
             account.verificationToken = CreateRandomToken();
             account.phone = accountDTO.phone;
             account.birthDate = accountDTO.birthDate;
             account.roleId = 4;
-            account.isActive = true;
+            account.isActive = false;
 
             _repository.AddAccount(account);
-            return Ok("Account successfully register!!");
+            await _context.SaveChangesAsync(); // Ensure the account is saved to the database
+
+            // Generate the verification link
+            //var verificationLink = $"https://localhost:8173/api/Auth/VerifyAccount/verify?token={account.verificationToken}";
+            //System.Diagnostics.Debug.WriteLine($"Verification Link: {verificationLink}");
+
+            // Send the verification email
+            await _emailService.SendEmailAsync(account.email, "Verify your account",
+                $"Here is your token:<br><b>{account.verificationToken}</b></br>");
+
+            return Ok("Register Successfully!");
         }
 
         // Register Course Admin

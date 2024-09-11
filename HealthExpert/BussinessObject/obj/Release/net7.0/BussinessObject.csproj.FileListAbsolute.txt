@@ -1,0 +1,15 @@
+D:\SWP391\HealthExpert\BussinessObject\bin\Release\net7.0\BussinessObject.deps.json
+D:\SWP391\HealthExpert\BussinessObject\bin\Release\net7.0\BussinessObject.runtimeconfig.json
+D:\SWP391\HealthExpert\BussinessObject\bin\Release\net7.0\BussinessObject.dll
+D:\SWP391\HealthExpert\BussinessObject\bin\Release\net7.0\BussinessObject.pdb
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.csproj.AssemblyReference.cache
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.GeneratedMSBuildEditorConfig.editorconfig
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.AssemblyInfoInputs.cache
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.AssemblyInfo.cs
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.csproj.CoreCompileInputs.cache
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.sourcelink.json
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.dll
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\refint\BussinessObject.dll
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.pdb
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\BussinessObject.genruntimeconfig.cache
+D:\SWP391\HealthExpert\BussinessObject\obj\Release\net7.0\ref\BussinessObject.dll

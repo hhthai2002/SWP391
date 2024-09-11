@@ -72,11 +72,31 @@ namespace HealthExpertAPI.Controllers
                 return BadRequest("Invalid token.");
             }
 
+            account.isActive = true;
             account.verifiedAt = DateTime.Now;
+            account.verificationToken = null; // Xóa token sau khi xác thực
             await _context.SaveChangesAsync();
 
-            return Ok("User verified! :)");
+            return Ok("Account verified successfully!");
         }
+
+        //[AllowAnonymous]
+        //[HttpPost("verify")]
+        //public async Task<IActionResult> VerifyAccount(string token)
+        //{
+        //    var account = await _context.accounts.FirstOrDefaultAsync(a => a.verificationToken == token);
+        //    if (account == null)
+        //    {
+        //        return BadRequest("Invalid token.");
+        //    }
+
+        //    account.isActive = true;
+        //    account.verifiedAt = DateTime.Now;
+        //    account.verificationToken = null; // Xóa token sau khi xác thực
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok("Account verified successfully!");
+        //}
 
         //LOGOUT
         [HttpPost, Authorize]
