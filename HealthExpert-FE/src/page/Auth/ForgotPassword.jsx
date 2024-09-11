@@ -22,15 +22,15 @@ const Forgotpassword = () => {
                 if (!response.ok) {
                     throw new Error('Failed to request password reset.');
                 }
-                // Xử lý thành công ở đây, ví dụ: hiển thị thông báo cho người dùng
+                // Lưu tên người dùng vào localStorage
+                localStorage.setItem('user', userName);
+                // Xử lý thành công ở đây
                 console.log('Password reset request sent.');
-                // Gửi yêu cầu thành công, điều hướng người dùng đến trang đặt lại mật khẩu
                 navigate('/resetpassword');
             })
-
             .catch(error => {
                 console.error('Error:', error);
-                // Xử lý lỗi ở đây, ví dụ: hiển thị thông báo lỗi cho người dùng
+                // Xử lý lỗi ở đây
             });
     };
 

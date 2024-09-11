@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input } from "antd";
+import { Form, Input, notification, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import Button from "../../components/button";
 import backgroundImage from "../../img/nike.png";
@@ -9,13 +9,25 @@ import { useNavigate } from 'react-router-dom';
 export default function SignIn() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const history = useNavigate();
+  const [loading, setLoading] = useState(false); // Trạng thái loading
+  const navigate = useNavigate();
+
+  // Hàm delay để trì hoãn việc gửi yêu cầu
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   async function login() {
     if (!userName || !password) {
-      alert("Hãy nhập đầy đủ thông tin của bạn");
+      notification.error({
+        message: "Lỗi",
+        description: "Hãy nhập đầy đủ thông tin của bạn",
+        duration: 2
+      });
       return;
     }
+
+    setLoading(true);
+    await delay(1000);
+
     let item = { userName, password };
     try {
       let response = await fetch('https://localhost:7158/api/Auth/Login', {
@@ -29,20 +41,35 @@ export default function SignIn() {
       if (!response.ok) {
         const errorMessage = await response.text();
         console.log(`Error: ${errorMessage}`);
-        alert(errorMessage);
+        notification.error({
+          message: "Lỗi đăng nhập",
+          description: errorMessage,
+          duration: 2
+        });
         if (errorMessage === 'Please verify your account!!!') {
-          history("/verify");
+          navigate("/verify");
         }
       } else {
         localStorage.setItem("user", item.userName);
+        // Hiển thị thông báo chào mừng
+        notification.success({
+          message: `Xin chào ${item.userName}!`,
+          description: "Đăng nhập thành công.",
+          duration: 2
+        });
         getRoleIdByUsername(userName);
-        // Lấy roleId sau khi đăng nhập thành công
       }
       const responseData = await response.text();
       console.log(responseData);
     } catch (error) {
-
       console.error('Error during login:', error);
+      notification.error({
+        message: "Lỗi",
+        description: "Đã xảy ra lỗi trong quá trình đăng nhập",
+        duration: 2
+      });
+    } finally {
+      setLoading(false); // Kết thúc loading
     }
   }
 
@@ -50,9 +77,9 @@ export default function SignIn() {
     const userlogin = localStorage.getItem("user");
     if (userlogin) {
       // Nếu người dùng đã đăng nhập, chuyển hướng về trang chính (home page)
-      history("/");
+      navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   async function getRoleIdByUsername(username) {
     try {
@@ -65,7 +92,11 @@ export default function SignIn() {
 
       if (!response.ok) {
         console.error(`Lỗi load dữ liệu!`);
-        alert("Lỗi load dữ liệu!");
+        notification.error({
+          message: "Lỗi",
+          description: "Lỗi load dữ liệu!",
+          duration: 2
+        });
         throw new Error("Lỗi load dữ liệu!");
       }
 
@@ -76,138 +107,131 @@ export default function SignIn() {
 
         // Redirect tới trang tương ứng dựa vào roleId
         if (roleId === 1) {
-          history("/admin/courseAdmin");
+          navigate("/admin/courseAdmin");
         } else {
-          history("/home");
+          navigate("/home");
         }
       } else {
         console.error("Không tìm thấy tài khoản!");
-        alert("Không tìm thấy tài khoản!");
+        notification.error({
+          message: "Lỗi",
+          description: "Không tìm thấy tài khoản!",
+          duration: 2
+        });
       }
     } catch (error) {
       console.error("Lỗi load dữ liệu!", error);
+      notification.error({
+        message: "Lỗi",
+        description: "Đã xảy ra lỗi khi lấy thông tin người dùng",
+        duration: 2
+      });
     }
   }
 
   function signup() {
-    history("/signup");
+    navigate("/signup");
   }
+
   function forgotPassword() {
-    history("/forgotPassword");
+    navigate("/forgotPassword");
   }
 
   function registerCourseAdmin() {
-    history("/registerCourseAdmin");
+    navigate("/registerCourseAdmin");
   }
+
   return (
     <section className="h-screen">
       <div className="h-full flex items-center justify-center">
         <div className="w-1/2">
           <img
             src={backgroundImage}
-            className=" w-3/4 h-full mx-auto  "
+            className="w-3/4 h-full mx-auto"
             alt="Sample"
           />
         </div>
 
-        <div className="w-1/2 flex flex-col items-center ">
+        <div className="w-1/2 flex flex-col items-center">
           <Form
             name="normal_login"
-            className="w-[55%] "
-            initialValues={{
-              remember: true,
-            }}
+            className="w-[55%]"
+            initialValues={{ remember: true }}
           >
-            {/* introduce */}
             <div className="introduce mb-10">
-              {/* this is logoImage */}
-              <div className="logoImage mb-2 ">
-                <img className="w-1/5 rounded-full " src={helpexpert} alt="" />
+              <div className="logoImage mb-2">
+                <img className="w-1/5 rounded-full" src={helpexpert} alt="" />
               </div>
-
-              {/* contentd */}
               <div className="content mb-10">
-                <h1 className="text-3xl mb-5 text-525252 ">
+                <h1 className="text-3xl mb-5 text-525252">
                   Đăng nhập bằng tài khoản của bạn
                 </h1>
-                <h1 className="text-base	">
+                <h1 className="text-base">
                   Chào mừng đến với HealthExpert, hãy cùng nhau phát triển bản thân
                 </h1>
               </div>
             </div>
+
             <div className="mb-2">
               <p>Tên người dùng</p>
             </div>
             <Form.Item
               name="username"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your Username!",
-                },
-              ]}
+              rules={[{ required: true, message: "Hãy nhập tên người dùng!" }]}
             >
-              {/* email input */}
               <Input
                 type="text"
                 prefix={<UserOutlined className="site-form-item-icon" />}
                 placeholder="Tên đăng nhập"
-                className="width:420px py-3"
                 onChange={(e) => setUserName(e.target.value)}
               />
             </Form.Item>
+
             <div className="mb-2">
               <p>Mật khẩu</p>
             </div>
             <Form.Item
               name="password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your Password!",
-                },
-              ]}
+              rules={[{ required: true, message: "Hãy nhập mật khẩu!" }]}
             >
               <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
                 placeholder="Mật khẩu"
-                className="width:420px py-3"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Item>
-            <div className="flex justify-between mt-2 ">
+
+            <div className="flex justify-between mt-2">
               <div>
-                <a className="#" href="âsdasds">
-                  Quên mật khẩu
-                </a>
+                <a onClick={forgotPassword}>Quên mật khẩu</a>
               </div>
             </div>
 
             <Form.Item>
               <Button
                 type="primary"
-                className="bg-black mt-5 w-full px-2 py-2 "
+                className="bg-black mt-5 w-full px-2 py-2"
                 onClick={login}
+                disabled={loading} // Disable the button while loading
               >
-                <span className="text-orange-600">Đăng nhập </span>
+                <span className="text-orange-600">Đăng nhập</span>
               </Button>
             </Form.Item>
-            <div className="register ">
-              <span className="text-gray-600">Bạn chưa có tài khoản  </span>
-              <a onClick={signup} className="text-orange-600">
-                Đăng ký
-              </a>
+
+            <div className="register">
+              <span className="text-gray-600">Bạn chưa có tài khoản </span>
+              <a onClick={signup} className="text-orange-600">Đăng ký</a>
             </div>
-            <div className="register ">
-              <a onClick={forgotPassword} className="text-orange-600">
-                Quên mật khẩu
-              </a>
+
+            <div className="register">
+              <a onClick={forgotPassword} className="text-orange-600">Quên mật khẩu</a>
             </div>
+
             <Form.Item>
               <Button
                 type="primary"
-                className="bg-black mt-5 w-full px-2 py-2 "
+                className="bg-black mt-5 w-full px-2 py-2"
                 onClick={registerCourseAdmin}
               >
                 <span className="text-orange-600">Trở thành trung tâm</span>
@@ -216,6 +240,13 @@ export default function SignIn() {
           </Form>
         </div>
       </div>
-    </section >
+
+      {/* Hiệu ứng loading */}
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+          <Spin size="large" />
+        </div>
+      )}
+    </section>
   );
 }

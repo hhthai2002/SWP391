@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../img/logo.png";
 import { useNavigate } from "react-router-dom";
-import { Avatar, Menu, Dropdown } from "antd";
+import { Avatar, Menu, Dropdown, Spin } from "antd";
 import Bmi from "../page/Services/bmi";
-import {
-  UserOutlined,
-} from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,17 +17,16 @@ const Header = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0); // Track scroll position
   const [showHeader, setShowHeader] = useState(true); // Show or hide header
+  const [loading, setLoading] = useState(false); // Trạng thái loading
 
   const isUserLoggedIn = localStorage.getItem("user");
 
   useEffect(() => {
     const handleScroll = () => {
-      // Use requestAnimationFrame for smoother scrolling
       requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
         setScrollPosition(currentScrollY);
 
-        // Show header on scroll up and hide on scroll down
         if (currentScrollY < scrollPosition) {
           setShowHeader(true); // Scrolling up
         } else {
@@ -98,16 +95,29 @@ const Header = () => {
   }, [isLoaded, isUserLoggedIn]);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("currentCourse");
-    localStorage.removeItem("currentSession");
-    localStorage.removeItem("accountId");
-    localStorage.removeItem("roleId");
-    setLoggedIn(false);
-    setUsername("");
-    const route = "/home";
-    navigate(route, { replace: true });
-    window.location.reload();
+    setLoading(true);
+    setTimeout(() => {
+      localStorage.removeItem("user");
+      localStorage.removeItem("currentCourse");
+      localStorage.removeItem("currentSession");
+      localStorage.removeItem("accountId");
+      localStorage.removeItem("roleId");
+      setLoggedIn(false);
+      setUsername("");
+      const route = "/home";
+      navigate(route, { replace: true });
+      window.location.reload();
+      setLoading(false);
+    }, 1000);
+  };
+
+  const handleLinkClick = (href, event) => {
+    event.preventDefault();
+    setLoading(true); // Hiển thị loading khi click
+    setTimeout(() => {
+      navigate(href);
+      setLoading(false); // Tắt loading sau khi điều hướng
+    }, 500);
   };
 
   const toggleBmiForm = () => {
@@ -120,11 +130,11 @@ const Header = () => {
         {checkManager || checkRole ? (
           <>
             <Menu.Item>
-              <a href="/manageCourse">Quản lý khóa học</a>
+              <a href="/manageCourse" onClick={(e) => handleLinkClick("/manageCourse", e)}>Quản lý khóa học</a>
             </Menu.Item>
             {checkManager ? (
               <Menu.Item>
-                <a href="/profile">Trang Cá Nhân</a>
+                <a href="/profile" onClick={(e) => handleLinkClick("/profile", e)}>Trang Cá Nhân</a>
               </Menu.Item>
             ) : (
               <div></div>
@@ -132,14 +142,14 @@ const Header = () => {
           </>
         ) : (
           <Menu.Item>
-            <a href="/profile">Trang Cá Nhân</a>
+            <a href="/profile" onClick={(e) => handleLinkClick("/profile", e)}>Trang Cá Nhân</a>
           </Menu.Item>
         )}
         <Menu.Item>
-          <a href="/resetpassword">Đổi Mật Khẩu</a>
+          <a href="/resetpassword" onClick={(e) => handleLinkClick("/resetpassword", e)}>Đổi Mật Khẩu</a>
         </Menu.Item>
         <Menu.Item>
-          <a href="/createPost">Đăng bài</a>
+          <a href="/createPost" onClick={(e) => handleLinkClick("/createPost", e)}>Đăng bài</a>
         </Menu.Item>
         <Menu.Item onClick={handleLogout}>Đăng xuất</Menu.Item>
       </Menu>
@@ -150,16 +160,16 @@ const Header = () => {
     return (
       <Menu {...props}>
         <Menu.Item>
-          <a href="/gym">Gym</a>
+          <a href="/gym" onClick={(e) => handleLinkClick("/gym", e)}>Gym</a>
         </Menu.Item>
         <Menu.Item>
-          <a href="/dance">Dance</a>
+          <a href="/dance" onClick={(e) => handleLinkClick("/dance", e)}>Dance</a>
         </Menu.Item>
         <Menu.Item>
-          <a href="/yoga">Yoga</a>
+          <a href="/yoga" onClick={(e) => handleLinkClick("/yoga", e)}>Yoga</a>
         </Menu.Item>
         <Menu.Item>
-          <a href="/boxing">Boxing</a>
+          <a href="/boxing" onClick={(e) => handleLinkClick("/boxing", e)}>Boxing</a>
         </Menu.Item>
       </Menu>
     );
@@ -182,6 +192,7 @@ const Header = () => {
           <li className="max-lg:border-b max-lg:py-2 px-3">
             <a
               href="/home"
+              onClick={(e) => handleLinkClick("/home", e)}
               className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
             >
               Trang chủ
@@ -200,6 +211,7 @@ const Header = () => {
           <li className="max-lg:border-b max-lg:py-2 px-3">
             <a
               href="/tranformation"
+              onClick={(e) => handleLinkClick("/tranformation", e)}
               className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
             >
               Thay đổi
@@ -208,6 +220,7 @@ const Header = () => {
           <li className="max-lg:border-b max-lg:py-2 px-3">
             <a
               href="/listPost"
+              onClick={(e) => handleLinkClick("/listPost", e)}
               className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
             >
               Chia sẻ
@@ -217,7 +230,10 @@ const Header = () => {
             <li className="max-lg:border-b max-lg:py-2 px-3">
               <a
                 href="#"
-                onClick={toggleBmiForm}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleBmiForm();
+                }}
                 className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
               >
                 Tìm khóa học phù hợp
@@ -238,20 +254,27 @@ const Header = () => {
             </div>
           ) : (
             <div>
-              <a href="/signin">
-                <button className="bg-orange-500 text-white py-2 px-4 rounded transition-opacity hover:bg-opacity-80 mr-1">
-                  Đăng nhập
+              <a href="/signup">
+                <button className="bg-orange-400 text-white font-semibold py-1 px-4 rounded-md hover:bg-orange-500">
+                  Đăng ký
                 </button>
               </a>
-              <a href="/signup">
-                <button className="bg-orange-500 text-white py-2 px-4 rounded transition-opacity hover:bg-opacity-80">
-                  Đăng ký
+              <a href="/signin">
+                <button className="bg-gray-300 text-black font-semibold py-1 px-4 rounded-md hover:bg-gray-400">
+                  Đăng nhập
                 </button>
               </a>
             </div>
           )}
         </div>
       </div>
+
+      {/* Hiệu ứng loading */}
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+          <Spin size="large" />
+        </div>
+      )}
     </header>
   );
 };

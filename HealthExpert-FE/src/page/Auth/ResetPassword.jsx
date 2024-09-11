@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input } from "antd";
+import { Input, notification } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from 'react-router-dom';
 import bg from "../../img/ForgotPassGym.jpg";
@@ -13,20 +13,22 @@ export default function ResetPassword() {
     const history = useNavigate();
 
     useEffect(() => {
+        // Lấy tên người dùng từ localStorage
         const storedUserName = localStorage.getItem('user');
         if (storedUserName) {
             setUserName(storedUserName);
+        } else {
+            // Nếu không có tên người dùng trong localStorage, chuyển hướng về trang đăng nhập
+            history("/signin");
         }
-    }, []);
+    }, [history]);
 
     function resetPassword() {
-        // Kiểm tra xem mật khẩu mới và xác nhận mật khẩu có khớp nhau hay không
         if (newPassword !== confirmPassword) {
             alert("Mật khẩu mới và xác nhận mật khẩu không khớp.");
             return;
         }
 
-        // Gửi yêu cầu đặt lại mật khẩu đến API
         fetch(`https://localhost:7158/api/Account/ChangePassword`, {
             method: 'POST',
             headers: {
@@ -41,7 +43,16 @@ export default function ResetPassword() {
         })
             .then(response => {
                 if (response.ok) {
-                    history("/signin");
+                    // Hiển thị thông báo thành công
+                    notification.success({
+                        message: 'Thành công',
+                        description: 'Mật khẩu đã được đổi thành công.',
+                        onClose: () => {
+                            // Đăng xuất và chuyển hướng
+                            localStorage.removeItem('user'); // Xóa thông tin người dùng
+                            history("/signin"); // Chuyển hướng đến trang đăng nhập
+                        },
+                    });
                 } else {
                     console.error('Lỗi:', response.statusText);
                     alert('Lỗi khi đặt lại mật khẩu. Vui lòng thử lại.');
@@ -71,7 +82,6 @@ export default function ResetPassword() {
                                 prefix={<UserOutlined className="site-form-item-icon" />}
                                 placeholder={userName}
                                 className="w-full py-3"
-                                //value={userName}
                                 disabled
                             />
                         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, notification } from "antd";
+import { Form, Input, notification, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import Button from "../../components/button";
 import backgroundImage from "../../img/nike.png";
@@ -15,7 +15,8 @@ export default function SignUp() {
   const [phone, setPhone] = useState("");
   const [birthDate, setBirthDate] = useState(null);
   const [gender, setGender] = useState(null);
-  const [loading, setLoading] = useState(false);  
+  const [loading, setLoading] = useState(false);
+  const [notificationOpened, setNotificationOpened] = useState(false); // Track if notification is opened
   const navigate = useNavigate();  // Use navigate for redirection
 
   const handleDatePickerChange = (selectedDate) => {
@@ -27,10 +28,22 @@ export default function SignUp() {
   };
 
   const openNotification = () => {
+    setNotificationOpened(true);
     notification.success({
       message: "Đăng kí thành công",
       description: "Bạn hãy kiểm tra email và xác thực tài khoản nhé!",
       duration: 3,  // Tự động đóng thông báo
+      onClose: () => setNotificationOpened(false) // Reset state when notification is closed
+    });
+  };
+
+  const openErrorNotification = (message) => {
+    setNotificationOpened(true);
+    notification.error({
+      message: "Đăng kí thất bại",
+      description: message || "Tên đăng nhập hoặc Email đã tồn tại!",
+      duration: 3,  // Tự động đóng thông báo
+      onClose: () => setNotificationOpened(false) // Reset state when notification is closed
     });
   };
 
@@ -49,16 +62,17 @@ export default function SignUp() {
       if (!response.ok) {
         const errorMessage = await response.text();
         console.error(`Error: ${errorMessage}`);
-        alert(errorMessage);
+        openErrorNotification(errorMessage);  // Hiển thị thông báo lỗi
       } else {
         openNotification();  // Hiển thị thông báo sau khi đăng ký thành công
-        // Redirect to verify page after 5 seconds
+        // Redirect to verify page after 1 second
         setTimeout(() => {
           navigate('/verify');  // Navigate to the Verify page
         }, 1000);
       }
     } catch (error) {
       console.error('Error during registration:', error);
+      openErrorNotification();  // Hiển thị thông báo lỗi nếu xảy ra lỗi khi kết nối
     } finally {
       setLoading(false);  // Set loading to false after the function finishes
     }
@@ -219,6 +233,12 @@ export default function SignUp() {
           </Form>
         </div>
       </div>
+      {/* Hiệu ứng loading */}
+      {loading && !notificationOpened && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+          <Spin size="large" />
+        </div>
+      )}
     </section>
   );
 }
