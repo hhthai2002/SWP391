@@ -65,7 +65,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    if(GetOrderById(id) != null)
+                    if (GetOrderById(id) != null)
                     {
                         ctx.orders.Add(order);
                         ctx.Entry(order).State =
@@ -93,7 +93,7 @@ namespace DataAccess.DAO
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

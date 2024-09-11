@@ -17,7 +17,7 @@ namespace DataAccess.Repository
 
         public void UpdateAccount(Account account) => AccountDAO.UpdateAccount(account);
 
-        public void DeleteAccount(Guid id)  => AccountDAO.DeleteAccount(id);
+        public void DeleteAccount(Guid id) => AccountDAO.DeleteAccount(id);
 
         public void AddAccount(Account account) => AccountDAO.AddAccount(account);
 

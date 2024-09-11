@@ -34,7 +34,7 @@ namespace DataAccess.Repository
         public void UpdateCourse(Course updateCourse)
         {
             Course existingCourse = CourseDAO.GetCourseById(updateCourse.courseId);
-            if(existingCourse != null)
+            if (existingCourse != null)
             {
                 existingCourse.courseId = updateCourse.courseId;
                 existingCourse.courseName = updateCourse.courseName;

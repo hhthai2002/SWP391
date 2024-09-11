@@ -76,7 +76,7 @@ namespace HealthExpertAPI.Extension.ExAccount
             };
         }
 
-        public static Account ToAccountUpdate(this AccountUpdateDTO accountDTO,Guid id, byte[] passwordHash, byte[] passwordSalt)
+        public static Account ToAccountUpdate(this AccountUpdateDTO accountDTO, Guid id, byte[] passwordHash, byte[] passwordSalt)
         {
             return new Account
             {

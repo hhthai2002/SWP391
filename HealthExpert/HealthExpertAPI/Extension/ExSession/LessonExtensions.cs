@@ -14,7 +14,7 @@ namespace HealthExpertAPI.Extension.ExSession
                 caption = lesson.caption,
                 cover = lesson.cover,
                 sessionId = lesson.sessionId,
-                isActive = lesson.isActive 
+                isActive = lesson.isActive
             };
         }
 

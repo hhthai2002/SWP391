@@ -44,7 +44,7 @@ namespace HealthExpertAPI.Controllers
                 return BadRequest("Password is incorrect!!!");
             }
 
-            if(account.verifiedAt == null)
+            if (account.verifiedAt == null)
             {
                 return BadRequest("Please verify your account!!!");
             }

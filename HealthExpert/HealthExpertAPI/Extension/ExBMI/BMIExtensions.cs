@@ -1,7 +1,5 @@
 ﻿using BussinessObject.Model.ModelUser;
-using HealthExpertAPI.DTO.DTOAccount;
 using HealthExpertAPI.DTO.DTOBMI;
-using Microsoft.Identity.Client;
 
 namespace HealthExpertAPI.Extension.ExBMI
 {

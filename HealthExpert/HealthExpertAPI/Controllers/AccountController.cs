@@ -92,8 +92,30 @@ namespace HealthExpertAPI.Controllers
             //System.Diagnostics.Debug.WriteLine($"Verification Link: {verificationLink}");
 
             // Send the verification email
-            await _emailService.SendEmailAsync(account.email, "Verify your account",
-                $"Here is your token:<br><b>{account.verificationToken}</b></br>");
+            await _emailService.SendEmailAsync(
+                account.email,
+                "Verify Your Account",
+                $@"
+                <html>
+                <body style='font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px;'>
+                    <div style='max-width: 600px; margin: auto; padding: 20px; background-color: #fff; border-radius: 10px; border: 1px solid #ddd;'>
+                        <div style='text-align: center; margin-bottom: 20px;'>
+                            <img src='https://drive.google.com/uc?export=view&id=1xS4ZGxmgBxAHEQx0uYmSNqQvu8LTxaeU' alt='HealthExpert Logo' style='width: 150px;'>
+                        </div>
+                        <h2 style='color: #333; text-align: center;'>Welcome to HealthExpert!</h2>
+                        <p style='font-size: 16px; color: #555; text-align: center;'>Cảm ơn bạn đã tham gia với chúng tôi. Để hoàn tất việc đăng ký, vui lòng xác thực tài khoản của bạn bằng cách sử dụng mã dưới đây:</p>
+                        <div style='background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; padding: 20px; text-align: center; margin: 20px 0;'>
+                            <h3 style='color: #007bff;'>Mã xác thực của bạn:</h3>
+                            <p style='font-size: 24px; font-weight: bold; color: #333;'><b>{account.verificationToken}</b></p>
+                        </div>
+                        <p style='font-size: 16px; color: #555; text-align: center;'>Nếu bạn không yêu cầu, vui lòng bỏ qua email này.</p>
+                        <p style='font-size: 14px; color: #999; text-align: center;'>Trân trọng,<br>Đội ngũ HealthExpert</p>
+                    </div>
+                </body>
+                </html>"
+            );
+
+
 
             return Ok("Register Successfully!");
         }
@@ -186,8 +208,8 @@ namespace HealthExpertAPI.Controllers
             _repository.UpdateAccount(account);
             return Ok();
         }
-            //Vỉew Account
-            [AllowAnonymous]
+        //Vỉew Account
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<List<AccountDTO>> GetListAccount()
         {

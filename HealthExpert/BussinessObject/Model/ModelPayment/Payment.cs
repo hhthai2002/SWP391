@@ -15,7 +15,7 @@ namespace BussinessObject.Model.ModelPayment
         public string token { get; set; }
         public string vnPayResponseCode { get; set; }
 
-        [Required]public Guid? orderId { get; set; }
+        [Required] public Guid? orderId { get; set; }
 
         [JsonIgnore]
         public virtual Order? order { get; set; }

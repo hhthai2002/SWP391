@@ -59,7 +59,7 @@ namespace HealthExpertAPI.Extension.ExPost
                 postDescription = postDetailDTO.postDescription
             };
         }
-        
+
         //to post detail dto
         public static PostDetailDTO ToPostDetailDTO(this PostDetail postDetail)
         {

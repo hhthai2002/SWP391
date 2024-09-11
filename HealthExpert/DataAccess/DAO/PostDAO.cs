@@ -1,11 +1,5 @@
 ﻿using BussinessObject.ContextData;
 using BussinessObject.Model.ModelPost;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.DAO
 {
@@ -62,7 +56,7 @@ namespace DataAccess.DAO
             using (var context = new HealthExpertContext())
             {
                 var existingPost = context.posts.Find(post.postId);
-                if(existingPost == null)
+                if (existingPost == null)
                 {
                     throw new Exception("Post not found!!!");
                 }
@@ -82,7 +76,7 @@ namespace DataAccess.DAO
             using (var context = new HealthExpertContext())
             {
                 var existingPostDetail = context.postDetails.FirstOrDefault(pd => pd.postDetailId == postDetail.postDetailId);
-                if(existingPostDetail == null)
+                if (existingPostDetail == null)
                 {
                     throw new Exception("Post Detail not found!!!");
                 }
@@ -100,12 +94,12 @@ namespace DataAccess.DAO
             {
                 var post = context.posts.FirstOrDefault(p => p.postId == postId);
                 //var existingUser = context.accounts.FirstOrDefault(a => a.userName == userName);
-                if(post != null)
+                if (post != null)
                 {
-                    var existingLike = context.post_Likes.FirstOrDefault(pl => 
+                    var existingLike = context.post_Likes.FirstOrDefault(pl =>
                     pl.postId == postId && pl.userName == userName);
 
-                    if(existingLike == null)
+                    if (existingLike == null)
                     {
                         Post_Like postLike = new Post_Like
                         {

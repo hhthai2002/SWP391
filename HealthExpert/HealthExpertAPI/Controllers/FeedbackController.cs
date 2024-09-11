@@ -52,7 +52,7 @@ namespace HealthExpertAPI.Controllers
         public ActionResult UpdateFeedback(FeedbackUpdateDTO feedbackDTO)
         {
             var feedback = _context.feedbacks.FirstOrDefault(f => f.accountId == feedbackDTO.accountId && f.courseId == feedbackDTO.courseId);
-            if(feedback == null)
+            if (feedback == null)
             {
                 return NotFound();
             }

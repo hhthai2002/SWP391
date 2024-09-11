@@ -77,7 +77,7 @@ namespace HealthExpertAPI.Controllers
         //Get all Post Details by postId
         [HttpGet("details/{postId}")]
         [AllowAnonymous]
-        public ActionResult <List<PostDetailDTO>> GetPostDetails(Guid postId)
+        public ActionResult<List<PostDetailDTO>> GetPostDetails(Guid postId)
         {
             var postDetails = _repository.GetPostDetails(postId).Select(postDetail => postDetail.ToPostDetailDTO());
 
@@ -87,7 +87,7 @@ namespace HealthExpertAPI.Controllers
         //Get Posts
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult <List<PostDTO>> GetPosts()
+        public ActionResult<List<PostDTO>> GetPosts()
         {
             var posts = _repository.GetPosts().Select(post => post.ToPostDTO());
 

@@ -21,8 +21,8 @@ namespace BussinessObject.Model.ModelSession
         [JsonIgnore]
         public virtual Course? course { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Lesson>? Lessons { get; set;}
+        public virtual ICollection<Lesson>? Lessons { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Nutrition>? Nutritions { get; set;}
+        public virtual ICollection<Nutrition>? Nutritions { get; set; }
     }
 }

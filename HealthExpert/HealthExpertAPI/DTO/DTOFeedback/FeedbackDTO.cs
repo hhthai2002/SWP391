@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace HealthExpertAPI.DTO.DTOFeedback
+﻿namespace HealthExpertAPI.DTO.DTOFeedback
 {
     public class FeedbackDTO
     {

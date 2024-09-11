@@ -1,11 +1,7 @@
 ﻿using BussinessObject.Model.Mail;
-using Microsoft.Extensions.Configuration;
+using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using System;
-using System.Net;
-using System.Threading.Tasks;
-using MailKit.Net.Smtp;
 
 namespace HealthExpertAPI.Services
 {

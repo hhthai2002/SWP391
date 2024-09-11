@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using BussinessObject.ContextData;
-using DataAccess.Repository.IRepository;
-using DataAccess.Repository;
-using HealthExpertAPI.Services;
-using Microsoft.AspNetCore.Mvc;
 using BussinessObject.Model.ModelUser;
+using DataAccess.Repository;
+using DataAccess.Repository.IRepository;
 using HealthExpertAPI.DTO.DTOBMI;
 using HealthExpertAPI.Extension.ExBMI;
+using HealthExpertAPI.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HealthExpertAPI.Controllers
 {
@@ -93,10 +93,10 @@ namespace HealthExpertAPI.Controllers
             _repository.UpdateBMI(updatedBMI);
             return Ok();
         }
-        
 
 
-            //GET all BMI
+
+        //GET all BMI
         [HttpGet]
         [AllowAnonymous]
         public IActionResult GetBMI()

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BussinessObject.Model.ModelSession;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BussinessObject.Model.ModelSession;
 
 namespace BussinessObject.Model.ModelNutrition
 {

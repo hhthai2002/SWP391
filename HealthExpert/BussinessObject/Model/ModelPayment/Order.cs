@@ -11,8 +11,8 @@ namespace BussinessObject.Model.ModelPayment
         public Guid orderId { get; set; }
         public DateTime? orderTime { get; set; }
         [Column(TypeName = "decimal(18, 2)")] public decimal? price { get; set; }
-        [Column(TypeName = "decimal(18, 2)")]  public decimal? discount { get; set; }
-        [Required]public Guid? accountId { get; set; }
+        [Column(TypeName = "decimal(18, 2)")] public decimal? discount { get; set; }
+        [Required] public Guid? accountId { get; set; }
         [Required] public string? courseId { get; set; }
 
         [JsonIgnore]

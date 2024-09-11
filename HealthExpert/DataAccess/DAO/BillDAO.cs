@@ -60,13 +60,13 @@ namespace DataAccess.DAO
         }
 
         //Update payment
-        public static void UpdateBill(Guid id,Bill bill)
+        public static void UpdateBill(Guid id, Bill bill)
         {
             try
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    if(GetBillById(id) != null)
+                    if (GetBillById(id) != null)
                     {
                         ctx.bills.Add(bill);
                         ctx.Entry(bill).State = EntityState.Modified;

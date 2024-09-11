@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace HealthExpertAPI.DTO.DTOCourse
+﻿namespace HealthExpertAPI.DTO.DTOCourse
 {
     public class CourseDTOUpdate
     {

@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|solutionrelative:healthexpertapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|d:\\swp391\\healthexpert\\healthexpertapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|solutionrelative:healthexpertapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|d:\\swp391\\healthexpert\\healthexpertapi\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|solutionrelative:healthexpertapi\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|d:\\swp391\\healthexpert\\healthexpertapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|solutionrelative:healthexpertapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|d:\\swp391\\healthexpert\\healthexpertapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|solutionrelative:healthexpertapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{153D56E3-DE97-4968-BD93-B684DAE69296}|HealthExpertAPI\\HealthExpertAPI.csproj|d:\\swp391\\healthexpert\\healthexpertapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -102,8 +102,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "HealthExpertAPI\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "HealthExpertAPI\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAgwGsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-11T07:27:40.699Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 5,
@@ -114,11 +127,12 @@
               "RelativeToolTip": "HealthExpertAPI\\Services\\VnPayService.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-10T09:28:15.878Z"
+              "WhenOpened": "2024-09-10T09:28:15.878Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "EmailService.cs",
               "DocumentMoniker": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\Services\\EmailService.cs",
               "RelativeDocumentMoniker": "HealthExpertAPI\\Services\\EmailService.cs",
@@ -131,32 +145,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "HealthExpertAPI\\Controllers\\AccountController.cs",
-              "ToolTip": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "HealthExpertAPI\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAQwEUAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-08T15:13:40.704Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "HealthExpertAPI\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\Controllers\\AuthController.cs",
               "RelativeToolTip": "HealthExpertAPI\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwDcAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAwC8AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-08T15:13:38.077Z"
+              "WhenOpened": "2024-09-08T15:13:38.077Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\appsettings.json",
               "RelativeDocumentMoniker": "HealthExpertAPI\\appsettings.json",
@@ -188,7 +190,8 @@
               "RelativeToolTip": "HealthExpertAPI\\Program.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAQwFcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-10T06:32:01.906Z"
+              "WhenOpened": "2024-09-10T06:32:01.906Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -200,7 +203,8 @@
               "RelativeToolTip": "BussinessObject\\Model\\Mail\\SmtpSettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-10T06:24:58.955Z"
+              "WhenOpened": "2024-09-10T06:24:58.955Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -212,7 +216,8 @@
               "RelativeToolTip": "HealthExpertAPI\\Controllers\\FeedbackController.cs",
               "ViewState": "AgIAAD0AAAAAAAAAAAAkwFwAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-08T15:11:36.428Z"
+              "WhenOpened": "2024-09-08T15:11:36.428Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -224,7 +229,8 @@
               "RelativeToolTip": "BussinessObject\\Model\\Authen\\UserLogin.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-10T06:12:20.964Z"
+              "WhenOpened": "2024-09-10T06:12:20.964Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -272,7 +278,8 @@
               "RelativeToolTip": "HealthExpertAPI\\Controllers\\PostController.cs",
               "ViewState": "AgIAAFQAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-08T15:11:43.137Z"
+              "WhenOpened": "2024-09-08T15:11:43.137Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -308,7 +315,8 @@
               "RelativeToolTip": "HealthExpertAPI\\Controllers\\BMIController.cs",
               "ViewState": "AgIAAGAAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-08T15:11:31.49Z"
+              "WhenOpened": "2024-09-08T15:11:31.49Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -344,7 +352,8 @@
               "RelativeToolTip": "BussinessObject\\Migrations\\20240907024129_DbInit.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T02:41:29.931Z"
+              "WhenOpened": "2024-09-07T02:41:29.931Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -356,7 +365,8 @@
               "RelativeToolTip": "HealthExpertAPI\\Controllers\\UploadVideoController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T07:46:46.243Z"
+              "WhenOpened": "2024-09-07T07:46:46.243Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

@@ -44,7 +44,7 @@ namespace HealthExpertAPI
             //Config Cookie
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.Cookie.SameSite =  SameSiteMode.None;
+                options.Cookie.SameSite = SameSiteMode.None;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.None;
             });
 
@@ -107,7 +107,7 @@ namespace HealthExpertAPI
             });
 
             builder.Services.AddMvc();
-            
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
