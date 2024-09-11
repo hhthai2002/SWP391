@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Input, notification } from "antd";
+import { Input, notification, Spin } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from 'react-router-dom';
 import bg from "../../img/ForgotPassGym.jpg";
 
 export default function Verify() {
     const [token, setToken] = useState('');
+    const [loading, setLoading] = useState(false); // State to control loading effect
     const history = useNavigate();
 
     // Function to show success notification
@@ -18,11 +19,13 @@ export default function Verify() {
     };
 
     function verifyAccount() {
+        setLoading(true); // Start loading
         // Make a POST request to the backend API for account verification
         fetch(`https://localhost:7158/api/Auth/Verify/verify?token=${token}`, { method: 'POST' })
             .then(data => {
                 if (data.ok) {
                     openNotification(); // Show success notification
+                    setLoading(false); // Stop loading
                     setTimeout(() => {
                         history("/signin"); // Redirect to sign-in page after 3 seconds
                     }, 3000);
@@ -32,6 +35,7 @@ export default function Verify() {
             })
             .catch(error => {
                 console.error('Error:', error);
+                setLoading(false); // Stop loading in case of error
                 alert('Error verifying account. Please try again.');
             });
     }
@@ -53,13 +57,17 @@ export default function Verify() {
                             className="h-[50px] w-[450px] border border-[3px] border-orange-400 rounded-lg hover:border-orange-400"
                             onChange={(e) => setToken(e.target.value)}
                         />
-                        <button
-                            onClick={verifyAccount}
-                            style={{ backgroundColor: '#FFA500', color: 'white' }}
-                            className="font-bold rounded-lg bg-orange-400 p-3 h-[50px] w-[450px] text-white hover:bg-black mt-5"
-                        >
-                            Xác thực tài khoản
-                        </button>
+
+                        <Spin spinning={loading}> {/* Wrap the button with Spin for loading effect */}
+                            <button
+                                onClick={verifyAccount}
+                                style={{ backgroundColor: '#FFA500', color: 'white' }}
+                                className="font-bold rounded-lg bg-orange-400 p-3 h-[50px] w-[450px] text-white hover:bg-black mt-5"
+                                disabled={loading} // Disable the button while loading
+                            >
+                                Xác thực tài khoản
+                            </button>
+                        </Spin>
                     </div>
                 </div>
             </div>
