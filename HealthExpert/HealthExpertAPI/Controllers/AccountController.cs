@@ -64,10 +64,15 @@ namespace HealthExpertAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(AccountRegistrationDTO accountDTO)
         {
+            // check if the user name already exists
+            if (await _context.accounts.AnyAsync(a => a.userName == accountDTO.userName))
+            {
+                return BadRequest("Tên đăng nhập đã tồn tại!");
+            }
             // Check if the email already exists
             if (await _context.accounts.AnyAsync(a => a.email == accountDTO.email))
             {
-                return BadRequest("Account Exists!!");
+                return BadRequest("Email đã tồn tại!");
             }
 
             CreatedPasswordHash(accountDTO.password, out byte[] passwordHash, out byte[] passwordSalt);
