@@ -59,7 +59,7 @@ const Bmi = ({ onClose }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-opacity-30 flex justify-center items-center" style={{ zIndex: 10 }}>
+        <div className="fixed inset-x-0 bg-opacity-30 flex justify-center items-center" style={{ zIndex: 10 }}>
             <div className="bg-rose-50 w-[500px] rounded-lg p-6 text-black shadow-lg">
                 <div className="bg-orange-400 rounded-lg p-5 mx-auto text-center">
                     <h1 className="text-xl font-semibold mb-5">Hãy nhập chỉ số cơ thể của bạn</h1>
