@@ -233,7 +233,7 @@ export default function ManageSession() {
       <div className="w-full" >
         <Header />
       </div>
-      <div className="w-full flex ">
+      <div className="w-full flex mt-16">
         <div className="w-[20%] h-full ">
           <div className="home-page">
             <MenuLeft />

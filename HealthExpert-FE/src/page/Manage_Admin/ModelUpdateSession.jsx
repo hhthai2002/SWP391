@@ -48,7 +48,7 @@ function UpdateSession() {
             <div className="w-full" >
                 <Header />
             </div>
-            <div className="w-full flex">
+            <div className="w-full flex mt-16">
                 {/* Side bar */}
                 <div className="w-[20%] h-full">
                     <div className="home-page">

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Avatar, Menu, Dropdown, Spin } from "antd";
 import Bmi from "../page/Services/bmi";
 import { UserOutlined } from "@ant-design/icons";
+import "./HeaderCss.css";
 
 const Header = () => {
   const navigate = useNavigate();

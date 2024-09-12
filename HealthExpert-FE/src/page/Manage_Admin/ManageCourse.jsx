@@ -431,7 +431,7 @@ export default function ManageCourse() {
       <div className="w-full">
         <Header />
       </div>
-      <div className="w-full flex">
+      <div className="w-full flex mt-16">
         <div className="w-[20%] h-full">
           <div className="home-page">
             <Menuleft />
@@ -489,7 +489,7 @@ export default function ManageCourse() {
             />
           </div>
           {/* <div className=" absolute w-full top-100 mt-10">
-              
+
             </div> */}
         </div>
       </div>
