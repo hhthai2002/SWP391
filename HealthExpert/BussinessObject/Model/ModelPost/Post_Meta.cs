@@ -9,6 +9,6 @@ namespace BussinessObject.Model.ModelPost
         public Guid postId { get; set; }
         public string hashTag { get; set; }
         public string content { get; set; }
-        public virtual Post? post { get; set; }
+        public virtual Post? Post { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult CreateCourse(CourseDTO courseDTO)
         {
-            if (_context.courses.Any(c => c.courseName == courseDTO.courseName))
+            if (_context.Courses.Any(c => c.courseName == courseDTO.courseName))
             {
                 return BadRequest("Course Exist!!");
             }
@@ -54,8 +54,8 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult GetCourses()
         {
-            var courses = _repository.GetCourses();
-            return Ok(courses);
+            var Courses = _repository.GetCourses();
+            return Ok(Courses);
         }
 
         //Get Course by Id
@@ -71,51 +71,51 @@ namespace HealthExpertAPI.Controllers
             return Ok(course);
         }
 
-        //Add Managers to Course
-        [HttpPost("add-manager")]
+        //Add Teachers to Course
+        [HttpPost("add-teacher")]
         [AllowAnonymous]
-        public IActionResult AddCourseManagers(List<CourseManagerDTO> courseManagers)
+        public IActionResult AddTeachers(List<TeacherDTO> courseTeachers)
         {
             try
             {
-                if (courseManagers == null)
+                if (courseTeachers == null)
                 {
-                    return BadRequest("No course managers provided.");
+                    return BadRequest("No course teachers provided.");
                 }
 
                 List<string> messages = new List<string>();
 
-                foreach (var manager in courseManagers)
+                foreach (var teacher in courseTeachers)
                 {
-                    if (manager.accountEmails == null)
+                    if (teacher.accountEmails == null)
                     {
-                        messages.Add($"No account emails provided for course manager with courseId {manager.courseId}");
+                        messages.Add($"No account emails provided for course teacher with courseId {teacher.courseId}");
                         continue;
                     }
 
-                    var course = _context.courses.Find(manager.courseId);
+                    var course = _context.Courses.Find(teacher.courseId);
                     if (course == null)
                     {
-                        messages.Add($"Course with ID {manager.courseId} not found!!");
+                        messages.Add($"Course with ID {teacher.courseId} not found!!");
                         continue;
                     }
 
-                    // Check if the course already has a manager
-                    var existingManager = _context.courseManagements
-                        .Include(cm => cm.accounts)
-                        .FirstOrDefault(cm => cm.courseId == manager.courseId);
+                    // Check if the course already has a teacher
+                    var existingTeacher = _context.Teachers
+                        .Include(cm => cm.Accounts)
+                        .FirstOrDefault(cm => cm.courseId == teacher.courseId);
 
-                    if (existingManager != null)
+                    if (existingTeacher != null)
                     {
-                        messages.Add($"Course with ID {manager.courseId} already has a manager!");
+                        messages.Add($"Course with ID {teacher.courseId} already has a teacher!");
                         continue;
                     }
 
-                    bool managerFound = false; // Flag to track if manager is found
+                    bool teacherFound = false; // Flag to track if teacher is found
 
-                    foreach (var email in manager.accountEmails)
+                    foreach (var email in teacher.accountEmails)
                     {
-                        var user = _context.accounts.FirstOrDefault(x => x.email.Equals(email));
+                        var user = _context.Accounts.FirstOrDefault(x => x.email.Equals(email));
                         if (user == null)
                         {
                             messages.Add($"User with email {email} not found!!");
@@ -129,23 +129,23 @@ namespace HealthExpertAPI.Controllers
                             continue;
                         }
 
-                        // Check if user is already a course manager for another course
-                        var isManagerForOtherCourse = _repository.IsCourseManager(email, manager.courseId);
-                        if (isManagerForOtherCourse)
+                        // Check if user is already a course teacher for another course
+                        var isTeacherForOtherCourse = _repository.IsTeacher(email, teacher.courseId);
+                        if (isTeacherForOtherCourse)
                         {
-                            messages.Add($"User with email {email} is already a Course Manager for another course.");
+                            messages.Add($"User with email {email} is already a Course Teacher for another course.");
                             continue;
                         }
 
-                        _repository.AddCourseManagerByEmail(email, manager.courseId);
-                        messages.Add($"User with email {email} added as a Course Manager for course {manager.courseId}");
-                        managerFound = true; // Set flag to true if manager is found
-                        break; // Exit loop since manager is found
+                        _repository.AddTeacherByEmail(email, teacher.courseId);
+                        messages.Add($"User with email {email} added as a Course Teacher for course {teacher.courseId}");
+                        teacherFound = true; // Set flag to true if teacher is found
+                        break; // Exit loop since teacher is found
                     }
 
-                    if (!managerFound)
+                    if (!teacherFound)
                     {
-                        messages.Add($"No suitable user found to be a Course Manager for course {manager.courseId}");
+                        messages.Add($"No suitable user found to be a Course Teacher for course {teacher.courseId}");
                     }
                 }
 
@@ -153,7 +153,7 @@ namespace HealthExpertAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Failed to add course managers: " + ex.Message);
+                return BadRequest("Failed to add course teachers: " + ex.Message);
             }
         }
 
@@ -192,10 +192,10 @@ namespace HealthExpertAPI.Controllers
             return Ok();
         }
 
-        //Get Course Managers by CourseId
-        [HttpGet("managers/{courseId}")]
+        //Get Course Teachers by CourseId
+        [HttpGet("teachers/{courseId}")]
         [AllowAnonymous]
-        public IActionResult GetCourseManagers(string courseId)
+        public IActionResult GetTeachers(string courseId)
         {
             var course = _repository.GetCourseById(courseId);
             if (course == null)
@@ -203,13 +203,13 @@ namespace HealthExpertAPI.Controllers
                 return NotFound("Course not found!!");
             }
 
-            var courseManagers = _context.courseManagements
-                .Include(cm => cm.accounts) // Ensure accounts are included
+            var courseTeachers = _context.Teachers
+                .Include(cm => cm.Accounts) // Ensure Accounts are included
                 .Where(c => c.courseId == courseId)
-                .Select(c => c.ToCourseManagerDTO())
+                .Select(c => c.ToTeacherDTO())
                 .ToList();
 
-            var courseDTO = new CourseWithManagersDTO
+            var courseDTO = new CourseWithTeachersDTO
             {
                 courseId = course.courseId,
                 courseName = course.courseName,
@@ -225,49 +225,49 @@ namespace HealthExpertAPI.Controllers
                 bmiMax = course.bmiMax,
                 typeId = course.typeId,
 
-                managers = courseManagers
+                teachers = courseTeachers
             };
 
             return Ok(courseDTO);
         }
 
 
-        //Get Course Managers by Email
-        [HttpGet("managers/email/{email}")]
+        //Get Course Teachers by Email
+        [HttpGet("teachers/email/{email}")]
         [AllowAnonymous]
-        public IActionResult GetCourseManagersByEmail(string email)
+        public IActionResult GetTeachersByEmail(string email)
         {
-            var user = _context.accounts.FirstOrDefault(x => x.email.Equals(email));
+            var user = _context.Accounts.FirstOrDefault(x => x.email.Equals(email));
             if (user == null)
             {
                 return NotFound($"User with email {email} not found!!");
             }
 
-            var courseManagers = _context.courseManagements;
-            return Ok(courseManagers);
+            var courseTeachers = _context.Teachers;
+            return Ok(courseTeachers);
         }
 
-        //Delete Course Manager by Email
-        [HttpDelete("managers/email/{email}")]
+        //Delete Course Teacher by Email
+        [HttpDelete("teachers/email/{email}")]
         [AllowAnonymous]
-        public IActionResult DeleteCourseManagerByEmail(string email)
+        public IActionResult DeleteTeacherByEmail(string email)
         {
-            var user = _context.accounts.FirstOrDefault(x => x.email.Equals(email));
+            var user = _context.Accounts.FirstOrDefault(x => x.email.Equals(email));
             if (user == null)
             {
                 return NotFound($"User with email {email} not found!!");
             }
 
-            var courseManagers = _context.courseManagements.Where(
-                cm => cm.accounts.Any(a => a.email.Equals(email))).ToList();
-            if (courseManagers == null)
+            var courseTeachers = _context.Teachers.Where(
+                cm => cm.Accounts.Any(a => a.email.Equals(email))).ToList();
+            if (courseTeachers == null)
             {
-                return NotFound($"User with email {email} is not a course manager!!");
+                return NotFound($"User with email {email} is not a course teacher!!");
             }
 
-            foreach (var courseManager in courseManagers)
+            foreach (var courseTeacher in courseTeachers)
             {
-                _context.courseManagements.Remove(courseManager);
+                _context.Teachers.Remove(courseTeacher);
             }
             user.roleId = 4; // Assuming the role id for user is 4
             _context.SaveChanges();
@@ -280,19 +280,19 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult EnrollInCourse(Guid accountId, string courseId)
         {
-            var course = _context.courses.Find(courseId);
+            var course = _context.Courses.Find(courseId);
             if (course == null)
             {
                 return BadRequest("Course not found!!");
             }
 
-            var user = _context.accounts.Find(accountId);
+            var user = _context.Accounts.Find(accountId);
             if (user == null)
             {
                 return BadRequest("User not found!!");
             }
 
-            var enrollment = _context.enrollments.FirstOrDefault(e => e.accountId == accountId && e.courseId == courseId);
+            var enrollment = _context.Enrollments.FirstOrDefault(e => e.accountId == accountId && e.courseId == courseId);
             if (enrollment != null)
             {
                 return BadRequest("User is already enrolled in this course!!");
@@ -306,26 +306,26 @@ namespace HealthExpertAPI.Controllers
                 enrollStatus = true
             };
 
-            _context.enrollments.Add(newEnrollment);
+            _context.Enrollments.Add(newEnrollment);
             _context.SaveChanges();
             return Ok();
         }
 
         //Get List of Enrollments
-        [HttpGet("enrollments")]
+        [HttpGet("Enrollments")]
         [AllowAnonymous]
         public IActionResult GetEnrollments()
         {
-            var enrollments = _repository.GetEnrollments().Select(enrollments => enrollments.ToEnrollmentDTO());
-            return Ok(enrollments);
+            var Enrollments = _repository.GetEnrollments().Select(Enrollments => Enrollments.ToEnrollmentDTO());
+            return Ok(Enrollments);
         }
 
         //Update enrollStatus of Enrollment by accountId and courseId
-        [HttpPut("enrollments/{accountId}/{courseId}")]
+        [HttpPut("Enrollments/{accountId}/{courseId}")]
         [AllowAnonymous]
         public IActionResult UpdateEnrollStatus(Guid accountId, string courseId, EnrollmentDTOUpdate enrollmentDTO)
         {
-            var enrollment = _context.enrollments.FirstOrDefault(e => e.accountId == accountId && e.courseId == courseId);
+            var enrollment = _context.Enrollments.FirstOrDefault(e => e.accountId == accountId && e.courseId == courseId);
             if (enrollment == null)
             {
                 return NotFound("Enrollment not found!!");
@@ -341,7 +341,7 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult GetCourseIdByOrderId(Guid orderId)
         {
-            var order = _context.orders.FirstOrDefault(c => c.orderId == orderId);
+            var order = _context.Orders.FirstOrDefault(c => c.orderId == orderId);
             if (order == null)
             {
                 return NotFound("Course not found!!");
@@ -353,14 +353,14 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult IncreaseStudentNumber(string courseId)
         {
-            var course = _context.courses.Find(courseId);
+            var course = _context.Courses.Find(courseId);
             if (course == null)
             {
                 return NotFound("Course not found!!");
             }
 
             // Kiểm tra xem có enrollment mới nào được tạo ra không
-            var newEnrollment = _context.enrollments.Any(e => e.courseId == courseId && e.enrollStatus);
+            var newEnrollment = _context.Enrollments.Any(e => e.courseId == courseId && e.enrollStatus);
 
             if (newEnrollment)
             {
@@ -374,7 +374,7 @@ namespace HealthExpertAPI.Controllers
             }
             else
             {
-                return BadRequest("No new enrollments found for this course.");
+                return BadRequest("No new Enrollments found for this course.");
             }
         }
 
@@ -382,14 +382,14 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult CountStudentNumber(string courseId)
         {
-            var course = _context.courses.Find(courseId);
+            var course = _context.Courses.Find(courseId);
             if (course == null)
             {
                 return NotFound("Course not found!!");
             }
 
-            // Đếm số lượng enrollments cho khóa học này
-            var enrollmentCount = _context.enrollments.Count(e => e.courseId == courseId && e.enrollStatus);
+            // Đếm số lượng Enrollments cho khóa học này
+            var enrollmentCount = _context.Enrollments.Count(e => e.courseId == courseId && e.enrollStatus);
 
             return Ok(enrollmentCount);
         }
@@ -420,7 +420,7 @@ namespace HealthExpertAPI.Controllers
                     return NotFound("Course not found!!");
                 }
 
-                var usersInCourse = _context.enrollments
+                var usersInCourse = _context.Enrollments
                     .Where(e => e.courseId == courseId && e.enrollStatus)
                     .Select(e => new
                     {
@@ -429,7 +429,7 @@ namespace HealthExpertAPI.Controllers
                     })
                     .ToList();
 
-                var userDetails = _context.accounts
+                var userDetails = _context.Accounts
                     .Where(a => usersInCourse.Select(u => u.accountId).Contains(a.accountId))
                     .Select(a => new
                     {
@@ -458,7 +458,7 @@ namespace HealthExpertAPI.Controllers
         //[HttpGet("current-progress/{accountId}")]
         //public async Task<IActionResult> GetCurrentProgress(Guid accountId)
         //{
-        //    var account = await _context.accounts.FindAsync(accountId);
+        //    var account = await _context.Accounts.FindAsync(accountId);
         //    if (account == null)
         //    {
         //        return NotFound($"Account with ID {accountId} not found.");
@@ -479,19 +479,19 @@ namespace HealthExpertAPI.Controllers
         //[HttpPost("update-progress/{accountId}")]
         //public async Task<IActionResult> UpdateCurrentProgress(Guid accountId, [FromBody] UpdateProgressDTO request)
         //{
-        //    var account = await _context.accounts.FindAsync(accountId);
+        //    var account = await _context.Accounts.FindAsync(accountId);
         //    if (account == null)
         //    {
         //        return NotFound($"Account with ID {accountId} not found.");
         //    }
 
-        //    var course = await _context.courses.FindAsync(request.courseId);
+        //    var course = await _context.Courses.FindAsync(request.courseId);
         //    if (course == null)
         //    {
         //        return NotFound($"Course with ID {request.courseId} not found.");
         //    }
 
-        //    var session = await _context.sessions.FindAsync(request.sessionId);
+        //    var session = await _context.Sessions.FindAsync(request.sessionId);
         //    if (session == null)
         //    {
         //        return NotFound($"Session with ID {request.sessionId} not found.");
@@ -515,7 +515,7 @@ namespace HealthExpertAPI.Controllers
         [HttpGet("current-progress/{accountId}")]
         public async Task<IActionResult> GetCurrentProgress(Guid accountId, [FromQuery] string courseId)
         {
-            var account = await _context.accounts.FindAsync(accountId);
+            var account = await _context.Accounts.FindAsync(accountId);
             if (account == null)
             {
                 return NotFound($"Account with ID {accountId} not found.");
@@ -548,19 +548,19 @@ namespace HealthExpertAPI.Controllers
         [HttpPost("update-progress/{accountId}")]
         public async Task<IActionResult> UpdateCurrentProgress(Guid accountId, UpdateProgressDTO request)
         {
-            var account = await _context.accounts.FindAsync(accountId);
+            var account = await _context.Accounts.FindAsync(accountId);
             if (account == null)
             {
                 return NotFound($"Account with ID {accountId} not found.");
             }
 
-            var session = await _context.sessions.FindAsync(request.sessionId);
+            var session = await _context.Sessions.FindAsync(request.sessionId);
             if (session == null)
             {
                 return NotFound($"Session with ID {request.sessionId} not found.");
             }
 
-            var lesson = await _context.lessons.FindAsync(request.lessonId);
+            var lesson = await _context.Lessons.FindAsync(request.lessonId);
             if (lesson == null)
             {
                 return NotFound($"Lesson with ID {request.lessonId} not found.");

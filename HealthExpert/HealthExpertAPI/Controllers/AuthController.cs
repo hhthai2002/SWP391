@@ -33,7 +33,7 @@ namespace HealthExpertAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
-            var account = await _context.accounts.FirstOrDefaultAsync(a => a.userName == loginDTO.userName);
+            var account = await _context.Accounts.FirstOrDefaultAsync(a => a.userName == loginDTO.userName);
             if (account == null || !account.isActive)
             {
                 return BadRequest("User not found!!!");
@@ -66,7 +66,7 @@ namespace HealthExpertAPI.Controllers
         [HttpPost("verify")]
         public async Task<IActionResult> Verify(string token)
         {
-            var account = await _context.accounts.FirstOrDefaultAsync(u => u.verificationToken == token);
+            var account = await _context.Accounts.FirstOrDefaultAsync(u => u.verificationToken == token);
             if (account == null)
             {
                 return BadRequest("Invalid token.");
@@ -84,7 +84,7 @@ namespace HealthExpertAPI.Controllers
         //[HttpPost("verify")]
         //public async Task<IActionResult> VerifyAccount(string token)
         //{
-        //    var account = await _context.accounts.FirstOrDefaultAsync(a => a.verificationToken == token);
+        //    var account = await _context.Accounts.FirstOrDefaultAsync(a => a.verificationToken == token);
         //    if (account == null)
         //    {
         //        return BadRequest("Invalid token.");

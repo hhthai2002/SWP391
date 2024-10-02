@@ -33,7 +33,6 @@ namespace HealthExpertAPI
             builder.Services.AddTransient<EmailService>();
             builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("Email:SmtpSettings"));
 
-
             // Configure upload path
             var uploadPath = builder.Configuration.GetValue<string>("UploadPath");
             if (!string.IsNullOrEmpty(uploadPath))

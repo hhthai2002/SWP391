@@ -13,7 +13,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    listOrder = ctx.orders.ToList();
+                    listOrder = ctx.Orders.ToList();
                 }
             }
             catch (Exception ex)
@@ -31,7 +31,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    order = ctx.orders.FirstOrDefault(x => x.orderId == id);
+                    order = ctx.Orders.FirstOrDefault(x => x.orderId == id);
                 }
             }
             catch (Exception ex)
@@ -48,7 +48,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.orders.Add(order);
+                    ctx.Orders.Add(order);
                     ctx.SaveChanges();
                 }
             }
@@ -67,7 +67,7 @@ namespace DataAccess.DAO
                 {
                     if (GetOrderById(id) != null)
                     {
-                        ctx.orders.Add(order);
+                        ctx.Orders.Add(order);
                         ctx.Entry(order).State =
                             Microsoft.EntityFrameworkCore.EntityState.Modified;
                     }
@@ -88,7 +88,7 @@ namespace DataAccess.DAO
                 {
                     if (GetOrderById(id) != null)
                     {
-                        ctx.orders.Remove(GetOrderById(id));
+                        ctx.Orders.Remove(GetOrderById(id));
                         ctx.SaveChanges();
                     }
                 }

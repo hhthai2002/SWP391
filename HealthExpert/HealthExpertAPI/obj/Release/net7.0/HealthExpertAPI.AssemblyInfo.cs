@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HealthExpertAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad3eda1244d103303ce4e1887210b0842f1cab12")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+02135dbb87957649bc0c526647ab5ad4cb8cf455")]
 [assembly: System.Reflection.AssemblyProductAttribute("HealthExpertAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HealthExpertAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

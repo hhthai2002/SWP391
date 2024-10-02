@@ -13,7 +13,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    listRole = ctx.roles.ToList();
+                    listRole = ctx.Roles.ToList();
                 }
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    role = ctx.roles.FirstOrDefault(role => role.roleId == id);
+                    role = ctx.Roles.FirstOrDefault(role => role.roleId == id);
                 }
             }
             catch (Exception ex)

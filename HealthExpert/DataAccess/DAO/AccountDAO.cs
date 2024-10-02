@@ -10,7 +10,7 @@ namespace DataAccess.DAO
         public static bool CheckAccount(string userName, string password)
         {
             using var db = new HealthExpertContext();
-            var account = db.accounts.FirstOrDefault(account => account.userName == userName && account.password == password);
+            var account = db.Accounts.FirstOrDefault(account => account.userName == userName && account.password == password);
             return account != null;
         }
 
@@ -22,7 +22,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    account = ctx.accounts.FirstOrDefault(account => account.userName == login.userName && account.password == login.password);
+                    account = ctx.Accounts.FirstOrDefault(account => account.userName == login.userName && account.password == login.password);
                 }
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    listAccount = ctx.accounts.ToList();
+                    listAccount = ctx.Accounts.ToList();
                 }
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    account = ctx.accounts.FirstOrDefault(account => account.accountId == id);
+                    account = ctx.Accounts.FirstOrDefault(account => account.accountId == id);
                 }
             }
             catch (Exception ex)
@@ -78,7 +78,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.accounts.Add(account);
+                    ctx.Accounts.Add(account);
                     ctx.SaveChanges();
                 }
             }
@@ -95,7 +95,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.accounts.Add(account);
+                    ctx.Accounts.Add(account);
                     ctx.Entry(account).State =
                         Microsoft.EntityFrameworkCore.EntityState.Modified;
                     ctx.SaveChanges();
@@ -117,7 +117,7 @@ namespace DataAccess.DAO
                     var account = GetAccountById(id);
                     if (account != null)
                     {
-                        ctx.accounts.Remove(account);
+                        ctx.Accounts.Remove(account);
                         ctx.SaveChanges();
                     }
                 }
@@ -136,7 +136,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    var account = ctx.accounts.FirstOrDefault(account => account.userName == userName);
+                    var account = ctx.Accounts.FirstOrDefault(account => account.userName == userName);
                     accountId = account.accountId;
                 }
             }
@@ -151,12 +151,12 @@ namespace DataAccess.DAO
         //Get account by email
         public static List<Account> GetAccountByEmail(string email)
         {
-            List<Account> accounts;
+            List<Account> Accounts;
             try
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    accounts = ctx.accounts.Where(account => account.email.Contains(email)).ToList();
+                    Accounts = ctx.Accounts.Where(account => account.email.Contains(email)).ToList();
                 }
             }
             catch (Exception ex)
@@ -164,7 +164,7 @@ namespace DataAccess.DAO
                 throw new Exception(ex.Message);
             }
 
-            return accounts;
+            return Accounts;
         }
     }
 }

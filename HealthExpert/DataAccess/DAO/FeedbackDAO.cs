@@ -12,11 +12,11 @@ namespace DataAccess.DAO
         //    {
         //        using (var context = new HealthExpertContext())
         //        {
-        //            var account = context.accounts.FirstOrDefault(account => account.accountId == accountId);
-        //            var course = context.courses.FirstOrDefault(course => course.courseId == courseId);
+        //            var account = context.Accounts.FirstOrDefault(account => account.accountId == accountId);
+        //            var course = context.Courses.FirstOrDefault(course => course.courseId == courseId);
         //            feedback.account = account;
         //            feedback.course = course;
-        //            context.feedbacks.Add(feedback);
+        //            context.Feedbacks.Add(feedback);
         //            context.SaveChanges();
         //        }
         //    }
@@ -29,7 +29,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.feedbacks.Add(feedback);
+                context.Feedbacks.Add(feedback);
                 context.SaveChanges();
             }
         }
@@ -38,7 +38,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.feedbacks.Remove(feedback);
+                context.Feedbacks.Remove(feedback);
                 context.SaveChanges();
             }
         }
@@ -47,7 +47,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.feedbacks.ToList();
+                return context.Feedbacks.ToList();
             }
         }
 
@@ -55,7 +55,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.feedbacks.FirstOrDefault(f => f.feedbackId == feedbackId);
+                return context.Feedbacks.FirstOrDefault(f => f.feedbackId == feedbackId);
             }
         }
 
@@ -64,7 +64,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.feedbacks.Update(feedback);
+                context.Feedbacks.Update(feedback);
                 context.SaveChanges();
             }
         }
@@ -76,8 +76,8 @@ namespace DataAccess.DAO
         //    {
         //        using (var context = new HealthExpertContext())
         //        {
-        //            var account = context.accounts.FirstOrDefault(account => account.accountId == accountId);
-        //            var feedbackUpdate = context.feedbacks.FirstOrDefault(feedback => feedback.feedbackId == feedbackId);
+        //            var account = context.Accounts.FirstOrDefault(account => account.accountId == accountId);
+        //            var feedbackUpdate = context.Feedbacks.FirstOrDefault(feedback => feedback.feedbackId == feedbackId);
         //            feedbackUpdate.account = account;
         //            feedbackUpdate.feedbackContent = feedback.feedbackContent;
         //            feedbackUpdate.feedbackDate = feedback.feedbackDate;

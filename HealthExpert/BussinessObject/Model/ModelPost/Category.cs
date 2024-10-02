@@ -8,6 +8,6 @@ namespace BussinessObject.Model.ModelPost
         public int categoryId { get; set; }
         public string title { get; set; }
         public string content { get; set; }
-        public ICollection<Post_Category>? post_Categories { get; set; }
+        public ICollection<Post_Category>? Post_Categories { get; set; }
     }
 }

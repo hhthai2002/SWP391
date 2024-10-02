@@ -13,8 +13,8 @@ namespace BussinessObject.Model.ModelCourse
         public string detail { get; set; }
         public DateTime createDate { get; set; } = DateTime.Now;
         [JsonIgnore]
-        public virtual Account? account { get; set; }
+        public virtual Account? Account { get; set; }
         [JsonIgnore]
-        public virtual Course? course { get; set; }
+        public virtual Course? Course { get; set; }
     }
 }

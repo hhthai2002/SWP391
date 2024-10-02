@@ -10,7 +10,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.bmis.Add(bmi);
+                context.Bmis.Add(bmi);
                 context.SaveChanges();
             }
         }
@@ -19,8 +19,8 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var bmi = context.bmis.Find(bmiId);
-                context.bmis.Remove(bmi);
+                var bmi = context.Bmis.Find(bmiId);
+                context.Bmis.Remove(bmi);
                 context.SaveChanges();
             }
         }
@@ -29,7 +29,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.bmis.ToList();
+                return context.Bmis.ToList();
             }
         }
 
@@ -37,7 +37,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.bmis.Find(bmiId);
+                return context.Bmis.Find(bmiId);
             }
         }
 
@@ -45,7 +45,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.bmis.Update(bmi);
+                context.Bmis.Update(bmi);
                 context.SaveChanges();
             }
         }

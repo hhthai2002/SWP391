@@ -66,8 +66,8 @@ namespace HealthExpertAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult AddOrder(CreateOrderDTO orderDTO)
         {
-            var courseExists = _context.courses.Any(c => c.courseId == orderDTO.courseId);
-            var accountExists = _context.accounts.Any(a => a.accountId == orderDTO.accountId);
+            var courseExists = _context.Courses.Any(c => c.courseId == orderDTO.courseId);
+            var accountExists = _context.Accounts.Any(a => a.accountId == orderDTO.accountId);
 
             if (!courseExists || !accountExists)
             {
@@ -83,8 +83,8 @@ namespace HealthExpertAPI.Controllers
             //    return BadRequest("You already have this course.");
             //}
 
-            var course = _context.courses.SingleOrDefault(c => c.courseId == orderDTO.courseId);
-            var account = _context.accounts.SingleOrDefault(account => account.accountId == orderDTO.accountId);
+            var course = _context.Courses.SingleOrDefault(c => c.courseId == orderDTO.courseId);
+            var account = _context.Accounts.SingleOrDefault(account => account.accountId == orderDTO.accountId);
 
             Order order = orderDTO.ToCreateOrder();
 
@@ -161,7 +161,7 @@ namespace HealthExpertAPI.Controllers
             };
 
             _context.Database.BeginTransaction();
-            _context.bills.Add(bill);
+            _context.Bills.Add(bill);
             _context.SaveChanges();
 
             return Ok(paymentUrl);
@@ -201,7 +201,7 @@ namespace HealthExpertAPI.Controllers
                 bill.cardType = Convert.ToString(queryParams.vnp_CardType);
                 bill.orderInfo = Convert.ToString(queryParams.vnp_OrderInfo);
 
-                //var enroll = _context.enrollments.FirstOrDefault(x => x.courseId == checkoutData.courseId);
+                //var enroll = _context.Enrollments.FirstOrDefault(x => x.courseId == checkoutData.courseId);
                 //enroll.enrollStatus = true;
                 //enroll.accountId = checkoutData.accountId.HasValue ? checkoutData.accountId.Value : Guid.Empty;
                 //enroll.courseId = checkoutData.courseId;

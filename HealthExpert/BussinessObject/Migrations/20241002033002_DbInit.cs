@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -13,7 +14,7 @@ namespace BussinessObject.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "categories",
+                name: "Categories",
                 columns: table => new
                 {
                     categoryId = table.Column<int>(type: "int", nullable: false)
@@ -23,35 +24,11 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_categories", x => x.categoryId);
+                    table.PrimaryKey("PK_Categories", x => x.categoryId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "courseAdmins",
-                columns: table => new
-                {
-                    courseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    accountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_courseAdmins", x => new { x.accountId, x.courseId });
-                });
-
-            migrationBuilder.CreateTable(
-                name: "courseManagements",
-                columns: table => new
-                {
-                    courseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    courseManagerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_courseManagements", x => new { x.courseManagerId, x.courseId });
-                });
-
-            migrationBuilder.CreateTable(
-                name: "nutritions",
+                name: "Nutritions",
                 columns: table => new
                 {
                     nutriId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -62,11 +39,11 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_nutritions", x => x.nutriId);
+                    table.PrimaryKey("PK_Nutritions", x => x.nutriId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "roles",
+                name: "Roles",
                 columns: table => new
                 {
                     roleId = table.Column<int>(type: "int", nullable: false)
@@ -75,11 +52,35 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_roles", x => x.roleId);
+                    table.PrimaryKey("PK_Roles", x => x.roleId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "courses",
+                name: "ServiceCenters",
+                columns: table => new
+                {
+                    courseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    accountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceCenters", x => new { x.accountId, x.courseId });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Teachers",
+                columns: table => new
+                {
+                    courseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    teacherId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teachers", x => new { x.teacherId, x.courseId });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Courses",
                 columns: table => new
                 {
                     courseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -95,21 +96,21 @@ namespace BussinessObject.Migrations
                     bmiMin = table.Column<double>(type: "float", nullable: false),
                     bmiMax = table.Column<double>(type: "float", nullable: false),
                     typeId = table.Column<int>(type: "int", nullable: false),
-                    courseAdminaccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    courseAdmincourseId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ServiceCenteraccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ServiceCentercourseId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_courses", x => x.courseId);
+                    table.PrimaryKey("PK_Courses", x => x.courseId);
                     table.ForeignKey(
-                        name: "FK_courses_courseAdmins_courseAdminaccountId_courseAdmincourseId",
-                        columns: x => new { x.courseAdminaccountId, x.courseAdmincourseId },
-                        principalTable: "courseAdmins",
+                        name: "FK_Courses_ServiceCenters_ServiceCenteraccountId_ServiceCentercourseId",
+                        columns: x => new { x.ServiceCenteraccountId, x.ServiceCentercourseId },
+                        principalTable: "ServiceCenters",
                         principalColumns: new[] { "accountId", "courseId" });
                 });
 
             migrationBuilder.CreateTable(
-                name: "accounts",
+                name: "Accounts",
                 columns: table => new
                 {
                     accountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -131,59 +132,60 @@ namespace BussinessObject.Migrations
                     verifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     passwordResetToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     resetTokenExpires = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    courseAdminaccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    courseAdmincourseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    courseManagerId = table.Column<int>(type: "int", nullable: true),
-                    courseManagercourseId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ServiceCenteraccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ServiceCentercourseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    teacherId = table.Column<int>(type: "int", nullable: true),
+                    TeachercourseId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_accounts", x => x.accountId);
+                    table.PrimaryKey("PK_Accounts", x => x.accountId);
                     table.ForeignKey(
-                        name: "FK_accounts_courseAdmins_courseAdminaccountId_courseAdmincourseId",
-                        columns: x => new { x.courseAdminaccountId, x.courseAdmincourseId },
-                        principalTable: "courseAdmins",
-                        principalColumns: new[] { "accountId", "courseId" });
-                    table.ForeignKey(
-                        name: "FK_accounts_courseManagements_courseManagerId_courseManagercourseId",
-                        columns: x => new { x.courseManagerId, x.courseManagercourseId },
-                        principalTable: "courseManagements",
-                        principalColumns: new[] { "courseManagerId", "courseId" });
-                    table.ForeignKey(
-                        name: "FK_accounts_roles_roleId",
+                        name: "FK_Accounts_Roles_roleId",
                         column: x => x.roleId,
-                        principalTable: "roles",
+                        principalTable: "Roles",
                         principalColumn: "roleId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Accounts_ServiceCenters_ServiceCenteraccountId_ServiceCentercourseId",
+                        columns: x => new { x.ServiceCenteraccountId, x.ServiceCentercourseId },
+                        principalTable: "ServiceCenters",
+                        principalColumns: new[] { "accountId", "courseId" });
+                    table.ForeignKey(
+                        name: "FK_Accounts_Teachers_teacherId_TeachercourseId",
+                        columns: x => new { x.teacherId, x.TeachercourseId },
+                        principalTable: "Teachers",
+                        principalColumns: new[] { "teacherId", "courseId" });
                 });
 
             migrationBuilder.CreateTable(
-                name: "course_CourseManager_Mappings",
+                name: "GetCourse_Teacher_Mappings",
                 columns: table => new
                 {
                     courseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    courseManagerId = table.Column<int>(type: "int", nullable: false),
-                    courseManagementcourseManagerId = table.Column<int>(type: "int", nullable: true),
-                    courseManagementcourseId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    teacherId = table.Column<int>(type: "int", nullable: false),
+                    teacherId1 = table.Column<int>(type: "int", nullable: false),
+                    TeachercourseId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_course_CourseManager_Mappings", x => new { x.courseId, x.courseManagerId });
+                    table.PrimaryKey("PK_GetCourse_Teacher_Mappings", x => new { x.courseId, x.teacherId });
                     table.ForeignKey(
-                        name: "FK_course_CourseManager_Mappings_courseManagements_courseManagementcourseManagerId_courseManagementcourseId",
-                        columns: x => new { x.courseManagementcourseManagerId, x.courseManagementcourseId },
-                        principalTable: "courseManagements",
-                        principalColumns: new[] { "courseManagerId", "courseId" });
-                    table.ForeignKey(
-                        name: "FK_course_CourseManager_Mappings_courses_courseId",
+                        name: "FK_GetCourse_Teacher_Mappings_Courses_courseId",
                         column: x => x.courseId,
-                        principalTable: "courses",
+                        principalTable: "Courses",
                         principalColumn: "courseId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GetCourse_Teacher_Mappings_Teachers_teacherId1_TeachercourseId",
+                        columns: x => new { x.teacherId1, x.TeachercourseId },
+                        principalTable: "Teachers",
+                        principalColumns: new[] { "teacherId", "courseId" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "orders",
+                name: "Orders",
                 columns: table => new
                 {
                     orderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -195,17 +197,17 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_orders", x => x.orderId);
+                    table.PrimaryKey("PK_Orders", x => x.orderId);
                     table.ForeignKey(
-                        name: "FK_orders_courses_courseId",
+                        name: "FK_Orders_Courses_courseId",
                         column: x => x.courseId,
-                        principalTable: "courses",
+                        principalTable: "Courses",
                         principalColumn: "courseId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "sessions",
+                name: "Sessions",
                 columns: table => new
                 {
                     sessionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -219,17 +221,17 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_sessions", x => x.sessionId);
+                    table.PrimaryKey("PK_Sessions", x => x.sessionId);
                     table.ForeignKey(
-                        name: "FK_sessions_courses_courseId",
+                        name: "FK_Sessions_Courses_courseId",
                         column: x => x.courseId,
-                        principalTable: "courses",
+                        principalTable: "Courses",
                         principalColumn: "courseId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "types",
+                name: "Types",
                 columns: table => new
                 {
                     typeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -239,16 +241,16 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_types", x => x.typeId);
+                    table.PrimaryKey("PK_Types", x => x.typeId);
                     table.ForeignKey(
-                        name: "FK_types_courses_courseId",
+                        name: "FK_Types_Courses_courseId",
                         column: x => x.courseId,
-                        principalTable: "courses",
+                        principalTable: "Courses",
                         principalColumn: "courseId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "accomplishments",
+                name: "Accomplishments",
                 columns: table => new
                 {
                     acplId = table.Column<int>(type: "int", nullable: false)
@@ -261,17 +263,17 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_accomplishments", x => x.acplId);
+                    table.PrimaryKey("PK_Accomplishments", x => x.acplId);
                     table.ForeignKey(
-                        name: "FK_accomplishments_accounts_accountId",
+                        name: "FK_Accomplishments_Accounts_accountId",
                         column: x => x.accountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "avatars",
+                name: "Avatars",
                 columns: table => new
                 {
                     avatarId = table.Column<int>(type: "int", nullable: false)
@@ -284,17 +286,17 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_avatars", x => x.avatarId);
+                    table.PrimaryKey("PK_Avatars", x => x.avatarId);
                     table.ForeignKey(
-                        name: "FK_avatars_accounts_accountId",
+                        name: "FK_Avatars_Accounts_accountId",
                         column: x => x.accountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "bmis",
+                name: "Bmis",
                 columns: table => new
                 {
                     bmiId = table.Column<int>(type: "int", nullable: false)
@@ -309,11 +311,11 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_bmis", x => x.bmiId);
+                    table.PrimaryKey("PK_Bmis", x => x.bmiId);
                     table.ForeignKey(
-                        name: "FK_bmis_accounts_accountId",
+                        name: "FK_Bmis_Accounts_accountId",
                         column: x => x.accountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -332,21 +334,21 @@ namespace BussinessObject.Migrations
                 {
                     table.PrimaryKey("PK_CurrentProgresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CurrentProgresses_accounts_AccountId",
+                        name: "FK_CurrentProgresses_Accounts_AccountId",
                         column: x => x.AccountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CurrentProgresses_courses_courseId",
+                        name: "FK_CurrentProgresses_Courses_courseId",
                         column: x => x.courseId,
-                        principalTable: "courses",
+                        principalTable: "Courses",
                         principalColumn: "courseId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "enrollments",
+                name: "Enrollments",
                 columns: table => new
                 {
                     accountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -356,23 +358,23 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_enrollments", x => new { x.accountId, x.courseId });
+                    table.PrimaryKey("PK_Enrollments", x => new { x.accountId, x.courseId });
                     table.ForeignKey(
-                        name: "FK_enrollments_accounts_accountId",
+                        name: "FK_Enrollments_Accounts_accountId",
                         column: x => x.accountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_enrollments_courses_courseId",
+                        name: "FK_Enrollments_Courses_courseId",
                         column: x => x.courseId,
-                        principalTable: "courses",
+                        principalTable: "Courses",
                         principalColumn: "courseId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "feedbacks",
+                name: "Feedbacks",
                 columns: table => new
                 {
                     accountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -383,23 +385,23 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_feedbacks", x => new { x.accountId, x.courseId });
+                    table.PrimaryKey("PK_Feedbacks", x => new { x.accountId, x.courseId });
                     table.ForeignKey(
-                        name: "FK_feedbacks_accounts_accountId",
+                        name: "FK_Feedbacks_Accounts_accountId",
                         column: x => x.accountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_feedbacks_courses_courseId",
+                        name: "FK_Feedbacks_Courses_courseId",
                         column: x => x.courseId,
-                        principalTable: "courses",
+                        principalTable: "Courses",
                         principalColumn: "courseId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "photos",
+                name: "Photos",
                 columns: table => new
                 {
                     photoId = table.Column<int>(type: "int", nullable: false)
@@ -412,17 +414,17 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_photos", x => x.photoId);
+                    table.PrimaryKey("PK_Photos", x => x.photoId);
                     table.ForeignKey(
-                        name: "FK_photos_accounts_accountId",
+                        name: "FK_Photos_Accounts_accountId",
                         column: x => x.accountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "posts",
+                name: "Posts",
                 columns: table => new
                 {
                     postId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -438,17 +440,17 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_posts", x => x.postId);
+                    table.PrimaryKey("PK_Posts", x => x.postId);
                     table.ForeignKey(
-                        name: "FK_posts_accounts_accountId",
+                        name: "FK_Posts_Accounts_accountId",
                         column: x => x.accountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "bills",
+                name: "Bills",
                 columns: table => new
                 {
                     billId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -465,23 +467,23 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_bills", x => x.billId);
+                    table.PrimaryKey("PK_Bills", x => x.billId);
                     table.ForeignKey(
-                        name: "FK_bills_accounts_accountId",
+                        name: "FK_Bills_Accounts_accountId",
                         column: x => x.accountId,
-                        principalTable: "accounts",
+                        principalTable: "Accounts",
                         principalColumn: "accountId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_bills_orders_orderId",
+                        name: "FK_Bills_Orders_orderId",
                         column: x => x.orderId,
-                        principalTable: "orders",
+                        principalTable: "Orders",
                         principalColumn: "orderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "orderStatuses",
+                name: "OrderStatuses",
                 columns: table => new
                 {
                     orderStatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -491,16 +493,16 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_orderStatuses", x => x.orderStatusId);
+                    table.PrimaryKey("PK_OrderStatuses", x => x.orderStatusId);
                     table.ForeignKey(
-                        name: "FK_orderStatuses_orders_orderId",
+                        name: "FK_OrderStatuses_Orders_orderId",
                         column: x => x.orderId,
-                        principalTable: "orders",
+                        principalTable: "Orders",
                         principalColumn: "orderId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "lessons",
+                name: "Lessons",
                 columns: table => new
                 {
                     lessonId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -513,11 +515,11 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_lessons", x => x.lessonId);
+                    table.PrimaryKey("PK_Lessons", x => x.lessonId);
                     table.ForeignKey(
-                        name: "FK_lessons_sessions_sessionId",
+                        name: "FK_Lessons_Sessions_sessionId",
                         column: x => x.sessionId,
-                        principalTable: "sessions",
+                        principalTable: "Sessions",
                         principalColumn: "sessionId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -533,15 +535,15 @@ namespace BussinessObject.Migrations
                 {
                     table.PrimaryKey("PK_NutritionSession", x => new { x.NutritionsnutriId, x.SessionssessionId });
                     table.ForeignKey(
-                        name: "FK_NutritionSession_nutritions_NutritionsnutriId",
+                        name: "FK_NutritionSession_Nutritions_NutritionsnutriId",
                         column: x => x.NutritionsnutriId,
-                        principalTable: "nutritions",
+                        principalTable: "Nutritions",
                         principalColumn: "nutriId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_NutritionSession_sessions_SessionssessionId",
+                        name: "FK_NutritionSession_Sessions_SessionssessionId",
                         column: x => x.SessionssessionId,
-                        principalTable: "sessions",
+                        principalTable: "Sessions",
                         principalColumn: "sessionId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -557,21 +559,21 @@ namespace BussinessObject.Migrations
                 {
                     table.PrimaryKey("PK_Post_Category", x => new { x.postId, x.categoryId });
                     table.ForeignKey(
-                        name: "FK_Post_Category_categories_categoryId",
+                        name: "FK_Post_Category_Categories_categoryId",
                         column: x => x.categoryId,
-                        principalTable: "categories",
+                        principalTable: "Categories",
                         principalColumn: "categoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Post_Category_posts_postId",
+                        name: "FK_Post_Category_Posts_postId",
                         column: x => x.postId,
-                        principalTable: "posts",
+                        principalTable: "Posts",
                         principalColumn: "postId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "post_Likes",
+                name: "Post_Likes",
                 columns: table => new
                 {
                     postLikeId = table.Column<int>(type: "int", nullable: false)
@@ -582,17 +584,17 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_post_Likes", x => x.postLikeId);
+                    table.PrimaryKey("PK_Post_Likes", x => x.postLikeId);
                     table.ForeignKey(
-                        name: "FK_post_Likes_posts_postId",
+                        name: "FK_Post_Likes_Posts_postId",
                         column: x => x.postId,
-                        principalTable: "posts",
+                        principalTable: "Posts",
                         principalColumn: "postId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "post_Metas",
+                name: "Post_Metas",
                 columns: table => new
                 {
                     postMetaId = table.Column<int>(type: "int", nullable: false)
@@ -603,17 +605,17 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_post_Metas", x => x.postMetaId);
+                    table.PrimaryKey("PK_Post_Metas", x => x.postMetaId);
                     table.ForeignKey(
-                        name: "FK_post_Metas_posts_postId",
+                        name: "FK_Post_Metas_Posts_postId",
                         column: x => x.postId,
-                        principalTable: "posts",
+                        principalTable: "Posts",
                         principalColumn: "postId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "postDetails",
+                name: "PostDetails",
                 columns: table => new
                 {
                     postDetailId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -623,80 +625,70 @@ namespace BussinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_postDetails", x => x.postDetailId);
+                    table.PrimaryKey("PK_PostDetails", x => x.postDetailId);
                     table.ForeignKey(
-                        name: "FK_postDetails_posts_postId",
+                        name: "FK_PostDetails_Posts_postId",
                         column: x => x.postId,
-                        principalTable: "posts",
+                        principalTable: "Posts",
                         principalColumn: "postId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "courses",
-                columns: new[] { "courseId", "bmiMax", "bmiMin", "certificate", "courseAdminaccountId", "courseAdmincourseId", "courseName", "createBy", "dateUpdate", "description", "language", "price", "rating", "studentNumber", "typeId" },
-                values: new object[] { "C001", 20.0, 10.0, "Certificate 1", null, null, "Course 1", "admin", new DateTime(2024, 9, 7, 9, 41, 29, 493, DateTimeKind.Local).AddTicks(7765), "This is course 1", "English", 10.0, 5.0, 100, 1 });
-
-            migrationBuilder.InsertData(
-                table: "roles",
+                table: "Roles",
                 columns: new[] { "roleId", "roleName" },
                 values: new object[,]
                 {
                     { 1, "Administration" },
-                    { 2, "CourseAdmin" },
-                    { 3, "CourseManager" },
+                    { 2, "ServiceCenter" },
+                    { 3, "Teacher" },
                     { 4, "Learner" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_accomplishments_accountId",
-                table: "accomplishments",
+                name: "IX_Accomplishments_accountId",
+                table: "Accomplishments",
                 column: "accountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_accounts_courseAdminaccountId_courseAdmincourseId",
-                table: "accounts",
-                columns: new[] { "courseAdminaccountId", "courseAdmincourseId" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_accounts_courseManagerId_courseManagercourseId",
-                table: "accounts",
-                columns: new[] { "courseManagerId", "courseManagercourseId" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_accounts_roleId",
-                table: "accounts",
+                name: "IX_Accounts_roleId",
+                table: "Accounts",
                 column: "roleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_avatars_accountId",
-                table: "avatars",
+                name: "IX_Accounts_ServiceCenteraccountId_ServiceCentercourseId",
+                table: "Accounts",
+                columns: new[] { "ServiceCenteraccountId", "ServiceCentercourseId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accounts_teacherId_TeachercourseId",
+                table: "Accounts",
+                columns: new[] { "teacherId", "TeachercourseId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Avatars_accountId",
+                table: "Avatars",
                 column: "accountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_bills_accountId",
-                table: "bills",
+                name: "IX_Bills_accountId",
+                table: "Bills",
                 column: "accountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_bills_orderId",
-                table: "bills",
+                name: "IX_Bills_orderId",
+                table: "Bills",
                 column: "orderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_bmis_accountId",
-                table: "bmis",
+                name: "IX_Bmis_accountId",
+                table: "Bmis",
                 column: "accountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_course_CourseManager_Mappings_courseManagementcourseManagerId_courseManagementcourseId",
-                table: "course_CourseManager_Mappings",
-                columns: new[] { "courseManagementcourseManagerId", "courseManagementcourseId" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_courses_courseAdminaccountId_courseAdmincourseId",
-                table: "courses",
-                columns: new[] { "courseAdminaccountId", "courseAdmincourseId" });
+                name: "IX_Courses_ServiceCenteraccountId_ServiceCentercourseId",
+                table: "Courses",
+                columns: new[] { "ServiceCenteraccountId", "ServiceCentercourseId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CurrentProgresses_AccountId",
@@ -710,18 +702,23 @@ namespace BussinessObject.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_enrollments_courseId",
-                table: "enrollments",
+                name: "IX_Enrollments_courseId",
+                table: "Enrollments",
                 column: "courseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_feedbacks_courseId",
-                table: "feedbacks",
+                name: "IX_Feedbacks_courseId",
+                table: "Feedbacks",
                 column: "courseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_lessons_sessionId",
-                table: "lessons",
+                name: "IX_GetCourse_Teacher_Mappings_teacherId1_TeachercourseId",
+                table: "GetCourse_Teacher_Mappings",
+                columns: new[] { "teacherId1", "TeachercourseId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Lessons_sessionId",
+                table: "Lessons",
                 column: "sessionId");
 
             migrationBuilder.CreateIndex(
@@ -730,18 +727,18 @@ namespace BussinessObject.Migrations
                 column: "SessionssessionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_orders_courseId",
-                table: "orders",
+                name: "IX_Orders_courseId",
+                table: "Orders",
                 column: "courseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_orderStatuses_orderId",
-                table: "orderStatuses",
+                name: "IX_OrderStatuses_orderId",
+                table: "OrderStatuses",
                 column: "orderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_photos_accountId",
-                table: "photos",
+                name: "IX_Photos_accountId",
+                table: "Photos",
                 column: "accountId");
 
             migrationBuilder.CreateIndex(
@@ -750,33 +747,33 @@ namespace BussinessObject.Migrations
                 column: "categoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_post_Likes_postId",
-                table: "post_Likes",
+                name: "IX_Post_Likes_postId",
+                table: "Post_Likes",
                 column: "postId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_post_Metas_postId",
-                table: "post_Metas",
+                name: "IX_Post_Metas_postId",
+                table: "Post_Metas",
                 column: "postId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_postDetails_postId",
-                table: "postDetails",
+                name: "IX_PostDetails_postId",
+                table: "PostDetails",
                 column: "postId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_posts_accountId",
-                table: "posts",
+                name: "IX_Posts_accountId",
+                table: "Posts",
                 column: "accountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_sessions_courseId",
-                table: "sessions",
+                name: "IX_Sessions_courseId",
+                table: "Sessions",
                 column: "courseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_types_courseId",
-                table: "types",
+                name: "IX_Types_courseId",
+                table: "Types",
                 column: "courseId");
         }
 
@@ -784,85 +781,85 @@ namespace BussinessObject.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "accomplishments");
+                name: "Accomplishments");
 
             migrationBuilder.DropTable(
-                name: "avatars");
+                name: "Avatars");
 
             migrationBuilder.DropTable(
-                name: "bills");
+                name: "Bills");
 
             migrationBuilder.DropTable(
-                name: "bmis");
-
-            migrationBuilder.DropTable(
-                name: "course_CourseManager_Mappings");
+                name: "Bmis");
 
             migrationBuilder.DropTable(
                 name: "CurrentProgresses");
 
             migrationBuilder.DropTable(
-                name: "enrollments");
+                name: "Enrollments");
 
             migrationBuilder.DropTable(
-                name: "feedbacks");
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
-                name: "lessons");
+                name: "GetCourse_Teacher_Mappings");
+
+            migrationBuilder.DropTable(
+                name: "Lessons");
 
             migrationBuilder.DropTable(
                 name: "NutritionSession");
 
             migrationBuilder.DropTable(
-                name: "orderStatuses");
+                name: "OrderStatuses");
 
             migrationBuilder.DropTable(
-                name: "photos");
+                name: "Photos");
 
             migrationBuilder.DropTable(
                 name: "Post_Category");
 
             migrationBuilder.DropTable(
-                name: "post_Likes");
+                name: "Post_Likes");
 
             migrationBuilder.DropTable(
-                name: "post_Metas");
+                name: "Post_Metas");
 
             migrationBuilder.DropTable(
-                name: "postDetails");
+                name: "PostDetails");
 
             migrationBuilder.DropTable(
-                name: "types");
+                name: "Types");
 
             migrationBuilder.DropTable(
-                name: "nutritions");
+                name: "Nutritions");
 
             migrationBuilder.DropTable(
-                name: "sessions");
+                name: "Sessions");
 
             migrationBuilder.DropTable(
-                name: "orders");
+                name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "categories");
+                name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "posts");
+                name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "courses");
+                name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "accounts");
+                name: "Accounts");
 
             migrationBuilder.DropTable(
-                name: "courseAdmins");
+                name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "courseManagements");
+                name: "ServiceCenters");
 
             migrationBuilder.DropTable(
-                name: "roles");
+                name: "Teachers");
         }
     }
 }

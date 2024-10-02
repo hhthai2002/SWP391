@@ -10,7 +10,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.avatars.Add(avatar);
+                context.Avatars.Add(avatar);
                 context.SaveChanges();
             }
         }
@@ -19,7 +19,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var result = context.avatars.SingleOrDefault(x => x.avatarId == avatar.avatarId);
+                var result = context.Avatars.SingleOrDefault(x => x.avatarId == avatar.avatarId);
                 if (result != null)
                 {
                     context.Entry<Avatar>(result).State =
@@ -34,10 +34,10 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var result = context.avatars.SingleOrDefault(x => x.avatarId == avatarId);
+                var result = context.Avatars.SingleOrDefault(x => x.avatarId == avatarId);
                 if (result != null)
                 {
-                    context.avatars.Remove(result);
+                    context.Avatars.Remove(result);
                     context.SaveChanges();
                 }
             }

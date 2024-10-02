@@ -18,6 +18,6 @@ namespace BussinessObject.Model.ModelUser
         public bool isActive { get; set; }
         public Guid accountId { get; set; }
         [JsonIgnore]
-        public virtual Account? account { get; set; }
+        public virtual Account? Account { get; set; }
     }
 }

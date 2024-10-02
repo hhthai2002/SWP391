@@ -151,7 +151,7 @@ namespace HealthExpertAPI.Controllers
         }
 
         //Update Lesson
-        [AllowAnonymous] //Sẽ chỉnh sửa thành Course Manager và Course Administrator
+        [AllowAnonymous] //Sẽ chỉnh sửa thành Course Teacher và Course Administrator
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

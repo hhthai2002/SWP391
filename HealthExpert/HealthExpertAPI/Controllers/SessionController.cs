@@ -27,19 +27,19 @@ namespace HealthExpertAPI.Controllers
         }
 
         //Add Session
-        [AllowAnonymous] //Sẽ chỉnh sửa có courseAdmin, CourseManager mới được thêm
+        [AllowAnonymous] //Sẽ chỉnh sửa có courseAdmin, Teacher mới được thêm
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult AddSession(SessionDTO sessionDTO)
         {
-            var course = _context.courses.FirstOrDefault(c => c.courseId == sessionDTO.courseId);
+            var course = _context.Courses.FirstOrDefault(c => c.courseId == sessionDTO.courseId);
             if (course == null)
             {
                 return BadRequest("Course not found.");
             }
 
-            if (_context.sessions.Any(s => s.sessionId == sessionDTO.sessionId))
+            if (_context.Sessions.Any(s => s.sessionId == sessionDTO.sessionId))
             {
                 return BadRequest("Session does exists!!!");
             }
@@ -53,7 +53,7 @@ namespace HealthExpertAPI.Controllers
             return Ok("Session successfully add!!!");
         }
 
-        //Get list of sessions
+        //Get list of Sessions
         [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -97,7 +97,7 @@ namespace HealthExpertAPI.Controllers
         }
 
         //Update Session
-        [AllowAnonymous] //Sẽ chỉnh sửa chỉ có CourseAdmin, CourseManager mới được update
+        [AllowAnonymous] //Sẽ chỉnh sửa chỉ có ServiceCenter, Teacher mới được update
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -118,7 +118,7 @@ namespace HealthExpertAPI.Controllers
         }
 
         //Delete Session
-        [AllowAnonymous] //Sẽ chỉnh sửa chỉ có CourseAdmin mới được xóa
+        [AllowAnonymous] //Sẽ chỉnh sửa chỉ có ServiceCenter mới được xóa
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

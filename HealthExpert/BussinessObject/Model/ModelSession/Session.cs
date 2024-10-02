@@ -19,7 +19,7 @@ namespace BussinessObject.Model.ModelSession
         public string courseId { get; set; }
 
         [JsonIgnore]
-        public virtual Course? course { get; set; }
+        public virtual Course? Course { get; set; }
         [JsonIgnore]
         public virtual ICollection<Lesson>? Lessons { get; set; }
         [JsonIgnore]

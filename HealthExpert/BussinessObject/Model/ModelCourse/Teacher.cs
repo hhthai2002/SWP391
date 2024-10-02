@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace BussinessObject.Model.ModelCourse
 {
-    public class CourseManagement
+    public class Teacher
     {
         [Key]
         public string courseId { get; set; }
-        public int courseManagerId { get; set; }
+        public int teacherId { get; set; }
         [JsonIgnore]
-        public ICollection<Account>? accounts { get; set; }
+        public ICollection<Account>? Accounts { get; set; }
     }
 }

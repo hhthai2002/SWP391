@@ -34,13 +34,13 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult AddBMI(BMIDTO bmiDTO)
         {
-            var account = _context.accounts.FirstOrDefault(x => x.accountId == bmiDTO.accountId);
+            var account = _context.Accounts.FirstOrDefault(x => x.accountId == bmiDTO.accountId);
             if (account == null)
             {
                 return BadRequest("Account not found!!");
             }
 
-            var existingBMI = _context.bmis.FirstOrDefault(b => b.accountId == bmiDTO.accountId);
+            var existingBMI = _context.Bmis.FirstOrDefault(b => b.accountId == bmiDTO.accountId);
             if (existingBMI != null)
             {
                 return BadRequest("You already have a BMI entry");

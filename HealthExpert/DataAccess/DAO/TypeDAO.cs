@@ -12,7 +12,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    listTypers = ctx.types.ToList();
+                    listTypers = ctx.Types.ToList();
                 }
             }
             catch (Exception ex)
@@ -30,7 +30,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    type = ctx.types.FirstOrDefault(type => type.typeId == id);
+                    type = ctx.Types.FirstOrDefault(type => type.typeId == id);
                 }
             }
             catch (Exception ex)
@@ -48,7 +48,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    type = ctx.types.FirstOrDefault(type => type.typeName == name);
+                    type = ctx.Types.FirstOrDefault(type => type.typeName == name);
                 }
             }
             catch (Exception ex)
@@ -65,7 +65,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.types.Add(type);
+                    ctx.Types.Add(type);
                     ctx.SaveChanges();
                 }
             }
@@ -84,7 +84,7 @@ namespace DataAccess.DAO
                 {
                     using (var ctx = new HealthExpertContext())
                     {
-                        ctx.types.Add(type);
+                        ctx.Types.Add(type);
                         ctx.Entry(type).State =
                             Microsoft.EntityFrameworkCore.EntityState.Modified;
                         ctx.SaveChanges();
@@ -106,7 +106,7 @@ namespace DataAccess.DAO
                 {
                     if (GetTypeById(id) != null)
                     {
-                        ctx.types.Remove(GetTypeById(id));
+                        ctx.Types.Remove(GetTypeById(id));
                         ctx.SaveChanges();
                     }
                 }

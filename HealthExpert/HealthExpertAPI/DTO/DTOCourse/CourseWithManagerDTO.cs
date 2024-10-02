@@ -1,6 +1,6 @@
 ﻿namespace HealthExpertAPI.DTO.DTOCourse
 {
-    public class CourseWithManagersDTO
+    public class CourseWithTeachersDTO
     {
         public string courseId { get; set; }
         public string courseName { get; set; }
@@ -15,7 +15,7 @@
         public double bmiMin { get; set; }
         public double bmiMax { get; set; }
         public int typeId { get; set; }
-        //List of managers
-        public List<CourseManagerDTO> managers { get; set; }
+        //List of teachers
+        public List<TeacherDTO> teachers { get; set; }
     }
 }

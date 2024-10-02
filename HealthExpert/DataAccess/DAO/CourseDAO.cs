@@ -11,7 +11,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.courses.Add(course);
+                context.Courses.Add(course);
                 context.SaveChanges();
             }
         }
@@ -20,8 +20,8 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var course = context.courses.Find(courseId);
-                context.courses.Remove(course);
+                var course = context.Courses.Find(courseId);
+                context.Courses.Remove(course);
                 context.SaveChanges();
             }
         }
@@ -30,7 +30,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.courses.ToList();
+                return context.Courses.ToList();
             }
         }
 
@@ -38,7 +38,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.courses.Find(courseId);
+                return context.Courses.Find(courseId);
             }
         }
 
@@ -46,7 +46,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.courses.Update(course);
+                context.Courses.Update(course);
                 context.SaveChanges();
             }
         }
@@ -56,18 +56,18 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var user = context.accounts.FirstOrDefault(x => x.email == email);
+                var user = context.Accounts.FirstOrDefault(x => x.email == email);
                 if (user != null)
                 {
                     var roleId = 3; // Assuming the role id for course manager is 3
-                    var courseManager = new CourseManagement
+                    var courseManager = new Teacher
                     {
-                        courseManagerId = GenerateUniqueCourseManagerId(),
+                        teacherId = GenerateUniqueCourseManagerId(),
                         courseId = courseId
                     };
-                    courseManager.accounts = new List<Account> { user };
+                    courseManager.Accounts = new List<Account> { user };
                     user.roleId = roleId;
-                    context.courseManagements.Add(courseManager);
+                    context.Teachers.Add(courseManager);
                     context.SaveChanges();
                 }
                 else
@@ -84,7 +84,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                int existingCount = context.courseManagements.Count();
+                int existingCount = context.Teachers.Count();
                 return existingCount + 1;
             }
         }
@@ -93,7 +93,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.enrollments.Add(enrollment);
+                context.Enrollments.Add(enrollment);
                 context.SaveChanges();
             }
         }
@@ -103,7 +103,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.enrollments.ToList();
+                return context.Enrollments.ToList();
             }
         }
 
@@ -114,7 +114,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.enrollments.Add(enrollment);
+                    ctx.Enrollments.Add(enrollment);
                     ctx.Entry(enrollment).State =
                         Microsoft.EntityFrameworkCore.EntityState.Modified;
                     ctx.SaveChanges();
@@ -133,7 +133,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.enrollments.Remove(enrollment);
+                    ctx.Enrollments.Remove(enrollment);
                     ctx.SaveChanges();
                 }
             }
@@ -143,13 +143,13 @@ namespace DataAccess.DAO
             }
         }
         //Check if user already a course manager with email and courseId
-        public static bool IsCourseManager(string email, string courseId)
+        public static bool IsTeacher(string email, string courseId)
         {
             using (var context = new HealthExpertContext())
             {
-                var courseManager = context.courseManagements.FirstOrDefault(
-                                       cm => cm.accounts.Any(a => a.email.Equals(email) && cm.courseId.Equals(courseId)));
-                return courseManager != null;
+                var teacher = context.Teachers.FirstOrDefault(
+                                       cm => cm.Accounts.Any(a => a.email.Equals(email) && cm.courseId.Equals(courseId)));
+                return teacher != null;
             }
         }
     }

@@ -17,9 +17,9 @@ namespace BussinessObject.Model.ModelPost
         public DateTime publishAt { get; set; }
         public bool isActive { get; set; }
         public virtual Account? account { get; set; }
-        public ICollection<Post_Category>? post_Categories { get; set; }
-        public ICollection<Post_Like>? post_Likes { get; set; }
-        public ICollection<Post_Meta>? post_Metas { get; set; }
-        public ICollection<PostDetail>? postDetails { get; set; }
+        public ICollection<Post_Category>? Post_Categories { get; set; }
+        public ICollection<Post_Like>? Post_Likes { get; set; }
+        public ICollection<Post_Meta>? Post_Metas { get; set; }
+        public ICollection<PostDetail>? PostDetails { get; set; }
     }
 }

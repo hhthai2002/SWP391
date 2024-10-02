@@ -11,6 +11,6 @@ namespace BussinessObject.Model.Authen
         [Required] public string roleName { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Account> account { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
     }
 }

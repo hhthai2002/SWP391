@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace HealthExpertAPI.DTO.DTOAccount
 {
-    public class CourseAdminRegistrationDTO
+    public class ServiceCenterRegistrationDTO
     {
         [Required]
         public string userName { get; set; } = string.Empty;

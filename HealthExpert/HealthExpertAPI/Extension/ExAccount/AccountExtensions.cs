@@ -45,7 +45,7 @@ namespace HealthExpertAPI.Extension.ExAccount
             };
         }
 
-        public static Account ToCourseAdminRegister(this CourseAdminRegistrationDTO accountDTO, byte[] passwordHash, byte[] passwordSalt)
+        public static Account ToServiceCenterRegister(this ServiceCenterRegistrationDTO accountDTO, byte[] passwordHash, byte[] passwordSalt)
         {
             return new Account
             {

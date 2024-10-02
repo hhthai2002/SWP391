@@ -3,13 +3,13 @@ using System.Text.Json.Serialization;
 
 namespace BussinessObject.Model.ModelCourse
 {
-    public class CourseAdmin
+    public class ServiceCenter
     {
         public string courseId { get; set; }
         public Guid accountId { get; set; }
         [JsonIgnore]
-        public ICollection<Course>? courses { get; set; }
+        public ICollection<Course>? Courses { get; set; }
         [JsonIgnore]
-        public ICollection<Account>? account { get; set; }
+        public ICollection<Account>? Account { get; set; }
     }
 }

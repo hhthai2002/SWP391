@@ -10,7 +10,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.posts.Add(post);
+                context.Posts.Add(post);
                 context.SaveChanges();
             }
         }
@@ -20,7 +20,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                context.postDetails.Add(postDetail);
+                context.PostDetails.Add(postDetail);
                 context.SaveChanges();
             }
         }
@@ -29,8 +29,8 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var post = context.posts.Find(postId);
-                context.posts.Remove(post);
+                var post = context.Posts.Find(postId);
+                context.Posts.Remove(post);
                 context.SaveChanges();
             }
         }
@@ -39,7 +39,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.posts.ToList();
+                return context.Posts.ToList();
             }
         }
 
@@ -47,7 +47,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.posts.Find(postId);
+                return context.Posts.Find(postId);
             }
         }
 
@@ -55,7 +55,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var existingPost = context.posts.Find(post.postId);
+                var existingPost = context.Posts.Find(post.postId);
                 if (existingPost == null)
                 {
                     throw new Exception("Post not found!!!");
@@ -65,7 +65,7 @@ namespace DataAccess.DAO
                 existingPost.updatedAt = post.updatedAt;
                 existingPost.publishAt = post.publishAt;
                 existingPost.imageFile = post.imageFile;
-                context.posts.Update(existingPost);
+                context.Posts.Update(existingPost);
                 context.SaveChanges();
             }
         }
@@ -75,14 +75,14 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var existingPostDetail = context.postDetails.FirstOrDefault(pd => pd.postDetailId == postDetail.postDetailId);
+                var existingPostDetail = context.PostDetails.FirstOrDefault(pd => pd.postDetailId == postDetail.postDetailId);
                 if (existingPostDetail == null)
                 {
                     throw new Exception("Post Detail not found!!!");
                 }
                 existingPostDetail.postTitle = postDetail.postTitle;
                 existingPostDetail.postDescription = postDetail.postDescription;
-                context.postDetails.Update(existingPostDetail);
+                context.PostDetails.Update(existingPostDetail);
                 context.SaveChanges();
             }
         }
@@ -92,11 +92,11 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                var post = context.posts.FirstOrDefault(p => p.postId == postId);
-                //var existingUser = context.accounts.FirstOrDefault(a => a.userName == userName);
+                var post = context.Posts.FirstOrDefault(p => p.postId == postId);
+                //var existingUser = context.Accounts.FirstOrDefault(a => a.userName == userName);
                 if (post != null)
                 {
-                    var existingLike = context.post_Likes.FirstOrDefault(pl =>
+                    var existingLike = context.Post_Likes.FirstOrDefault(pl =>
                     pl.postId == postId && pl.userName == userName);
 
                     if (existingLike == null)
@@ -107,13 +107,13 @@ namespace DataAccess.DAO
                             userName = userName,
                             createdAt = DateTime.Now
                         };
-                        context.post_Likes.Add(postLike);
+                        context.Post_Likes.Add(postLike);
                         post.likeCount++;
                         context.SaveChanges();
                     }
                     else
                     {
-                        context.post_Likes.Remove(existingLike);
+                        context.Post_Likes.Remove(existingLike);
                         post.likeCount--;
                         context.SaveChanges();
                     }
@@ -130,7 +130,7 @@ namespace DataAccess.DAO
         {
             using (var context = new HealthExpertContext())
             {
-                return context.postDetails.Where(pd => pd.postId == postId).ToList();
+                return context.PostDetails.Where(pd => pd.postId == postId).ToList();
             }
         }
 

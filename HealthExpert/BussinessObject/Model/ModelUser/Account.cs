@@ -37,12 +37,12 @@ namespace BussinessObject.Model.ModelUser
         public DateTime? verifiedAt { get; set; }
         public string? passwordResetToken { get; set; }
         public DateTime? resetTokenExpires { get; set; }
-        public virtual Role? role { get; set; }
-        public ICollection<Enrollment>? enrollments { get; set; }
-        public ICollection<Feedback>? feedbacks { get; set; }
-        public virtual CourseAdmin? courseAdmin { get; set; }
-        public virtual CourseManagement? courseManager { get; set; }
-        public ICollection<Post>? posts { get; set; }
-        public ICollection<CurrentProgress>? currentProgresses { get; set; }
+        public virtual Role? Role { get; set; }
+        public ICollection<Enrollment>? Enrollments { get; set; }
+        public ICollection<Feedback>? Feedbacks { get; set; }
+        public virtual ServiceCenter? ServiceCenter { get; set; }
+        public virtual Teacher? Teacher { get; set; }
+        public ICollection<Post>? Posts { get; set; }
+        public ICollection<CurrentProgress>? CurrentProgresses { get; set; }
     }
 }

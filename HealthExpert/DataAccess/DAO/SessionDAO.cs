@@ -13,7 +13,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    session = ctx.sessions.FirstOrDefault(session => session.sessionId == id);
+                    session = ctx.Sessions.FirstOrDefault(session => session.sessionId == id);
                 }
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    listSession = ctx.sessions.ToList();
+                    listSession = ctx.Sessions.ToList();
                 }
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    session = ctx.sessions.FirstOrDefault(session => session.sessionName == name);
+                    session = ctx.Sessions.FirstOrDefault(session => session.sessionName == name);
                 }
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.sessions.Add(session);
+                    ctx.Sessions.Add(session);
                     ctx.SaveChanges();
                 }
             }
@@ -86,7 +86,7 @@ namespace DataAccess.DAO
                 {
                     if (GetSessionById(id) != null)
                     {
-                        ctx.sessions.Add(session);
+                        ctx.Sessions.Add(session);
                         ctx.Entry(session).State =
                             Microsoft.EntityFrameworkCore.EntityState.Modified;
                         ctx.SaveChanges();
@@ -108,7 +108,7 @@ namespace DataAccess.DAO
                 {
                     if (GetSessionById(id) != null)
                     {
-                        ctx.sessions.Remove(GetSessionById(id));
+                        ctx.Sessions.Remove(GetSessionById(id));
                         ctx.SaveChanges();
                     }
                 }

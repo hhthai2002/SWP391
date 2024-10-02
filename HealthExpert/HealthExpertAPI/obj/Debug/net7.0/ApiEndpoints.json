@@ -50,13 +50,13 @@
   {
     "ContainingType": "HealthExpertAPI.Controllers.AccountController",
     "Method": "ForgotPassword",
-    "RelativePath": "api/Account/ForgotPassword",
+    "RelativePath": "api/Account/ForgotPassword/ForgotPassword",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "username",
+        "Name": "email",
         "Type": "System.String",
         "IsRequired": false
       }
@@ -185,15 +185,31 @@
   },
   {
     "ContainingType": "HealthExpertAPI.Controllers.AccountController",
-    "Method": "RegisterCourseAdmin",
-    "RelativePath": "api/Account/RegisterCourseAdmin",
+    "Method": "RegisterServiceCenter",
+    "RelativePath": "api/Account/RegisterServiceCenter",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "accountDTO",
-        "Type": "HealthExpertAPI.DTO.DTOAccount.CourseAdminRegistrationDTO",
+        "Type": "HealthExpertAPI.DTO.DTOAccount.ServiceCenterRegistrationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HealthExpertAPI.Controllers.AccountController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Account/ResetPassword/ResetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "HealthExpertAPI.DTO.DTOAccount.ResetPasswordDTO",
         "IsRequired": true
       }
     ],
@@ -483,15 +499,15 @@
   },
   {
     "ContainingType": "HealthExpertAPI.Controllers.CourseController",
-    "Method": "AddCourseManagers",
-    "RelativePath": "api/Course/add-manager",
+    "Method": "AddTeachers",
+    "RelativePath": "api/Course/add-teacher",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "courseManagers",
-        "Type": "System.Collections.Generic.List\u00601[[HealthExpertAPI.DTO.DTOCourse.CourseManagerDTO, HealthExpertAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Name": "courseTeachers",
+        "Type": "System.Collections.Generic.List\u00601[[HealthExpertAPI.DTO.DTOCourse.TeacherDTO, HealthExpertAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
     ],
@@ -558,7 +574,7 @@
   {
     "ContainingType": "HealthExpertAPI.Controllers.CourseController",
     "Method": "GetEnrollments",
-    "RelativePath": "api/Course/enrollments",
+    "RelativePath": "api/Course/Enrollments",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -568,7 +584,7 @@
   {
     "ContainingType": "HealthExpertAPI.Controllers.CourseController",
     "Method": "UpdateEnrollStatus",
-    "RelativePath": "api/Course/enrollments/{accountId}/{courseId}",
+    "RelativePath": "api/Course/Enrollments/{accountId}/{courseId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -609,54 +625,6 @@
   },
   {
     "ContainingType": "HealthExpertAPI.Controllers.CourseController",
-    "Method": "GetCourseManagers",
-    "RelativePath": "api/Course/managers/{courseId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "courseId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HealthExpertAPI.Controllers.CourseController",
-    "Method": "GetCourseManagersByEmail",
-    "RelativePath": "api/Course/managers/email/{email}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HealthExpertAPI.Controllers.CourseController",
-    "Method": "DeleteCourseManagerByEmail",
-    "RelativePath": "api/Course/managers/email/{email}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HealthExpertAPI.Controllers.CourseController",
     "Method": "GetCourseNameById",
     "RelativePath": "api/Course/name/{courseId}",
     "HttpMethod": "GET",
@@ -682,6 +650,54 @@
       {
         "Name": "orderId",
         "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HealthExpertAPI.Controllers.CourseController",
+    "Method": "GetTeachers",
+    "RelativePath": "api/Course/teachers/{courseId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HealthExpertAPI.Controllers.CourseController",
+    "Method": "GetTeachersByEmail",
+    "RelativePath": "api/Course/teachers/email/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HealthExpertAPI.Controllers.CourseController",
+    "Method": "DeleteTeacherByEmail",
+    "RelativePath": "api/Course/teachers/email/{email}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

@@ -31,21 +31,21 @@ namespace BussinessObject.Model.ModelCourse
         [Required]
         public int typeId { get; set; }
         [JsonIgnore]
-        public ICollection<Enrollment>? enrollments { get; set; }
+        public ICollection<Enrollment>? Enrollments { get; set; }
         [JsonIgnore]
-        public ICollection<Feedback>? feedbacks { get; set; }
+        public ICollection<Feedback>? Feedbacks { get; set; }
         [JsonIgnore]
-        public virtual CourseAdmin? courseAdmin { get; set; }
+        public virtual ServiceCenter? ServiceCenter { get; set; }
         [JsonIgnore]
-        public ICollection<Course_CourseManager_Mapping>? courseManagerMappings { get; set; }
+        public ICollection<Course_Teacher_Mapping>? course_Teacher_Mappings { get; set; }
 
         [JsonIgnore]
-        public ICollection<Session>? sessions { get; set; }
+        public ICollection<Session>? Sessions { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Type> types { get; set; }
+        public virtual ICollection<Type> Types { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Order>? orders { get; set; }
+        public virtual ICollection<Order>? Orders { get; set; }
         [JsonIgnore]
-        public virtual CurrentProgress? currentProgresse { get; set; }
+        public virtual CurrentProgress? CurrentProgress { get; set; }
     }
 }

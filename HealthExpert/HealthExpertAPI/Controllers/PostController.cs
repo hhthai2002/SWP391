@@ -34,7 +34,7 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult CreatePost(PostDTO postDTO)
         {
-            var user = _context.accounts.FirstOrDefault(p => p.accountId == postDTO.accountId);
+            var user = _context.Accounts.FirstOrDefault(p => p.accountId == postDTO.accountId);
             if (user == null)
             {
                 return BadRequest("User not found!!");
@@ -49,7 +49,7 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult CreatePostDetail(PostDetailDTO postDetailDTO)
         {
-            var post = _context.posts.FirstOrDefault(p => p.postId == postDetailDTO.postId);
+            var post = _context.Posts.FirstOrDefault(p => p.postId == postDetailDTO.postId);
             if (post == null)
             {
                 return BadRequest("Post not found!!");
@@ -64,7 +64,7 @@ namespace HealthExpertAPI.Controllers
         [AllowAnonymous]
         public IActionResult UpdatePostDetail(PostDetailUpdateDTO postDetailDTO)
         {
-            var postDetail = _context.postDetails.FirstOrDefault(p => p.postDetailId == postDetailDTO.postDetailId);
+            var postDetail = _context.PostDetails.FirstOrDefault(p => p.postDetailId == postDetailDTO.postDetailId);
             if (postDetail == null)
             {
                 return BadRequest("Post Detail not found!!");

@@ -6,6 +6,6 @@
         public Guid postId { get; set; }
         public string postTitle { get; set; }
         public string postDescription { get; set; }
-        public virtual Post? post { get; set; }
+        public virtual Post? Post { get; set; }
     }
 }

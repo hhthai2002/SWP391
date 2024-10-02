@@ -12,7 +12,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    var session = ctx.sessions.FirstOrDefault(session => session.sessionId == sessionId);
+                    var session = ctx.Sessions.FirstOrDefault(session => session.sessionId == sessionId);
                     session.Nutritions.Add(nutrition);
                     ctx.SaveChanges();
                 }
@@ -29,7 +29,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.nutritions.Add(nutrition);
+                    ctx.Nutritions.Add(nutrition);
                     ctx.SaveChanges();
                 }
             }
@@ -47,7 +47,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    nutrition = ctx.nutritions.FirstOrDefault(nutrition => nutrition.nutriId == id);
+                    nutrition = ctx.Nutritions.FirstOrDefault(nutrition => nutrition.nutriId == id);
                 }
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    listNutrition = ctx.nutritions.ToList();
+                    listNutrition = ctx.Nutritions.ToList();
                 }
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    nutrition = ctx.nutritions.FirstOrDefault(nutrition => nutrition.title == name);
+                    nutrition = ctx.Nutritions.FirstOrDefault(nutrition => nutrition.title == name);
                 }
             }
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    var nutrition = ctx.nutritions.FirstOrDefault(nutrition => nutrition.nutriId == id);
+                    var nutrition = ctx.Nutritions.FirstOrDefault(nutrition => nutrition.nutriId == id);
                     nutrition.isActive = false;
                     ctx.SaveChanges();
                 }
@@ -120,7 +120,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    var nutritionToUpdate = ctx.nutritions.FirstOrDefault(nutrition => nutrition.nutriId == id);
+                    var nutritionToUpdate = ctx.Nutritions.FirstOrDefault(nutrition => nutrition.nutriId == id);
                     nutritionToUpdate.title = nutrition.title;
                     nutritionToUpdate.description = nutrition.description;
                     nutritionToUpdate.isActive = nutrition.isActive;

@@ -110,7 +110,7 @@ namespace HealthExpertAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult CreateNutritionByLessonId(NutritionDTO nutritionDTO)
         {
-            if (_context.sessions.FirstOrDefault(n => n.sessionId == nutritionDTO.sessionId) == null)
+            if (_context.Sessions.FirstOrDefault(n => n.sessionId == nutritionDTO.sessionId) == null)
             {
                 return BadRequest("Session not found");
             }

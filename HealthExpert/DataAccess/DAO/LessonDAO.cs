@@ -13,7 +13,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    listLesson = ctx.lessons.ToList();
+                    listLesson = ctx.Lessons.ToList();
                 }
             }
             catch (Exception ex)
@@ -31,7 +31,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    lesson = ctx.lessons.FirstOrDefault(lesson => lesson.lessonId == id);
+                    lesson = ctx.Lessons.FirstOrDefault(lesson => lesson.lessonId == id);
                 }
             }
             catch (Exception ex)
@@ -49,7 +49,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    lesson = ctx.lessons.FirstOrDefault(lesson => lesson.caption == name);
+                    lesson = ctx.Lessons.FirstOrDefault(lesson => lesson.caption == name);
                 }
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.lessons.Add(lesson);
+                    ctx.Lessons.Add(lesson);
                     ctx.SaveChanges();
                 }
             }
@@ -85,7 +85,7 @@ namespace DataAccess.DAO
                 {
                     if (GetLessonById(id) != null)
                     {
-                        ctx.lessons.Add(lesson);
+                        ctx.Lessons.Add(lesson);
                         ctx.Entry(lesson).State =
                             Microsoft.EntityFrameworkCore.EntityState.Modified;
                         ctx.SaveChanges();
@@ -107,7 +107,7 @@ namespace DataAccess.DAO
                 {
                     if (GetLessonById(id) != null)
                     {
-                        ctx.lessons.Remove(GetLessonById(id));
+                        ctx.Lessons.Remove(GetLessonById(id));
                         ctx.SaveChanges();
                     }
                 }

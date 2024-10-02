@@ -26,7 +26,7 @@ namespace DataAccess.Repository
             return CourseDAO.GetCourseById(courseId);
         }
 
-        public void AddCourseManagerByEmail(string email, string courseId)
+        public void AddTeacherByEmail(string email, string courseId)
         {
             CourseDAO.AddCourseManagerByEmail(email, courseId);
         }
@@ -71,9 +71,9 @@ namespace DataAccess.Repository
         }
 
         //Check if user already a course manager
-        public bool IsCourseManager(string email, string courseId)
+        public bool IsTeacher(string email, string courseId)
         {
-            return CourseDAO.IsCourseManager(email, courseId);
+            return CourseDAO.IsTeacher(email, courseId);
         }
 
         //Update Enrollment 

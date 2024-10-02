@@ -14,7 +14,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    bill = ctx.bills.FirstOrDefault(bill => bill.billId == id);
+                    bill = ctx.Bills.FirstOrDefault(bill => bill.billId == id);
                 }
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    listPayment = ctx.bills.ToList();
+                    listPayment = ctx.Bills.ToList();
                 }
             }
             catch (Exception ex)
@@ -49,7 +49,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.bills.Add(bill);
+                    ctx.Bills.Add(bill);
                     ctx.SaveChanges();
                 }
             }
@@ -68,7 +68,7 @@ namespace DataAccess.DAO
                 {
                     if (GetBillById(id) != null)
                     {
-                        ctx.bills.Add(bill);
+                        ctx.Bills.Add(bill);
                         ctx.Entry(bill).State = EntityState.Modified;
                     }
                 }
@@ -86,8 +86,8 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    var payment = ctx.bills.FirstOrDefault(payment => payment.billId == id);
-                    ctx.bills.Remove(payment);
+                    var payment = ctx.Bills.FirstOrDefault(payment => payment.billId == id);
+                    ctx.Bills.Remove(payment);
                     ctx.SaveChanges();
                 }
             }

@@ -51,7 +51,7 @@ namespace HealthExpertAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult UpdateFeedback(FeedbackUpdateDTO feedbackDTO)
         {
-            var feedback = _context.feedbacks.FirstOrDefault(f => f.accountId == feedbackDTO.accountId && f.courseId == feedbackDTO.courseId);
+            var feedback = _context.Feedbacks.FirstOrDefault(f => f.accountId == feedbackDTO.accountId && f.courseId == feedbackDTO.courseId);
             if (feedback == null)
             {
                 return NotFound();
@@ -70,7 +70,7 @@ namespace HealthExpertAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult DeleteFeedback(Guid accountId, string courseId)
         {
-            var feedback = _context.feedbacks.FirstOrDefault(f => f.accountId == accountId && f.courseId == courseId);
+            var feedback = _context.Feedbacks.FirstOrDefault(f => f.accountId == accountId && f.courseId == courseId);
             if (feedback == null)
             {
                 return NotFound();
@@ -85,7 +85,7 @@ namespace HealthExpertAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult AddFeedback(FeedbackDTO feedbackDTO)
         {
-            var feedback = _context.feedbacks.FirstOrDefault(f => f.accountId == feedbackDTO.accountId && f.courseId == feedbackDTO.courseId);
+            var feedback = _context.Feedbacks.FirstOrDefault(f => f.accountId == feedbackDTO.accountId && f.courseId == feedbackDTO.courseId);
             if (feedback != null)
             {
                 return BadRequest("You only can give a feedback!!!");

@@ -32,7 +32,7 @@ namespace HealthExpertAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult AddTypeCategory(TypeDTO typeCategoryDTO)
         {
-            if (_context.types.Any(s => s.typeId == typeCategoryDTO.typeId))
+            if (_context.Types.Any(s => s.typeId == typeCategoryDTO.typeId))
             {
                 return BadRequest();
             }

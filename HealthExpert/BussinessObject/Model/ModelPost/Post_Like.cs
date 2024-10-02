@@ -9,6 +9,6 @@ namespace BussinessObject.Model.ModelPost
         public Guid postId { get; set; }
         public string userName { get; set; }
         public DateTime createdAt { get; set; }
-        public virtual Post? post { get; set; }
+        public virtual Post? Post { get; set; }
     }
 }

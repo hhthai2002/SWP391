@@ -13,7 +13,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    accomplishment = ctx.accomplishments.ToList();
+                    accomplishment = ctx.Accomplishments.ToList();
                 }
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    accomplishment = ctx.accomplishments.FirstOrDefault(accomplishment => accomplishment.acplId == acplId);
+                    accomplishment = ctx.Accomplishments.FirstOrDefault(accomplishment => accomplishment.acplId == acplId);
                 }
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    ctx.accomplishments.Add(accomplishment);
+                    ctx.Accomplishments.Add(accomplishment);
                     ctx.SaveChanges();
                 }
             }
@@ -67,7 +67,7 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    var accomplishmentData = ctx.accomplishments.FirstOrDefault(accomplishmentData => accomplishmentData.acplId == accomplishment.acplId);
+                    var accomplishmentData = ctx.Accomplishments.FirstOrDefault(accomplishmentData => accomplishmentData.acplId == accomplishment.acplId);
                     if (accomplishmentData != null)
                     {
                         ctx.Entry(accomplishmentData).State =
@@ -89,10 +89,10 @@ namespace DataAccess.DAO
             {
                 using (var ctx = new HealthExpertContext())
                 {
-                    var accomplishmentData = ctx.accomplishments.FirstOrDefault(accomplishmentData => accomplishmentData.acplId == accomplishment.acplId);
+                    var accomplishmentData = ctx.Accomplishments.FirstOrDefault(accomplishmentData => accomplishmentData.acplId == accomplishment.acplId);
                     if (accomplishmentData != null)
                     {
-                        ctx.accomplishments.Remove(accomplishmentData);
+                        ctx.Accomplishments.Remove(accomplishmentData);
                         ctx.SaveChanges();
                     }
                 }
