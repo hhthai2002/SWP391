@@ -1,30 +1,25 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import PostBackground from "../../img/PostBackground.jpg";
-import { CaretRightOutlined } from "@ant-design/icons";
 import Post1 from "../../img/post1.jpg";
-import Post2 from "../../img/post2.jpg";
-import Post3 from "../../img/post3.jpg";
-import Post4 from "../../img/post4.jpg";
-import Post5 from "../../img/post5.jpg";
-import Post6 from "../../img/post6.jpg";
-import PostDetail from "../../img/postdetail1.jpg";
-import PostDetail2 from "../../img/postdetail2.jpg";
-import PostDetail3 from "../../img/postdetail3.jpg";
 import PostDetailBackground from "../../img/PostDetailBackground.jpg";
-import Post7 from "../../img/post7.jpg";
-import { format } from "date-fns";
 
-const postImages = [Post1, Post2, Post3, Post4, Post5, Post6, Post7];
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default function DetailPost() {
+  const [posts, setPosts] = useState([]);
   const { postId = "" } = useParams();
   const [post, setPost] = useState({});
   const api = "https://localhost:7158/api/Post/:postId";
+
+  useEffect(() => {
+    fetch("https://localhost:7158/api/Post")
+      .then((response) => response.json())
+      .then((data) => setPosts(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -40,152 +35,77 @@ export default function DetailPost() {
 
   const paragraphs = post.content ? post.content.split("\n").filter(paragraph => paragraph.trim() !== "") : [];
 
-
   return (
     <>
       <div className="home-page">
         <Header />
       </div>
-      <div className="">
-        <img className="relative" src={PostBackground} alt="" />
-        <div className="flex flex-col absolute top-[300px] left-[198px]">
-        </div>
+      {/* background video */}
+      <div className="video-background">
+        <iframe
+          width="100%"
+          height="300"
+          src="https://www.youtube.com/embed/OrDB4jpA1g8?autoplay=1"
+          title="Gym Video Background"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
       </div>
-      <h2 className="text-[40px] text-orange-400 font-bold m-10 text-center">CHIA SẺ KIẾN THỨC</h2>
-      <div className="mt-10 flex flex-wrap gap-0 relative ">
-        {/* left content */}
-        <div className="w-[70%] m-20 ">
-          {/* Background image */}
-          <h1 className="font-bold mb-10 text-xl text-left">{post.title}</h1>
-          {/* <div className="w-[100%] flex flex-col items-center">
-            <img className="h-[500px]" src={PostDetailBackground} alt="" />
-          </div> */}
+      <h2 className="text-3xl text-orange-400 font-bold m-10 text-center">
+        CHIA SẺ KIẾN THỨC
+      </h2>
+      <div className="mt-10 flex flex-wrap gap-8 relative">
+        {/* Left content */}
+        <div className="w-2/3 m-8 p-6 bg-white shadow-lg rounded-lg">
+          <h1 data-aos="fade-right" className="text-4xl font-extrabold mb-6 text-left text-gray-800 border-b-4 border-orange-500 pb-2">
+            {post.title}
+          </h1>
           {/* Content with random images */}
           {paragraphs.map((paragraph, index) => (
-            <div key={index}>
-              <p className="mt-10 whitespace-pre-line mb-10">{paragraph}</p>
-              {/* <div className="flex flex-col items-center">
-                <img className="h-[500px]" src={postImages[Math.floor(Math.random() * postImages.length)]} alt="" />
-              </div> */}
-
+            <div key={index} className="mb-8">
+              <p data-aos="fade-right" className="text-lg leading-relaxed text-gray-700 bg-gray-100 p-4 rounded-lg shadow-inner">
+                {paragraph}
+              </p>
+              {/* Optionally add images here */}
+              {/* <div className="flex justify-center mt-6">
+        <img className="h-64 object-cover border-2 border-gray-300 rounded-lg shadow-md" src={postImages[Math.floor(Math.random() * postImages.length)]} alt="Post" />
+      </div> */}
             </div>
           ))}
-
         </div>
-        {/* rightcontend */}
-        <div className="w-[20%] absolute right-20">
-          <div>
-            <div>
-              <div className="bg-orange-400 w-[80%]  h-[30px]">
-                <h2 className="items-center text-white font-sans font-bold ml-3 my-auto">
-                  DỊCH VỤ TẠI HELP EXPERT
-                </h2>
-              </div>
-              <a href="/dance">
-                <li className="list-none  text-[15px] font-sans py-1 ml-2 text-black hover:text-orange-400	">
-                  DANCE
-                </li>
-              </a>
-              <a href="/boxing">
-                <li className="list-none  text-[15px] font-sans py-1 ml-2 text-black hover:text-orange-400	">
-                  Boxing
-                </li>
-              </a>
-              <a href="/yoga">
-                <li className="list-none  text-[15px] font-sans py-1 ml-2 text-black hover:text-orange-400	">
-                  Yoga
-                </li>
-              </a>
-              <a href="/gym">
-                <li className="list-none  text-[15px] font-sans py-1 ml-2 text-black hover:text-orange-400	">
-                  Gym
-                </li>
-              </a>
+
+        {/* Right content */}
+        <div className="w-1/4 absolute right-8">
+          <div className="mb-5">
+            <div className="bg-orange-500 text-white font-bold py-2 px-4 rounded-t-lg">
+              KHÓA HỌC TẠI HEALTH 45
             </div>
-            <div>
-              <div className="bg-orange-400 w-[80%]  h-[30px]">
-                <h2 className="items-center text-white font-sans font-bold ml-3 my-auto">
-                  BÀI VIẾT GẦN ĐÂY{" "}
-                </h2>
+            <ul className="list-none mt-2">
+              {["Dance", "Boxing", "Yoga", "Gym"].map((course, index) => (
+                <li key={index} className="py-1 ml-2 text-black hover:text-orange-500">
+                  <a href={`/${course.toLowerCase()}`}>{course}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-orange-500 text-white font-bold py-2 px-4 rounded-t-lg mb-5">
+            BÀI VIẾT GẦN ĐÂY
+          </div>
+          <div className="flex flex-col">
+            {posts.slice(0, 5).map((post, index) => (
+              <div key={index} className="flex items-center mb-4">
+                <a href={`/postDetail/${post.postId}`} className="w-1/3">
+                  <img className="w-32 h-16 object-cover" src={post.imageUrl || Post1} alt={post.title} />
+                </a>
+                <a href={`/postDetail/${post.postId}`} className="w-2/3 ml-3 text-sm text-gray-800 hover:text-orange-500">
+                  {post.title}
+                </a>
               </div>
-              <div className="flex flex-col w-[80%]">
-                <div className="flex w-full">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post1} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Bài tập thon gọn mặt trong 1 Tuần Sau Tết 2024
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post2} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Dinh dưỡng và tập luyện Gym cho Nữ sau tết – Dáng đẹp eo
-                      thon trở lại
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post3} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Bài tập thon gọn mặt trong 1 Tuần Sau Tết 2024
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post4} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Giảm cân sau Tết nhằm lấy lại vóc dáng mong ước
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post5} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Ăn bánh Chưng bánh Tét sao cho không tăng cân ngày Tết
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post6} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Bỏ túi các Bài tập cho chân thon trong 7 NGÀY – Chị em xem
-                      Ngay!
-                    </p>
-                  </a>
-                </div>
-                <div className="flex w-full mt-7">
-                  <a className="w-[30%]" href="">
-                    <img className="w-[140px] h-[60px]" src={Post7} alt="" />
-                  </a>
-                  <a className="w-[70%]" href="">
-                    <p className="ml-3 text-sm">
-                      Top những bài tập Bắp chân tại nhà TO KHỎE như Ronaldo
-                    </p>
-                  </a>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal } from "antd";
 import axios from "axios";
 
-const ModalDeleteCourseManager = ({ accountId, onDelete, isModalOpen, setIsModalOpen }) => {
+const ModalDeleteTeacher = ({ accountId, onDelete, isModalOpen, setIsModalOpen }) => {
     const [accountEmail, setAccountEmail] = useState("");
 
     useEffect(() => {
@@ -45,4 +45,4 @@ const ModalDeleteCourseManager = ({ accountId, onDelete, isModalOpen, setIsModal
     );
 };
 
-export default ModalDeleteCourseManager;
+export default ModalDeleteTeacher;

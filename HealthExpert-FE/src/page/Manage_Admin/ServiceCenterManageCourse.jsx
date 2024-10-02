@@ -5,9 +5,9 @@ import Header from "../../components/Header";
 import { Table, Modal, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Space, Tag } from "antd";
-import ModalDeleteCourseManager from "../../components/ModelDeleteCourseManager";
+import ModalDeleteTeacher from "../../components/ModelDeleteTeacher";
 
-export default function ManageCourseManager() {
+export default function ManageTeacher() {
     const [accounts, setAccounts] = useState([]);
     const [admin, setAdmin] = useState('');
     const [revenue, setRevenue] = useState(0); // Thêm state để lưu tổng doanh thu
@@ -33,7 +33,7 @@ export default function ManageCourseManager() {
 
     // Fetch
     useEffect(() => {
-        const fetchCourseManager = async () => {
+        const fetchTeacher = async () => {
             try {
                 const userRes = await axios.get(`https://localhost:7158/api/Account/GetListAccount`);
                 const matchingUser = userRes.data.filter(user => user.roleId === 3);
@@ -54,7 +54,7 @@ export default function ManageCourseManager() {
             }
         };
         if (admin) {
-            fetchCourseManager();
+            fetchTeacher();
         }
     }, [admin]);
 
@@ -86,7 +86,7 @@ export default function ManageCourseManager() {
                         Xóa
                     </button>
 
-                    <ModalDeleteCourseManager
+                    <ModalDeleteTeacher
                         accountId={selectedAccountId}
                         onDelete={handleDelete}
                         isModalOpen={isModalDeleteOpen}

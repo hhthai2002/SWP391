@@ -59,10 +59,10 @@ export default function Boxing() {
         {/* contend yoga */}
         <div className="">
           <h2 className=" mt-10 text-center   text-[30px] text-orange-400">
-            KHÓA HỌC BOXING TẠI HEALTH EXPERT <br /> THỂ THAO CỦA NGƯỜI DŨNG CẢM, SỨC MẠNH VÀ SỰ KIÊN NHẪN
+            KHÓA HỌC BOXING TẠI HEALTH 45 <br /> THỂ THAO CỦA NGƯỜI DŨNG CẢM, SỨC MẠNH VÀ SỰ KIÊN NHẪN
           </h2>
           <p className="text-center mt-3">
-            Tập boxing là một hình thức tập luyện toàn diện giúp cải thiện sức mạnh, sự linh hoạt và sức bền của cơ thể. Với những bài tập chính xác và phương pháp rèn luyện kỹ thuật, bạn có thể đẩy mạnh khả năng phòng thủ và tấn công của mình.<br /> Bên cạnh việc tăng cường cơ bắp và sức mạnh, tập boxing cũng là một cách tuyệt vời để đốt cháy calo, giảm căng thẳng, và cải thiện sự tập trung và tự tin của bạn.<br /> Đến với <a href="/home"><span className="text-orange-400">Health Expert</span>,</a> khám phá thế giới của boxing và tập luyện để trở nên mạnh mẽ và tự tin hơn mỗi ngày.
+            Tập boxing là một hình thức tập luyện toàn diện giúp cải thiện sức mạnh, sự linh hoạt và sức bền của cơ thể. Với những bài tập chính xác và phương pháp rèn luyện kỹ thuật, bạn có thể đẩy mạnh khả năng phòng thủ và tấn công của mình.<br /> Bên cạnh việc tăng cường cơ bắp và sức mạnh, tập boxing cũng là một cách tuyệt vời để đốt cháy calo, giảm căng thẳng, và cải thiện sự tập trung và tự tin của bạn.<br /> Đến với <a href="/home"><span className="text-orange-400">Health 45</span>,</a> khám phá thế giới của boxing và tập luyện để trở nên mạnh mẽ và tự tin hơn mỗi ngày.
           </p>
         </div>
       </section>

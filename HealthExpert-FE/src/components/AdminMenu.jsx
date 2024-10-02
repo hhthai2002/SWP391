@@ -32,7 +32,7 @@ const AdminMenu = () => {
                     <ul className="space-y-6 font-medium bg-orange-400">
                         <div>
                             <a
-                                href="/admin/courseAdmin"
+                                href="/admin/serviceCenter"
                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <svg
@@ -49,7 +49,7 @@ const AdminMenu = () => {
                             </a>
                         </div>
                         <a
-                            href={`/admin/courseManager`}
+                            href={`/admin/teacher`}
                             className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                         >
                             <svg

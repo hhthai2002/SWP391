@@ -3,13 +3,13 @@ import { Form, Input, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import Button from "../../components/button";
 import backgroundImage from "../../img/nike.png";
-import helpexpert from "../../img/logo.png";
+import help45 from "../../img/logo.png";
 import { DatePicker, Space } from 'antd';
 import { Select } from 'antd';
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function SignUpCourseAdmin() {
+export default function SignUpServiceCenter() {
     const onFinish = (values) => {
         console.log("🚀 ~ onFinish ~ values:", values);
     };
@@ -33,7 +33,7 @@ export default function SignUpCourseAdmin() {
     async function SignUp() {
         let item = { userName, password, confirmPassword, email, fullName, phone }
         try {
-            let response = await fetch('https://localhost:7158/api/Account/RegisterCourseAdmin', {
+            let response = await fetch('https://localhost:7158/api/Account/RegisterServiceCenter', {
                 method: 'POST',
                 body: JSON.stringify(item),
                 headers: {
@@ -86,7 +86,7 @@ export default function SignUpCourseAdmin() {
                                     Sign Up
                                 </h1>
                                 {/* <h1 className="text-base	">
-                  Welcome to healexpert, a place that helps you change yourself
+                  Welcome to heal45, a place that helps you change yourself
                 </h1> */}
                             </div>
                         </div>

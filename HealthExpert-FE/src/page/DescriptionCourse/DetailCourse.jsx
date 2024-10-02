@@ -347,13 +347,18 @@ export default function DetailCourse() {
         </Modal>
       </div>
       <div className="relative">
-        <div
-          className="w-full h-[300px] bg-cover bg-center bg-top-[30px]"
-          style={{
-            backgroundImage: `url(${images.background})`,
-            backgroundPosition: "center"
-          }}
-        ></div>
+        {/* background video */}
+      <div className="video-background">
+        <iframe
+          width="100%"
+          height="300"
+          src="https://www.youtube.com/embed/OrDB4jpA1g8?autoplay=1"
+          title="Gym Video Background"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
         <div className="flex">
           {/* left content */}
           <div className="w-[70%] mt-10 flex flex-col">

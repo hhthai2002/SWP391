@@ -245,7 +245,7 @@ function EditProfile() {
           <br />
           <hr />
           <br />
-          <div>HealtExpert © 2024</div>
+          <div>Healt45 © 2024</div>
         </footer>
       </div>
       {/* FOOTER */}

@@ -18,6 +18,8 @@ import yogaicon from "../../img/Yoga_icon.png";
 import gymicon from "../../img/Gym_icon.png";
 import boxingicon from "../../img/Boxing_icon.png";
 import danceicon from "../../img/Dance_icon.png";
+import avt1 from '../../img/avt1.jpg';
+import { notification } from 'antd';
 
 function YourProfile() {
   const [courses, setCourses] = useState([]);
@@ -40,17 +42,14 @@ function YourProfile() {
   const weekFormat = 'MM/DD';
   const monthFormat = 'YYYY/MM';
 
-  /** Manually entering any of the following formats will perform date parsing */
   const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
 
   useEffect(() => {
-    // Check if user is logged in using your preferred method (e.g., checking local storage)
     const username = localStorage.getItem("user");
     if (username) {
       getProfile(username);
     }
   }, []);
-
 
   function getProfile(username) {
     fetch(`https://localhost:7158/api/Account/GetListAccount`, {
@@ -68,7 +67,6 @@ function YourProfile() {
         return response.json();
       })
       .then(data => {
-
         if (Array.isArray(data)) {
           const foundUser = data.find(accountList => accountList.userName === username);
           if (foundUser) {
@@ -77,13 +75,8 @@ function YourProfile() {
             setAvatarName(foundUser.fullName);
             setEmail(foundUser.email);
             setPhone(foundUser.phone);
-            setBirthDate(new Date(foundUser.birthDate));
-            setFormattedDate(formatDate(foundUser.birthDate));
-            if (foundUser.gender) {
-              setGender("Nam")
-            } else {
-              setGender("Nu")
-            }
+            setBirthDate(dayjs(foundUser.birthDate)); // Cập nhật kiểu ngày
+            setGender(foundUser.gender ? "Nam" : "Nu");
           } else {
             console.error("Lỗi load dữ liệu!");
           }
@@ -98,20 +91,22 @@ function YourProfile() {
 
   if (gender === "Nam") {
     avatar.img = avatarman;
-  } else (avatar.img = avatarwoman)
+  } else {
+    avatar.img = avatarwoman;
+  }
 
   function updateAccount() {
-    const accountId = localStorage.getItem("accountId"); // Get the account ID from localStorage or any source you store it
+    const accountId = localStorage.getItem("accountId");
     const updateData = {
       fullName: fullName,
       email: email,
       phone: phone,
-      gender: gender,
-      birthDate: birthDate
+      gender: gender === "Nam" ? true : false,
+      birthDate: birthDate ? birthDate.format('YYYY-MM-DD') : null,  // Định dạng lại ngày sinh
     };
 
     fetch(`https://localhost:7158/api/Account/UpdateAccount/${accountId}`, {
-      method: "PUT", // or "PATCH" depending on your API
+      method: "PUT",
       headers: {
         "Authorization": "Bearer YOUR_ACCESS_TOKEN",
         "Content-Type": "application/json"
@@ -124,18 +119,20 @@ function YourProfile() {
           alert("Lỗi cập nhật dữ liệu!");
           throw new Error("Lỗi cập nhật dữ liệu!");
         }
-        // Optionally, handle success response
+        notification.success({
+          message: 'Cập nhật thành công',
+          description: 'Thông tin tài khoản của bạn đã được cập nhật thành công.',
+        });
         console.log("Thông tin tài khoản đã được cập nhật!");
       })
       .catch(error => {
         console.error("Lỗi cập nhật dữ liệu!", error);
+        notification.error({
+          message: 'Cập nhật thất bại',
+          description: 'Đã xảy ra lỗi khi cập nhật tài khoản của bạn. Vui lòng thử lại.',
+        });
       });
   }
-
-  useEffect(() => {
-
-    setFormattedDate(formatDate(birthDate));
-  }, [birthDate]);
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -143,7 +140,6 @@ function YourProfile() {
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
-    // Ensure leading zero for single-digit days and months
     const formattedDay = day < 10 ? '0' + day : day;
     const formattedMonth = month < 10 ? '0' + month : month;
 
@@ -153,21 +149,17 @@ function YourProfile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Step 1: Call API to get list of courses based on accountId
         const enrollmentsResponse = await axios.get(`https://localhost:7158/api/Course/enrollments`);
         const enrollments = enrollmentsResponse.data;
 
         const matchingCourse = enrollments.filter(course => course.accountId === accountId);
         const matchingCourseId = matchingCourse.map(course => course.courseId.toLowerCase());
-        //console.log(matchingCourseId);
 
-        // Step 2: Call API to get details of courses using the courseIds
         const courseDetailsResponse = await axios.get(`https://localhost:7158/api/Course`);
         const courseResponse = courseDetailsResponse.data;
         const courseDetails = courseResponse.filter(course => matchingCourseId.includes(course.courseId.toLowerCase()));
 
         setCourses(courseDetails);
-        //console.log(courseDetails);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
@@ -196,98 +188,80 @@ function YourProfile() {
       <base href="./" />
       <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      {/* Main styles for this application*/}
-      {/* idk */}
+
       <div className="home-page">
         <Header />
       </div>
+
       <div className="grid gap-4 ml-16 mr-16">
-        {/* banner and pfp hijinx */}
         <div className="">
           <img src={center} alt="" className="relative object-cover w-full h-96 z-0" />
           <div className="flex">
             <div className="flex ml-5 -mt-28 z-10 px-2 border border-orange-400 border-[3px] w-48 relative">
-              <img src={avatar.img} alt="" className="z-10 w-full h-full absolute inset-0" />
-              {/* <p className='text-xl font-bold ml-8 mt-32'></p> */}
-
+              <img src={avatar.img} alt="" className="z-10 w-full h-full absolute inset-0 rounded-lg shadow-lg" />
             </div>
-            <p className="text-white-600 text-3xl	flex justify-center items-center ml-20">{avatarName}</p>
+            <p className="font-sans text-3xl font-bold bg-gradient-to-r from-orange-400 to-yellow-300 text-transparent bg-clip-text flex justify-center items-center ml-20 drop-shadow-lg shadow-orange-500">
+              {fullName}
+            </p>
           </div>
         </div>
-        {/* two columns */}
-        <div className="flex flex-col w-full"> {/* Sử dụng flex-direction: column */}
-          <div className="flex flex-auto border rounded shadow-2xl mb-4 mx-auto w-full"> {/* Sử dụng flex-auto để cả 2 cột co giãn */}
-            {/* left column: about */}
-            <div className="flex-auto border rounded shadow-2xl w-3/12"> {/* Sử dụng w-3/12 để chia thành 3 phần */}
-              <p className="ml-3 mt-3 font-bold">Thông tin cá nhân</p>
-              <br />
-              <hr />
-              <div className="ml-3">
-                <label className="block">Họ và tên:</label>
-                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className="border rounded px-2 py-1 mb-2" />
-                <label className="block">Email:</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="border rounded px-2 py-1 mb-2" />
-                <label className="block">Số điện thoại:</label>
-                <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="border rounded px-2 py-1 mb-2" />
-                <label className="block">Giới tính:</label>
-                <input
-                  type="text"
-                  value={gender}
-                  onChange={(e) => {
-                    const inputValue = e.target.value.toLowerCase(); // Chuyển đổi giá trị nhập vào thành chữ thường để so sánh dễ dàng hơn
-                    if (inputValue === 'nu') {
-                      setGender(false);
-                    } else if (inputValue === 'nam') {
-                      setGender(true);
-                    }
-                  }}
-                  className="border rounded px-2 py-1 mb-2"
-                />                <label className="block">Ngày sinh:</label>
-                <input type="text" value={formattedDate} onChange={(e) => setBirthDate(e.target.value)} className="border rounded px-2 py-1 mb-2" />
+
+        <div className="flex flex-col w-full">
+          <div className="flex flex-auto border rounded-lg shadow-2xl mb-4 mx-auto w-full">
+            <div className="flex-auto border rounded-lg shadow-2xl w-3/12 bg-gray-50 p-5">
+              <p className="font-bold text-gray-800 text-2xl">Thông tin cá nhân</p>
+              <div className="mt-5 space-y-4">
+                <label className="block text-sm text-gray-700">Họ và tên:</label>
+                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+
+                <label className="block text-sm text-gray-700">Email:</label>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+
+                <label className="block text-sm text-gray-700">Số điện thoại:</label>
+                <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+
+                <label className="block text-sm text-gray-700">Giới tính:</label>
+                <select value={gender} onChange={(e) => setGender(e.target.value)} className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300">
+                  <option value="Nam">Nam</option>
+                  <option value="Nu">Nữ</option>
+                </select>
+
+                <label className="block text-sm text-gray-700">Ngày sinh:</label>
+                <DatePicker
+                  value={birthDate ? dayjs(birthDate) : null}
+                  onChange={(date) => setBirthDate(date)}
+                  format="YYYY/MM/DD"
+                  className="w-full"
+                />
               </div>
-              <br />
-              <hr />
-              <button onClick={updateAccount} className="bg-orange-500 text-white py-2 px-4 rounded transition-opacity hover:bg-opacity-80 ml-4">Cập nhật</button>
+              <button onClick={updateAccount} className="bg-orange-500 text-white py-2 px-4 mt-4 rounded transition duration-200 hover:bg-orange-400">
+                Cập nhật
+              </button>
             </div>
-            {/* right column: joined courses */}
-            <div className="flex-auto border rounded shadow-2xl w-9/12"> {/* Sử dụng w-9/12 để chia thành 7 phần */}
-              <p className="ml-3 mt-3 font-bold">Các khóa học đã tham gia</p>
-              <br />
-              <ul>
-                {courses.map(course => (
-                  <li key={course.courseId}>
-                    <div className="flex px-2 ml-6 mb-7">
-                      <img src={getImageForType(course.typeId)} alt="" className="rounded object-scale-down w-32" />
-                      <div className="">
-                        <Link className="mt-3 ml-5"
-                          to={`/detailCourse/${course.courseId}`}>
-                          <h3 className=" text-xl font-bold ml-8">{course.courseName}</h3>
-                        </Link>
 
-                        <p className="text-ellipsis overflow-hidden line-clamp-4 ml-8 mr-5">{course.description}</p>
+            <div className="w-9/12 px-5 py-5 bg-gray-50 rounded-lg shadow-lg">
+              <p className="text-2xl text-gray-800 font-bold">Các khóa học của bạn</p>
+              <div className="grid grid-cols-3 gap-5 mt-5 animate-fade-in-up">
+                {courses.map(course => (
+                  <div key={course.courseId} className="hover:shadow-md transition-shadow duration-300">
+                    <Link to={`/detailCourse/${course.courseId}`}>
+                      <div className="rounded-lg shadow-lg overflow-hidden">
+                        <img src={avt1} alt="" className="rounded-lg object-cover w-full h-40" />
+                        <div className="p-4">
+                          <img src={getImageForType(course.typeId)} alt="" className="w-12 h-12 mb-2" />
+                          <p className="text-lg font-bold text-gray-800">{course.courseName}</p>
+                        </div>
                       </div>
-                    </div>
-                  </li>
+                    </Link>
+                  </div>
                 ))}
-              </ul>
-              <br />
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="mt-auto">
-        <footer className="bg-white">
-          <br />
-          <hr />
-          <br />
-          <div>HealthExpert © 2024</div>
-        </footer>
-      </div>
-      {/* FOOTER */}
     </>
-
   );
-};
+}
 
 export default YourProfile;

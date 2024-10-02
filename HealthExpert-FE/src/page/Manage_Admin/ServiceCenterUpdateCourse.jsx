@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Menuleft from "../../components/MenuLeft";
 import Header from "../../components/Header";
 
-function UpdateCourseByCourseAdmin() {
+function UpdateCourseByServiceCenter() {
   const { courseId } = useParams();
   const [courseData, setCourseData] = useState({});
   const navigate = useNavigate();
@@ -210,4 +210,4 @@ function UpdateCourseByCourseAdmin() {
   );
 }
 
-export default UpdateCourseByCourseAdmin;
+export default UpdateCourseByServiceCenter;

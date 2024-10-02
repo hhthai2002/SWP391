@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, notification, Spin } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Form, Input, notification, Spin, Button as AntButton } from "antd";
+import { UserOutlined, LockOutlined, GoogleOutlined } from "@ant-design/icons";
 import Button from "../../components/button";
 import backgroundImage from "../../img/nike.png";
-import helpexpert from "../../img/logo.png";
+import help45 from "../../img/logo.png";
 import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
@@ -77,7 +77,7 @@ export default function SignIn() {
     const userlogin = localStorage.getItem("user");
     if (userlogin) {
       // Nếu người dùng đã đăng nhập, chuyển hướng về trang chính (home page)
-      navigate("/");
+      navigate("/home");
     }
   }, [navigate]);
 
@@ -107,8 +107,12 @@ export default function SignIn() {
 
         // Redirect tới trang tương ứng dựa vào roleId
         if (roleId === 1) {
-          navigate("/admin/courseAdmin");
-        } else {
+          navigate("/admin/serviceCenter");
+        }
+        else if (roleId === 2) {
+          navigate("/manageCourse");
+        }
+        else {
           navigate("/home");
         }
       } else {
@@ -137,9 +141,13 @@ export default function SignIn() {
     navigate("/forgotPassword");
   }
 
-  function registerCourseAdmin() {
-    navigate("/registerCourseAdmin");
+  function registerServiceCenter() {
+    navigate("/registerServiceCenter");
   }
+
+  const handleGoogleLogin = () => {
+    window.location.href = 'https://localhost:7158/api/Account/GoogleLogin';
+  };
 
   return (
     <section className="h-screen">
@@ -160,14 +168,14 @@ export default function SignIn() {
           >
             <div className="introduce mb-10">
               <div className="logoImage mb-2">
-                <img className="w-1/5 rounded-full" src={helpexpert} alt="" />
+                <img className="w-1/5 rounded-full" src={help45} alt="" />
               </div>
               <div className="content mb-10">
                 <h1 className="text-3xl mb-5 text-525252">
                   Đăng nhập bằng tài khoản của bạn
                 </h1>
                 <h1 className="text-base">
-                  Chào mừng đến với HealthExpert, hãy cùng nhau phát triển bản thân
+                  Chào mừng đến với Health45, hãy cùng nhau phát triển bản thân
                 </h1>
               </div>
             </div>
@@ -202,12 +210,6 @@ export default function SignIn() {
               />
             </Form.Item>
 
-            <div className="flex justify-between mt-2">
-              <div>
-                <a onClick={forgotPassword}>Quên mật khẩu</a>
-              </div>
-            </div>
-
             <Form.Item>
               <Button
                 type="primary"
@@ -219,20 +221,33 @@ export default function SignIn() {
               </Button>
             </Form.Item>
 
-            <div className="register">
-              <span className="text-gray-600">Bạn chưa có tài khoản </span>
-              <a onClick={signup} className="text-orange-600">Đăng ký</a>
+            {/* <Form.Item>
+              <AntButton
+                icon={<GoogleOutlined />}
+                className="bg-white-500 mt-2 w-full px-2 py"
+                onClick={handleGoogleLogin}
+              >
+                <span className="text-black">Đăng nhập bằng Google</span>
+              </AntButton>
+            </Form.Item> */}
+
+
+            <div className="flex justify-between mt-2">
+              <div>
+                <a onClick={forgotPassword}>Quên mật khẩu</a>
+              </div>
             </div>
 
             <div className="register">
-              <a onClick={forgotPassword} className="text-orange-600">Quên mật khẩu</a>
+              <span className="text-gray-600">Bạn chưa có tài khoản </span>
+              <a onClick={signup} className="text-orange-600">Đăng ký</a>
             </div>
 
             <Form.Item>
               <Button
                 type="primary"
                 className="bg-black mt-5 w-full px-2 py-2"
-                onClick={registerCourseAdmin}
+                onClick={registerServiceCenter}
               >
                 <span className="text-orange-600">Trở thành trung tâm</span>
               </Button>

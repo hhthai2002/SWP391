@@ -58,10 +58,10 @@ export default function Gym() {
         {/* content gym */}
         <div className="">
           <h2 className="mt-10 text-center text-[30px] text-orange-400">
-            KHÓA HỌC GYM TẠI HEALTH EXPERT <br /> TĂNG CƯỜNG SỨC MẠNH, ĐỘ BỀN VÀ TẬP TRUNG
+            KHÓA HỌC GYM TẠI HEALTH 45 <br /> TĂNG CƯỜNG SỨC MẠNH, ĐỘ BỀN VÀ TẬP TRUNG
           </h2>
           <p className="text-center mt-3">
-            Tập gym là một phương pháp tập luyện hiệu quả để cải thiện sức khỏe và sức mạnh cơ bắp. Với các bài tập như nâng tạ, đẩy tạ, và các bài tập cơ bản khác, bạn có thể phát triển cơ bắp, tăng cường sức mạnh và độ bền cho cơ thể của mình. <br /> Bên cạnh việc rèn luyện cơ bắp, tập gym còn giúp cải thiện sự linh hoạt, tăng cường sức khỏe tim mạch và hệ miễn dịch. <br /> Đến với <a href="/home"><span className="text-orange-400">Health Expert</span>,</a> khám phá thế giới của gym và bắt đầu hành trình rèn luyện sức khỏe của bạn ngay hôm nay.
+            Tập gym là một phương pháp tập luyện hiệu quả để cải thiện sức khỏe và sức mạnh cơ bắp. Với các bài tập như nâng tạ, đẩy tạ, và các bài tập cơ bản khác, bạn có thể phát triển cơ bắp, tăng cường sức mạnh và độ bền cho cơ thể của mình. <br /> Bên cạnh việc rèn luyện cơ bắp, tập gym còn giúp cải thiện sự linh hoạt, tăng cường sức khỏe tim mạch và hệ miễn dịch. <br /> Đến với <a href="/home"><span className="text-orange-400">Health 45</span>,</a> khám phá thế giới của gym và bắt đầu hành trình rèn luyện sức khỏe của bạn ngay hôm nay.
           </p>
         </div>
       </section>

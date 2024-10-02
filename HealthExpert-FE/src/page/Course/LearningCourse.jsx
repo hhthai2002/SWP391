@@ -157,15 +157,15 @@ export default function LearningCourse() {
 
   return (
     <>
-      <div className="home-page">
+      <div className="w-full home-page">
         <Header />
       </div>
 
-      <div className="flex justify-end ml-5">
+      <div className="flex justify-end ml-5 mt-16">
         <div className="w-[80%] flex flex-col">
           <div className="bg-black w-full h-[620px]  flex justify-center items-center">
             <div>
-              <video src={`https://healthexpert.blob.core.windows.net/healthexpertvideos2/${currentVideo}`} controls={true} autoPlay={isPlaying}
+              <video src={`https://health45.blob.core.windows.net/health45videos2/${currentVideo}`} controls={true} autoPlay={isPlaying}
                 className="w-full h-[600px]" />
             </div>
           </div>

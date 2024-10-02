@@ -71,10 +71,10 @@ export default function Yoga() {
         {/* contend yoga */}
         <div className="">
           <h2 className="mt-10 text-center text-[30px] text-orange-400">
-            KHÓA HỌC YOGA TẠI HEALTH EXPERT <br /> CÂN BẰNG TINH THẦN VÀ THỂ CHẤT
+            KHÓA HỌC YOGA TẠI HEALTH 45 <br /> CÂN BẰNG TINH THẦN VÀ THỂ CHẤT
           </h2>
           <p className="text-center mt-3">
-            Tập yoga là một phương pháp tập luyện tự nhiên và hiệu quả để cải thiện sức khỏe toàn diện. Với các động tác uốn dẻo, hít thở và tập trung, bạn có thể tạo ra sự cân bằng giữa tinh thần và thể chất, giảm căng thẳng và cải thiện linh hoạt. <br /> Bên cạnh việc tăng cường sức khỏe và sự linh hoạt, tập yoga còn giúp cải thiện sức khỏe tinh thần, giảm mệt mỏi và tăng cường tinh thần sống động. <br /> Đến với <a href="/home"><span className="text-orange-400">Health Expert</span>,</a> khám phá thế giới của yoga và bắt đầu hành trình cân bằng tinh thần và thể chất của bạn ngay hôm nay.
+            Tập yoga là một phương pháp tập luyện tự nhiên và hiệu quả để cải thiện sức khỏe toàn diện. Với các động tác uốn dẻo, hít thở và tập trung, bạn có thể tạo ra sự cân bằng giữa tinh thần và thể chất, giảm căng thẳng và cải thiện linh hoạt. <br /> Bên cạnh việc tăng cường sức khỏe và sự linh hoạt, tập yoga còn giúp cải thiện sức khỏe tinh thần, giảm mệt mỏi và tăng cường tinh thần sống động. <br /> Đến với <a href="/home"><span className="text-orange-400">Health 45</span>,</a> khám phá thế giới của yoga và bắt đầu hành trình cân bằng tinh thần và thể chất của bạn ngay hôm nay.
           </p>
         </div>
 
@@ -248,7 +248,7 @@ export default function Yoga() {
 //         {/* contend yoga */}
 //         <div className="">
 //           <h2 className=" mt-10 text-center font-bold   text-[30px] text-orange-400">
-//             KHÓA HỌC YOGA TẠI HELPEXPERT <br /> THƯ GIÃN TÂM TRÍ, TINH THẦN VÀ
+//             KHÓA HỌC YOGA TẠI HELP45 <br /> THƯ GIÃN TÂM TRÍ, TINH THẦN VÀ
 //             CẢI THIỆN SỨC KHỎE
 //           </h2>
 //           <p className="text-center mt-3 ">
@@ -258,7 +258,7 @@ export default function Yoga() {
 //             bạn trở nên nhẹ nhàng, chữa lành và tích cực hơn. Đến với
 //             <a href="/home">
 //               {" "}
-//               <span className="text-orange-400"> Helpexpert</span>,
+//               <span className="text-orange-400"> Help45</span>,
 //             </a>
 //             <br /> tập luyện và cải thiện thẻ chất và tinh thần của bạn.
 //           </p>

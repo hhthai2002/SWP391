@@ -7,7 +7,7 @@ import AdminMenu from "../components/AdminMenu";
 import AdminHeader from "../components/AdminHeader";
 import { Link } from "react-router-dom";
 
-export default function ManageCourseAdmin() {
+export default function ManageServiceCenter() {
     const [accounts, setAccounts] = useState([]);
     const [admin, setAdmin] = useState('');
     const [revenue, setRevenue] = useState(0); // Thêm state để lưu tổng doanh thu
@@ -40,7 +40,7 @@ export default function ManageCourseAdmin() {
 
     // Fetch
     useEffect(() => {
-        const fetchCourseAdmin = async () => {
+        const fetchServiceCenter = async () => {
             try {
                 const response = await axios.get(`https://localhost:7158/api/Account/GetListAccount`);
                 const accountList = response.data;
@@ -51,7 +51,7 @@ export default function ManageCourseAdmin() {
             }
         };
         if (admin) {
-            fetchCourseAdmin();
+            fetchServiceCenter();
         }
     }, [admin]);
 
@@ -88,7 +88,7 @@ export default function ManageCourseAdmin() {
             title: "Tên tài khoản",
             dataIndex: "userName",
             render: (text, record) => (
-                <a onClick={() => navigate(`/admin/courseAdmin/${record.userName}`)}>{record.userName}</a>
+                <a onClick={() => navigate(`/admin/serviceCenter/${record.userName}`)}>{record.userName}</a>
             ),
         },
         {

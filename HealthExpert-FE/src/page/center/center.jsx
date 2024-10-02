@@ -16,7 +16,7 @@ export default function center() {
           TẬP LUYỆN Ở PHÒNG GYM VÀ PT TẠI ĐÀ NẴNG
         </h2>
         <p className="mt-3  text-center">
-          Hệ thống phòng Gym và PT của Helpexpert có mặt ở khắp Đà Nẵng. Với đa
+          Hệ thống phòng Gym và PT của Help45 có mặt ở khắp Đà Nẵng. Với đa
           dạng hình thức như gym, yoga, <br /> dance, boxing cho bạn. Chọn ngay
           phòng tập gym và PT gần đây nhất để tập luyện dễ dàng và hiệu quả.
         </p>

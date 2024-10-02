@@ -66,7 +66,7 @@ export default function Dance() {
         {/* contend yoga */}
         <div className="">
           <h2 className=" mt-10 text-center   text-[30px] text-orange-400">
-            KHÓA HỌC DANCE TẠI HELPEXPERT <br /> THƯ GIÃN TÂM TRÍ, TINH THẦN VÀ
+            KHÓA HỌC DANCE TẠI HELP45 <br /> THƯ GIÃN TÂM TRÍ, TINH THẦN VÀ
             CẢI THIỆN SỨC KHỎE
           </h2>
           <p className="text-center mt-3">
@@ -76,7 +76,7 @@ export default function Dance() {
             ngày giúp bạn trở nên nhẹ nhàng, chữa lành và tích cực hơn. Đến với
             <a href="/home">
               {" "}
-              <span className="text-orange-400"> Helpexpert</span>,
+              <span className="text-orange-400"> Help45</span>,
             </a>
             <br /> tập luyện và cải thiện thẻ chất và tinh thần của bạn.
           </p>

@@ -41,7 +41,7 @@ export default function ManageAllCourseByAdmin() {
     }, []);
 
     useEffect(() => {
-        const fetchCourseAdmin = async () => {
+        const fetchServiceCenter = async () => {
             try {
                 const response = await axios.get(`https://localhost:7158/api/Account/GetListAccount`);
                 const accountList = response.data;
@@ -52,7 +52,7 @@ export default function ManageAllCourseByAdmin() {
             }
         };
         if (id) {
-            fetchCourseAdmin();
+            fetchServiceCenter();
         }
     }, [id]);
 

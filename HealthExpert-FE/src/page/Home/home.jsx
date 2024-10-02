@@ -88,8 +88,8 @@ export default function Home() {
           <section className="flex flex-col mt-5">
             {/* content */}
             <div className="flex-col text-center mb-5">
-              <h2 className="text-white text-xl mt-3 font-bold">
-                CÁC DỊCH VỤ TẠI HEALTH EXPERT
+              <h2 data-aos="zoom-out" className="text-white text-xl mt-3 font-bold">
+                CÁC DỊCH VỤ TẠI HEALTH 45
               </h2>
             </div>
             {/* các service */}
@@ -194,8 +194,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex-col m-10">
-                <h1 className="text-white text-3xl font-bold">Health Expert</h1>
-                <p className="mt-3">
+                <h1 data-aos="fade-up" className="text-white text-3xl font-bold">Health 45</h1>
+                <p data-aos="fade-up" className="mt-3">
                   Nơi kết nối giữa người mong muốn cải thiện chất lượng cơ thể và
                   trung tâm gym. Chúng tôi tự hào là cầu nối đưa bạn đến với cộng
                   đồng các trung tâm gym hàng đầu, giúp bạn dễ dàng khám phá và
@@ -215,7 +215,7 @@ export default function Home() {
 
       <div className="w-full">
         <div className="m-5">
-          <h1 className=" text-[30px] font-bold mt-3 text-orange-400 ml-20">KHÓA HỌC ĐỀ XUẤT</h1>
+          <h1 data-aos="zoom-in" className=" text-[30px] font-bold mt-3 text-orange-400 ml-20">KHÓA HỌC ĐỀ XUẤT</h1>
           <div className="flex flex-row w-full">
             {course.slice(0, 4).map(course => (
               <>
@@ -226,10 +226,10 @@ export default function Home() {
                     <img src={getImageForType(course.typeId)} alt={course.courseName} className="h-[150px] w-[150px] bg-black object-cover group-hover:opacity-80 filter group-hover:filter-brightness-75 transition-opacity transition-filter border border-[3px] border-solid rounded-full shadow-lg" />
                   </Link>
                   <div className="flex flex-col w-full m-5 justify-center item-center">
-                    <p className="font-bold text-[20px] truncate overflow-ellipsis max-w-[200px] mb-5">{course.courseName}</p>
-                    <p>{(course.price).toLocaleString('vi-VN')} VND</p>
-                    <p>Số lượng học viên: {course.studentNumber}</p>
-                    <p className="truncate overflow-ellipsis max-w-[200px]">{course.description}</p>
+                    <p data-aos="fade-up" className="font-bold text-[20px] truncate overflow-ellipsis max-w-[200px] mb-5">{course.courseName}</p>
+                    <p data-aos="fade-up">{(course.price).toLocaleString('vi-VN')} VND</p>
+                    <p data-aos="fade-up">Số lượng học viên: {course.studentNumber}</p>
+                    <p data-aos="fade-up" className="truncate overflow-ellipsis max-w-[200px]">{course.description}</p>
                   </div>
                 </div >
               </>
@@ -311,9 +311,9 @@ export default function Home() {
         <section>
           {/* tranformation_content */}
           <div className="flex-col m-10">
-            <h3 className=" text-[30px] font-bold mt-3 text-orange-400">THAY ĐỔI CỦA HỌC VIÊN</h3>
-            <p className="text-[20px]">
-              Với các trung tâm gym uy tín hàng đầu, Health Expert chắc chắn sẽ giúp
+            <h3 data-aos="zoom-out" className=" text-[30px] font-bold mt-3 text-orange-400">THAY ĐỔI CỦA HỌC VIÊN</h3>
+            <p data-aos="zoom-out" className="text-[20px]">
+              Với các trung tâm gym uy tín hàng đầu, Health 45 chắc chắn sẽ giúp
               bạn đạt mục tiêu sức khoẻ hiệu quả nhất
             </p>
           </div>

@@ -132,14 +132,14 @@ export default function ManageCourse() {
   };
 
   const handleUserSelection = async (email) => {
-    const courseManagerDTO = {
+    const teacherDTO = {
       courseId: courseId,
-      courseManagerId: 0,
+      teacherId: 0,
       accountEmails: [email]
     };
 
     try {
-      const response = await axios.post(`https://localhost:7158/api/Course/add-manager`, [courseManagerDTO]);
+      const response = await axios.post(`https://localhost:7158/api/Course/add-manager`, [teacherDTO]);
       console.log(response.data);
       if (response.status === 200) {
         window.alert(response.data);

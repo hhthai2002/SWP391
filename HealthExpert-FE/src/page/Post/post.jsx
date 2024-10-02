@@ -28,90 +28,88 @@ export default function ListPost() {
       <div className="home-page">
         <Header />
       </div>
-      <div className="">
-        <img className="relative" src={PostBackground} alt="" />
-        <div className="flex flex-col absolute top-[300px] left-[198px]">
-        </div>
+      {/* background video */}
+      <div className="video-background">
+        <iframe
+          width="100%"
+          height="300"
+          src="https://www.youtube.com/embed/OrDB4jpA1g8?autoplay=1"
+          title="Gym Video Background"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
       </div>
       <h2 className="text-xl text-orange-400 font-bold m-10 text-center">CHIA SẺ KIẾN THỨC</h2>
       <div className="mt-10 flex flex-wrap gap-0 relative ">
         {/* left contend */}
-        <div className="w-[50%] h-[500px] mx-auto  flex flex-wrap   gap-10">
-          {/* post1 */}
-          {posts.map((posts, index) => (
-            <div className="w-[40%]  shadow-lg   hover:shadow-2xl ">
-              <img className="w-full" src={Post1} alt="" />
-              <div className="mt-4 ml-4">
-                {/* đây là title */}
-                <h2 className="py-2 text-lg font-bold max-w-[300px] truncate overflow-ellipsis">
-
-                  {posts.title}
+        <div className="w-[50%] h-auto mx-auto flex flex-wrap gap-10">
+          {/* Các bài viết */}
+          {posts.map((post, index) => (
+            <div
+              key={index}
+              className="w-full md:w-[45%] lg:w-[30%] bg-white shadow-lg hover:shadow-2xl rounded-lg transition-shadow duration-300"
+            >
+              <img
+                className="w-full h-[200px] object-cover rounded-t-lg"
+                src={Post1}
+                alt={post.title}
+              />
+              <div className="p-6">
+                {/* Tiêu đề bài viết */}
+                <h2 className="text-xl font-semibold text-gray-800 mb-2 truncate">
+                  {post.title}
                 </h2>
-                {/* đây là contend */}
-                <p className="text-sm py-3 max-w-[350px] ">
-                  {posts.content.length > 255 ? `${posts.content.slice(0, 255)}...` : posts.content}
+                {/* Nội dung bài viết */}
+                <p className="text-gray-600 text-sm mb-4">
+                  {post.content.length > 255 ? `${post.content.slice(0, 255)}...` : post.content}
                 </p>
-                <div className="mt-7 mb-3">
-                  <a className="text-orange-400 " href={`/postDetail/${posts.postId}`}>
+                <div className="text-right">
+                  <a
+                    className="text-orange-500 font-semibold hover:underline"
+                    href={`/postDetail/${post.postId}`}
+                  >
                     Đọc thêm
                   </a>
                 </div>
               </div>
-              <hr className="border-black	w-full mt-8" />
-              {/* <div className="mt-2">
-                <span className="text-xs ml-3 ">{posts.createdAt}</span>
-              </div> */}
+              <hr className="border-gray-300" />
+              {/* Thời gian tạo bài viết (nếu cần) */}
+              {/* <div className="p-4 text-xs text-gray-500">
+        <span>{post.createdAt}</span>
+      </div> */}
             </div>
           ))}
-
         </div>
+
         {/* rightcontend */}
-        <div className="w-[20%] absolute right-32">
-          <div>
-            <div>
-              <div className="bg-orange-400 w-[80%]  h-[30px]">
-                <h2 className="items-center text-white font-sans font-bold ml-3 my-auto">
-                  KHÓA HỌC TẠI HELP EXPERT
-                </h2>
-              </div>
-              <a href="/dance">
-                <li className="list-none  text-[15px] font-sans py-1 ml-2 text-black hover:text-orange-400	">
-                  Dance
-                </li>
-              </a>
-              <a href="/boxing">
-                <li className="list-none  text-[15px] font-sans py-1 ml-2 text-black hover:text-orange-400	">
-                  Boxing
-                </li>
-              </a>
-              <a href="/yoga">
-                <li className="list-none  text-[15px] font-sans py-1 ml-2 text-black hover:text-orange-400	">
-                  Yoga
-                </li>
-              </a>
-              <a href="/gym">
-                <li className="list-none  text-[15px] font-sans py-1 ml-2 text-black hover:text-orange-400	">
-                  Gym
-                </li>
-              </a>
+        <div className="w-1/4 absolute right-8">
+          <div className="mb-5">
+            <div className="bg-orange-500 text-white font-bold py-2 px-4 rounded-t-lg">
+              KHÓA HỌC TẠI HEALTH 45
             </div>
-            <div className="bg-orange-400 w-[80%] h-[30px] mb-5">
-              <h2 className="items-center text-white font-sans font-bold ml-3 my-auto">
-                BÀI VIẾT GẦN ĐÂY
-              </h2>
-            </div>
-            <div className="flex flex-col w-[80%]">
-              {posts.slice(0, 5).map((post, index) => (
-                <div key={index} className="flex w-full mt-7">
-                  <a className="w-[30%]" href={`/postDetail/${post.postId}`}>
-                    <img className="w-[140px] h-[60px]" src={post.imageUrl || Post1} alt={post.title} />
-                  </a>
-                  <a className="w-[70%]" href={`/postDetail/${post.postId}`}>
-                    <p className="ml-3 text-sm">{post.title}</p>
-                  </a>
-                </div>
+            <ul className="list-none mt-2">
+              {["Dance", "Boxing", "Yoga", "Gym"].map((course, index) => (
+                <li key={index} className="py-1 ml-2 text-black hover:text-orange-500">
+                  <a href={`/${course.toLowerCase()}`}>{course}</a>
+                </li>
               ))}
-            </div>
+            </ul>
+          </div>
+          <div className="bg-orange-500 text-white font-bold py-2 px-4 rounded-t-lg mb-5">
+            BÀI VIẾT GẦN ĐÂY
+          </div>
+          <div className="flex flex-col">
+            {posts.slice(0, 5).map((post, index) => (
+              <div key={index} className="flex items-center mb-4">
+                <a href={`/postDetail/${post.postId}`} className="w-1/3">
+                  <img className="w-32 h-16 object-cover" src={post.imageUrl || Post1} alt={post.title} />
+                </a>
+                <a href={`/postDetail/${post.postId}`} className="w-2/3 ml-3 text-sm text-gray-800 hover:text-orange-500">
+                  {post.title}
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </div>

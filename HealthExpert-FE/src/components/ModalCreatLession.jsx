@@ -45,7 +45,7 @@ const ModalCreateLesson = () => {
 
     try {
       const response = await axios.post(
-        "https://localhost:7158/api/Lesson/UploadFile",
+        "https://localhost:7158/api/UploadVideo/Upload",
         formData,
         {
           headers: {
