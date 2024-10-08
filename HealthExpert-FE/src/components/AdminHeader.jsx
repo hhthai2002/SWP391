@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../img/logo.png";
+import Logo45 from "../img/logo45.png"
 import Post from "./Post";
 import { useNavigate } from "react-router-dom";
 import { Avatar, Menu, Dropdown } from "antd";
@@ -134,7 +135,7 @@ const AdminHeader = () => {
         <header className="border-b py-1.2 px-1.2 sm:px-10 bg-white font-[sans-serif] min-h-[70px]">
             <div className="flex flex-wrap items-center gap-x-2 max-lg:gap-y-6 mt-2">
                 <a href='/admin'>
-                    <img src={Logo} alt="logo" className="w-16 h-16 rounded-full" />
+                    <img src={Logo45} alt="logo45" className="w-16 h-16 rounded-full" />
                 </a>
                 <div className="ml-auto flex mr-3">
                     {

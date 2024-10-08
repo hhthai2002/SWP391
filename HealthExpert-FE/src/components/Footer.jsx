@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../img/logo.png";
+import Logo45 from "../img/logo45.png"
 import {
     PhoneOutlined,
 } from '@ant-design/icons';
@@ -11,7 +12,7 @@ const Footer = () => {
         <div className="w-full h-[350px] bg-black flex flex-row justify-around">
             <div className=" mt-10 flex flex-col">
                 <div className="ml-10 mt-5 flex flex-row items-center">
-                    <img src={Logo} alt="Health 45" className="w-16 " />
+                    <img src={Logo45} alt="Health 45" className="w-16 " />
                     <p className="font-bold text-3xl text-white ml-10">Health 45</p>
                 </div>
                 <div className="ml-10 mt-5 text-white flex flex-row items-center">
