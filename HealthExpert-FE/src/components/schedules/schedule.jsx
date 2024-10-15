@@ -6,9 +6,10 @@ import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'; 
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 
+import Header from "../../components/Header";
 import './schedule.css';
 
 moment.locale('en'); // Lịch bằng tiếng Anh
@@ -30,8 +31,8 @@ const Schedule = () => {
   const handleSelectSlot = (slotInfo) => {
     setCurrentEvent({
       ...currentEvent,
-      start: dayjs(slotInfo.start), 
-      end: dayjs(slotInfo.end),       
+      start: dayjs(slotInfo.start),
+      end: dayjs(slotInfo.end),
     });
     setOpenSlot(true);
   };
@@ -72,14 +73,14 @@ const Schedule = () => {
 
   const handleUpdateEvent = () => {
     const updatedEvents = events.map((event) =>
-      event.start.isSame(currentEvent.start) ? currentEvent : event 
+      event.start.isSame(currentEvent.start) ? currentEvent : event
     );
     setEvents(updatedEvents);
     setOpenEvent(false);
   };
 
   const handleDeleteEvent = () => {
-    const updatedEvents = events.filter((event) => !event.start.isSame(currentEvent.start)); 
+    const updatedEvents = events.filter((event) => !event.start.isSame(currentEvent.start));
     setEvents(updatedEvents);
     setOpenEvent(false);
   };
@@ -87,11 +88,11 @@ const Schedule = () => {
   const eventStyleGetter = (event) => {
     const start = dayjs(event.start);
     const end = dayjs(event.end);
-    const timeDiffInHours = end.diff(start, 'hour'); 
-    const height = timeDiffInHours * 60; 
+    const timeDiffInHours = end.diff(start, 'hour');
+    const height = timeDiffInHours * 60;
 
     const style = {
-      height: `${height}px`, 
+      height: `${height}px`,
       backgroundColor: '#3174ad',
       border: 'none',
       color: 'white',
@@ -108,32 +109,35 @@ const Schedule = () => {
     if (currentEvent.googleMeetLink) {
       window.open(currentEvent.googleMeetLink, '_blank');
     } else {
-      alert('Vui lòng thêm liên kết Google Meet.');
+      alert('Please Add Link Google Meet.');
     }
   };
 
   return (
+    
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className="schedule-container"> {/* Thêm lớp này để căn giữa */}
+      <Header />
+      <div className="schedule-container"> 
+        
         <div>
           <h1 className='schedule-title'>Lịch Học Của Học Viên</h1>
-          <div className="calendar"> {/* Thêm lớp này cho lịch */}
+          <div className="calendar"> 
             <Calendar
               localizer={localizer}
               events={events.map(event => ({
                 ...event,
-                start: event.start.toDate(), 
-                end: event.end.toDate(),     
+                start: event.start.toDate(),
+                end: event.end.toDate(),
               }))}
               startAccessor="start"
               endAccessor="end"
               selectable
               onSelectSlot={handleSelectSlot}
               onSelectEvent={handleEventSelected}
-              views={{ month: true, week: true, day: true }} // Thêm chế độ xem theo ngày
+              views={{ month: true, week: true, day: true }}
               defaultView={Views.MONTH}
-              eventPropGetter={eventStyleGetter} // Sử dụng hàm để lấy thuộc tính sự kiện
-              style={{ height: 600 }} // Có thể điều chỉnh chiều cao ở đây nếu cần
+              eventPropGetter={eventStyleGetter}
+              style={{ height: 600 }}
             />
           </div>
 
@@ -141,23 +145,29 @@ const Schedule = () => {
           <Dialog open={openSlot} onClose={() => setOpenSlot(false)}>
             <div className="dialog-content">
               <h2>Đặt lịch hẹn</h2>
-              <TextField label="Title" onChange={handleTitleChange} fullWidth />
-              <TextField label="Description" onChange={handleDescChange} fullWidth />
+              <TextField label="Tiêu đề" onChange={handleTitleChange} fullWidth />
+              <TextField label="Mô tả" onChange={handleDescChange} fullWidth />
               <TextField label="Link Google Meet" onChange={handleGoogleMeetChange} fullWidth />
               <TimePicker
-                label="Start Time"
+                label="Thời gian bắt đầu"
                 value={currentEvent.start}
                 onChange={handleStartTimeChange}
                 fullWidth
               />
               <TimePicker
-                label="End Time"
+                label="Thời gian kết thúc"
                 value={currentEvent.end}
                 onChange={handleEndTimeChange}
                 fullWidth
               />
-              <Button onClick={handleNewAppointment} color="primary">Confirm</Button>
-              <Button onClick={() => setOpenSlot(false)} color="secondary">Cancel</Button>
+              <Button onClick={handleNewAppointment}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border border-blue-500">
+                Xác nhận
+              </Button>
+              <Button onClick={() => setOpenSlot(false)}
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded border border-gray-500 ml-2">
+                Hủy
+              </Button>
             </div>
           </Dialog>
 
@@ -165,31 +175,50 @@ const Schedule = () => {
           <Dialog open={openEvent} onClose={() => setOpenEvent(false)}>
             <div className="dialog-content">
               <h2>Chỉnh sửa lịch hẹn</h2>
-              <TextField label="Title" value={currentEvent.title} onChange={handleTitleChange} fullWidth />
-              <TextField label="Description" value={currentEvent.desc} onChange={handleDescChange} fullWidth />
+              <TextField label="Tiêu đề" value={currentEvent.title} onChange={handleTitleChange} fullWidth />
+              <TextField label="Mô tả" value={currentEvent.desc} onChange={handleDescChange} fullWidth />
               <TextField label="Link Google Meet" value={currentEvent.googleMeetLink} onChange={handleGoogleMeetChange} fullWidth />
               <TimePicker
-                label="Start Time"
+                label="Thời gian bắt đầu"
                 value={currentEvent.start}
                 onChange={handleStartTimeChange}
                 fullWidth
               />
               <TimePicker
-                label="End Time"
+                label="Thời gian kết thúc"
                 value={currentEvent.end}
                 onChange={handleEndTimeChange}
                 fullWidth
               />
-              <Button onClick={handleUpdateEvent} color="primary">Confirm</Button>
-              <Button onClick={handleDeleteEvent} color="secondary">Delete</Button>
-              <Button onClick={handleOpenGoogleMeet} color="default">Open Google Meet</Button>
-              <Button onClick={() => setOpenEvent(false)} color="default">Cancel</Button>
+              <Button
+                onClick={handleUpdateEvent}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border border-gray-500">
+                Xác nhận
+              </Button>
+
+              <Button
+                onClick={handleDeleteEvent}
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded border border-red-500 ml-2">
+                Xóa
+              </Button>
+
+              <Button
+                onClick={handleOpenGoogleMeet}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border border-blue-500 ml-2">
+                Mở Google Meet
+              </Button>
+
+              <Button
+                onClick={() => setOpenEvent(false)}
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded border border-red-500 ml-2">
+                Hủy
+              </Button>
             </div>
           </Dialog>
         </div>
       </div>
     </LocalizationProvider>
-);
+  );
 
 };
 

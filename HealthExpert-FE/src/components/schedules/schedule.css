@@ -3,9 +3,10 @@
 
 .schedule-title{
   text-align: center; 
-  font-weight: bold; 
-  margin-bottom: 30px; 
-  font-size: 30px; 
+  font-weight: bold;
+  margin-top: 20px; 
+  margin-bottom: 5px; 
+  font-size: 25px; 
   color: rgb(255, 166, 0);
 }
 
@@ -21,19 +22,15 @@
   display: flex; 
   justify-content: center; 
   align-items: center; 
-  height: 100vh; /* Chiều cao 100% của viewport */
+  height: 100vh; 
 }
 
-.schedule-title {
-  text-align: center; 
-  margin-bottom: 20px; /* Thêm khoảng cách cho tiêu đề */
-}
 
 .calendar {
   justify-content: center; 
-  max-width: 1000px; /* Kích thước tối đa của lịch */
-  width: 1013px; 
-  height: 600px;
+  max-width: 900px; 
+  width: 990px; 
+  height: 550px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   border-radius: 10px; 
   
@@ -56,6 +53,12 @@
 .rbc-today {
   background-color: rgb(196, 226, 250) !important;
 }
+.dialog-content h2{
+  font-weight: bold;
+  text-align: center; 
+  margin-bottom: 5px; 
+}
+
 
 @media (max-width: 480px) {
   .rbc-toolbar {

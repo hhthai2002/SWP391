@@ -179,7 +179,7 @@ const Header = () => {
 
   return (
     <header
-      className={`border-b py-1.2 px-1.2 sm:px-10 bg-white font-[sans-serif] min-h-[70px] fixed top-0 left-0 right-0 z-50 shadow-lg transition-transform duration-300 ${
+      className={`border-b py-1 px-2 sm:px-6 bg-white font-[sans-serif] min-h-[70px] fixed top-0 left-0 right-0 z-50 shadow-lg transition-transform duration-300 ${
         showHeader ? "translate-y-0" : "-translate-y-full"
       }`} // Apply sliding effect
     >
@@ -226,6 +226,15 @@ const Header = () => {
               className="lg:hover:text-[#FFA500] text-black block font-semibold text-[20px]"
             >
               Chia sẻ
+            </a>
+          </li>
+          <li className="max-lg:border-b max-lg:py-2 px-3">
+            <a
+              href="/schedule"
+              onClick={(e) => handleLinkClick("/schedule", e)}
+              className="lg:hover:text-[#FFA500] text-black block font-semibold text-[20px]"
+            >
+              Lịch học
             </a>
           </li>
           {!checkRole && (
