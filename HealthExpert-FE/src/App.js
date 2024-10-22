@@ -1,7 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom"; // Thêm BrowserRouter
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Routes, Route } from "react-router-dom"; 
 
 import Home from "./page/Home/home";
 import SignIn from "./page/Auth/SignIn";
@@ -61,7 +59,6 @@ export default function App() {
   return (
   
     
-    <DndProvider backend={HTML5Backend}>
         <Routes>
 
           <Route path="/serviceCenterUpdateCourse" element={<ServiceCenterUpdateCourse/>}/>
@@ -116,7 +113,6 @@ export default function App() {
           <Route path="/admin/manageOrder/:orderId" element={<ManageOrderByIdByAdmin />} />
           <Route path="/admin/resetPassword" element={<ResetPassword />} />
         </Routes>
-      </DndProvider>
 
  
   );
