@@ -31,10 +31,15 @@ import blog1 from "../../img/blog1.jpg";
 import blog2 from "../../img/blog2.jpg";
 import blog3 from "../../img/blog3.jpg";
 import logo from "../../img/logo.png";
+import logo45 from "../../img/logo45_2.png"
 import yogaicon from "../../img/Yoga_icon.png";
 import gymicon from "../../img/Gym_icon.png";
 import boxingicon from "../../img/Boxing_icon.png";
 import danceicon from "../../img/Dance_icon.png";
+import home1 from "../../img/home1.png";
+import home2 from "../../img/home2.jpg";
+import home3 from "../../img/home3.png";
+import home4 from "../../img/home4.jpg";
 import { Link } from 'react-router-dom';
 
 // import { useDispatch } from "react-redux";
@@ -83,12 +88,12 @@ export default function Home() {
       {/* carousel */}
       <div className="grid grid-cols-12 h-[850px]">
         {/* Phần 3/12 */}
-        <div className="col-span-3 bg-gradient-to-br from-[#FDC830] to-[#F37335] h-[800px] m-10 border border-solid rounded-lg shadow-lg">
+        <div className="col-span-3 bg-gradient-to-br from-[#D3D3D3] to-[#4F4F4F] h-[800px] m-10 border border-solid rounded-lg shadow-lg">
           {/* Nội dung của phần 3/12 */}
           <section className="flex flex-col mt-5">
             {/* content */}
             <div className="flex-col text-center mb-5">
-              <h2 data-aos="zoom-out" className="text-white text-xl mt-3 font-bold">
+              <h2 data-aos="zoom-out" className="text-orange-400 text-xl mt-3 font-bold">
                 CÁC DỊCH VỤ TẠI HEALTH 45
               </h2>
             </div>
@@ -105,7 +110,7 @@ export default function Home() {
                       className="h-[150px] w-[150px] bg-black object-cover group-hover:opacity-80 filter group-hover:filter-brightness-75 transition-opacity transition-filter border border-[3px] border-solid rounded-full shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <h3 className="text-white text-center text-2xl">YOGA</h3>
+                      <h3 className="text-[#D2C52D] text-center text-2xl">YOGA</h3>
                     </div>
                   </div>
                 </a>
@@ -120,7 +125,7 @@ export default function Home() {
                       className="h-[150px] w-[150px] bg-black object-cover group-hover:opacity-80 filter group-hover:filter-brightness-75 transition-opacity transition-filter border border-[3px] border-solid rounded-full shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <h3 className="text-white text-center text-2xl">GYM</h3>
+                      <h3 className="text-[#D2C52D] text-center text-2xl">GYM</h3>
                     </div>
                   </div>
                 </a>
@@ -135,7 +140,7 @@ export default function Home() {
                       className="h-[150px] w-[150px] bg-black object-cover group-hover:opacity-80 filter group-hover:filter-brightness-75 transition-opacity transition-filter border border-[3px] border-solid rounded-full shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <h3 className="text-white text-center text-2xl">BOXING</h3>
+                      <h3 className="text-[#D2C52D] text-center text-2xl">BOXING</h3>
                     </div>
                   </div>
                 </a>
@@ -150,7 +155,7 @@ export default function Home() {
                       className="h-[150px] w-[150px] bg-black object-cover group-hover:opacity-80 filter group-hover:filter-brightness-75 transition-opacity transition-filter border border-[3px] border-solid rounded-full shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <h3 className="text-white text-center text-2xl">DANCE</h3>
+                      <h3 className="text-[#D2C52D] text-center text-2xl">DANCE</h3>
                     </div>
                   </div>
                 </a>
@@ -163,7 +168,7 @@ export default function Home() {
         <div className="col-span-9 m-10">
           {/* Nội dung của phần 9/12 */}
           <div className="flex justify-center h-screen">
-            <div className="bg-orange-400 w-full h-[800px] border border-solid rounded-lg shadow-lg flex flex-col ">
+            <div className="bg-[#9A9A9A] w-full h-[800px] border border-solid rounded-lg shadow-lg flex flex-col ">
               <div className="flex justify-center items-center">
                 <div className="w-[70%] mt-[50px]">
                   <Carousel
@@ -171,22 +176,22 @@ export default function Home() {
                     className="rounded-lg border"
                   >
                     <img
-                      src={carousel1}
+                      src={home1}
                       className="border border-solid rounded-lg"
                       alt=""
                     />
                     <img
-                      src={carousel2}
+                      src={home2}
                       className="border border-solid rounded-lg"
                       alt=""
                     />
                     <img
-                      src={carousel3}
+                      src={home3}
                       className="border border-solid rounded-lg"
                       alt=""
                     />
                     <img
-                      src={carousel4}
+                      src={home4}
                       className="border border-solid rounded-lg"
                       alt=""
                     />
@@ -194,7 +199,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex-col m-10">
-                <h1 data-aos="fade-up" className="text-white text-3xl font-bold">Health 45</h1>
+                <h1 data-aos="fade-up" className="text-orange-400 text-3xl font-bold">Health 45</h1>
                 <p data-aos="fade-up" className="mt-3">
                   Nơi kết nối giữa người mong muốn cải thiện chất lượng cơ thể và
                   trung tâm gym. Chúng tôi tự hào là cầu nối đưa bạn đến với cộng
@@ -219,7 +224,7 @@ export default function Home() {
           <div className="flex flex-row w-full">
             {course.slice(0, 4).map(course => (
               <>
-                <div className="flex w-full flex-row m-5 bg-gradient-to-br from-[#FDC830] to-[#F37335] p-5 border rounded-lg">
+                <div className="flex w-full flex-row m-5 bg-gradient-to-br from-[#D3D3D3] to-[#4F4F4F] p-5 border rounded-lg">
                   <Link to={`/detailCourse/${course.courseId}`}
                     className="h-[150px] w-full"
                   >
@@ -317,9 +322,12 @@ export default function Home() {
               bạn đạt mục tiêu sức khoẻ hiệu quả nhất
             </p>
           </div>
-          <div className="flex justify-center mb-5 w-full align-middle bg-orange-400 ">
+          <div className="flex justify-center mb-5 w-full align-middle bg-[#9A9A9A] ">
             <div className="w-[100%]">
-              <Carousel className="W-[100%]">
+              <Carousel
+                 autoplay
+                 interval={1000}
+                 className="w-[100%]">
                 <div className="w-full">
                   <div className="flex justify-between">
                     <img className="  w-[20%]" src={before1} alt="" />
@@ -348,7 +356,7 @@ export default function Home() {
             </div>
           </div>
           <div className=" mt-4 text-center">
-            <button onClick={() => navigate('/tranformation')} className="bg-blue-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded opacity-100 hover:opacity-80 transition-opacity ">
+            <button onClick={() => navigate('/tranformation')} className="bg-[#9A9A9A] hover:bg-orange-600 text-white font-bold py-2 px-4 rounded opacity-100 hover:opacity-80 transition-opacity ">
               Xem thêm
             </button>
           </div>

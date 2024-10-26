@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../img/logo.png";
+import Logo45 from "../img/logo45_3.png"
 import { useNavigate } from "react-router-dom";
 import { Avatar, Menu, Dropdown, Spin } from "antd";
 import Bmi from "../page/Services/bmi";
@@ -178,13 +179,13 @@ const Header = () => {
 
   return (
     <header
-      className={`border-b py-1.2 px-1.2 sm:px-10 bg-white font-[sans-serif] min-h-[70px] fixed top-0 left-0 right-0 z-50 shadow-lg transition-transform duration-300 ${
+      className={`border-b py-1 px-2 sm:px-6 bg-white font-[sans-serif] min-h-[70px] fixed top-0 left-0 right-0 z-50 shadow-lg transition-transform duration-300 ${
         showHeader ? "translate-y-0" : "-translate-y-full"
       }`} // Apply sliding effect
     >
       <div className="flex flex-wrap items-center gap-x-2 max-lg:gap-y-6">
         <a href="/">
-          <img src={Logo} alt="logo" className="w-16 h-16 rounded-full" />
+          <img src={Logo45} alt="logo45" className="w-auto h-16 rounded-full" />
         </a>
         <ul
           id="collapseMenu"
@@ -194,7 +195,7 @@ const Header = () => {
             <a
               href="/home"
               onClick={(e) => handleLinkClick("/home", e)}
-              className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
+              className="lg:hover:text-[#FFA500] text-black block font-semibold text-[20px]"
             >
               Trang chủ
             </a>
@@ -203,7 +204,7 @@ const Header = () => {
             <Dropdown overlay={<ServiceMenu />}>
               <a
                 href="#"
-                className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
+                className="lg:hover:text-[#FFA500] text-black block font-semibold text-[20px]"
               >
                 Dịch vụ
               </a>
@@ -213,7 +214,7 @@ const Header = () => {
             <a
               href="/tranformation"
               onClick={(e) => handleLinkClick("/tranformation", e)}
-              className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
+              className="lg:hover:text-[#FFA500] text-black block font-semibold text-[20px]"
             >
               Thay đổi
             </a>
@@ -222,9 +223,18 @@ const Header = () => {
             <a
               href="/listPost"
               onClick={(e) => handleLinkClick("/listPost", e)}
-              className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
+              className="lg:hover:text-[#FFA500] text-black block font-semibold text-[20px]"
             >
               Chia sẻ
+            </a>
+          </li>
+          <li className="max-lg:border-b max-lg:py-2 px-3">
+            <a
+              href="/schedule"
+              onClick={(e) => handleLinkClick("/schedule", e)}
+              className="lg:hover:text-[#FFA500] text-black block font-semibold text-[20px]"
+            >
+              Lịch học
             </a>
           </li>
           {!checkRole && (
@@ -235,7 +245,7 @@ const Header = () => {
                   e.preventDefault();
                   toggleBmiForm();
                 }}
-                className="lg:hover:text-[#FFA500] text-gray-500 block font-semibold text-[20px]"
+                className="lg:hover:text-[#FFA500] text-black block font-semibold text-[20px]"
               >
                 Tìm khóa học phù hợp
               </a>
@@ -246,7 +256,7 @@ const Header = () => {
         <div className="ml-auto flex mr-3">
           {loggedIn ? (
             <div className="lg:!flex lg:ml-14 lg:space-x-5 max-lg:space-y-2 max-lg:hidden max-lg:py-4 max-lg:w-full">
-              <p className="mr-2 text-orange-400 text-xl">
+              <p className="mr-2 text-[#B1AB68] text-xl">
                 <strong>{username}</strong>
               </p>
               <Dropdown overlay={<WidgetMenu />}>

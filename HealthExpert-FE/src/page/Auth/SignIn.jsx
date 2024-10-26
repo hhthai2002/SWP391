@@ -3,7 +3,7 @@ import { Form, Input, notification, Spin, Button as AntButton } from "antd";
 import { UserOutlined, LockOutlined, GoogleOutlined } from "@ant-design/icons";
 import Button from "../../components/button";
 import backgroundImage from "../../img/nike.png";
-import help45 from "../../img/logo.png";
+import help45 from "../../img/logo45_2.png";
 import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
@@ -168,7 +168,7 @@ export default function SignIn() {
           >
             <div className="introduce mb-10">
               <div className="logoImage mb-2">
-                <img className="w-1/5 rounded-full" src={help45} alt="" />
+                <img className="w-2/5 rounded-full" src={help45} alt="" />
               </div>
               <div className="content mb-10">
                 <h1 className="text-3xl mb-5 text-525252">

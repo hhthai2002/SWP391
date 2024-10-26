@@ -40,7 +40,7 @@ export default function ListPost() {
           allowFullScreen
         ></iframe>
       </div>
-      <h2 className="text-xl text-orange-400 font-bold m-10 text-center">CHIA SẺ KIẾN THỨC</h2>
+      <h2 className="text-xl text-[#F4A460] font-bold m-10 text-center">CHIA SẺ KIẾN THỨC</h2>
       <div className="mt-10 flex flex-wrap gap-0 relative ">
         {/* left contend */}
         <div className="w-[50%] h-auto mx-auto flex flex-wrap gap-10">
@@ -66,7 +66,7 @@ export default function ListPost() {
                 </p>
                 <div className="text-right">
                   <a
-                    className="text-orange-500 font-semibold hover:underline"
+                    className="text-[#F4A460] font-semibold hover:underline"
                     href={`/postDetail/${post.postId}`}
                   >
                     Đọc thêm
@@ -85,7 +85,7 @@ export default function ListPost() {
         {/* rightcontend */}
         <div className="w-1/4 absolute right-8">
           <div className="mb-5">
-            <div className="bg-orange-500 text-white font-bold py-2 px-4 rounded-t-lg">
+            <div className="bg-[#9A9A9A] text-[#F4A460] font-bold py-2 px-4 rounded-t-lg">
               KHÓA HỌC TẠI HEALTH 45
             </div>
             <ul className="list-none mt-2">
@@ -96,7 +96,7 @@ export default function ListPost() {
               ))}
             </ul>
           </div>
-          <div className="bg-orange-500 text-white font-bold py-2 px-4 rounded-t-lg mb-5">
+          <div className="bg-[#9A9A9A] text-[#F4A460] font-bold py-2 px-4 rounded-t-lg mb-5">
             BÀI VIẾT GẦN ĐÂY
           </div>
           <div className="flex flex-col">
