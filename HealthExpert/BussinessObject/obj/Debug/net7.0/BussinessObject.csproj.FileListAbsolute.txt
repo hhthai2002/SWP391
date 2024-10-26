@@ -13,3 +13,17 @@ D:\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\refint\BussinessObject.d
 D:\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.pdb
 D:\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.genruntimeconfig.cache
 D:\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\ref\BussinessObject.dll
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\bin\Debug\net7.0\BussinessObject.deps.json
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\bin\Debug\net7.0\BussinessObject.runtimeconfig.json
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\bin\Debug\net7.0\BussinessObject.dll
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\bin\Debug\net7.0\BussinessObject.pdb
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.csproj.AssemblyReference.cache
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.GeneratedMSBuildEditorConfig.editorconfig
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.AssemblyInfoInputs.cache
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.AssemblyInfo.cs
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.csproj.CoreCompileInputs.cache
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.dll
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\refint\BussinessObject.dll
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.pdb
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\BussinessObject.genruntimeconfig.cache
+D:\CN5\SWP391\SWP391\HealthExpert\BussinessObject\obj\Debug\net7.0\ref\BussinessObject.dll

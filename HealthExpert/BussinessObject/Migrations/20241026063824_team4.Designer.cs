@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BussinessObject.Migrations
 {
     [DbContext(typeof(HealthExpertContext))]
-    [Migration("20241002033002_DbInit")]
-    partial class DbInit
+    [Migration("20241026063824_team4")]
+    partial class team4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

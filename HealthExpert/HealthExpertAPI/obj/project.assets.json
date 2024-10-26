@@ -13291,24 +13291,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ES_IT16\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\HieuThanh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\HealthExpertAPI.csproj",
+      "projectUniqueName": "D:\\CN5\\SWP391\\SWP391\\HealthExpert\\HealthExpertAPI\\HealthExpertAPI.csproj",
       "projectName": "HealthExpertAPI",
-      "projectPath": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\HealthExpertAPI.csproj",
-      "packagesPath": "C:\\Users\\ES_IT16\\.nuget\\packages\\",
-      "outputPath": "D:\\SWP391\\HealthExpert\\HealthExpertAPI\\obj\\",
+      "projectPath": "D:\\CN5\\SWP391\\SWP391\\HealthExpert\\HealthExpertAPI\\HealthExpertAPI.csproj",
+      "packagesPath": "C:\\Users\\HieuThanh\\.nuget\\packages\\",
+      "outputPath": "D:\\CN5\\SWP391\\SWP391\\HealthExpert\\HealthExpertAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\ES_IT16\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\HieuThanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13316,18 +13311,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\SWP391\\HealthExpert\\BussinessObject\\BussinessObject.csproj": {
-              "projectPath": "D:\\SWP391\\HealthExpert\\BussinessObject\\BussinessObject.csproj"
+            "D:\\CN5\\SWP391\\SWP391\\HealthExpert\\BussinessObject\\BussinessObject.csproj": {
+              "projectPath": "D:\\CN5\\SWP391\\SWP391\\HealthExpert\\BussinessObject\\BussinessObject.csproj"
             },
-            "D:\\SWP391\\HealthExpert\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "D:\\SWP391\\HealthExpert\\DataAccess\\DataAccess.csproj"
+            "D:\\CN5\\SWP391\\SWP391\\HealthExpert\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "D:\\CN5\\SWP391\\SWP391\\HealthExpert\\DataAccess\\DataAccess.csproj"
             }
           }
         }
@@ -13336,11 +13330,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -13475,20 +13464,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.IdentityModel.Tokens.Jwt' 7.0.3 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
-      "libraryId": "System.IdentityModel.Tokens.Jwt",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  }
 }

@@ -2959,10 +2959,7 @@
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "runtime": {
-          "BussinessObject.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "BussinessObject.dll": {}
         }
       }
     }

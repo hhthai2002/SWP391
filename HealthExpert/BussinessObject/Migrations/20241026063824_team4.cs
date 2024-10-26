@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BussinessObject.Migrations
 {
     /// <inheritdoc />
-    public partial class DbInit : Migration
+    public partial class team4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
